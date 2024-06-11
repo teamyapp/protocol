@@ -1,9 +1,5 @@
 .idea/
 .npmrc
 node_modules
-/proto/pbweb/dist/
-/proto/pbweb/src/google/
-/proto/pbweb/src/index.ts
-/proto/pbweb/src/*.js
-/proto/pbweb/src/*.d.ts
+/pb/pbweb/dist/
 

@@ -4,7 +4,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/protocol/proto/pbgo/pbteamy";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy";
 
 service Task {
 	rpc GetTask(GetTaskRequest) returns (TaskMsg);
