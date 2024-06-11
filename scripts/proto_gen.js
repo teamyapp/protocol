@@ -6,10 +6,13 @@ const { join, resolve } = require("path");
 const { execSync } = require("child_process");
 
 const paths = ["proto"];
+const pbDir = resolve(__dirname, "..", "pb");
+const pbGoDir = resolve(pbDir, "pbgo");
+const pbWebDir = resolve(pbDir, "pbweb", "src");
+
 for (let path of paths) {
   const protoDir = resolve(__dirname, "..", path);
-  const protoGoDir = resolve(protoDir, "pbgo");
-  const protoWebDir = resolve(protoDir, "pbweb", "src");
+
   findFilesRec(path, (file) => {
     if (!file.endsWith(".proto")) {
       return;
@@ -19,17 +22,17 @@ for (let path of paths) {
     console.log(`Found ${resolvedFile}`);
 
     execSync(
-      `protoc --proto_path=${protoDir} --go_out=${protoGoDir} --go_opt=paths=source_relative --go-grpc_out=${protoGoDir} --go-grpc_opt=paths=source_relative ${resolvedFile}`,
+      `protoc --proto_path=${protoDir} --go_out=${pbGoDir} --go_opt=paths=source_relative --go-grpc_out=${pbGoDir} --go-grpc_opt=paths=source_relative ${resolvedFile}`,
       { stdio: "inherit" }
     );
 
     execSync(
-      `protoc --plugin=node_modules/.bin/protoc-gen-ts --proto_path=${protoDir} --ts_out=${protoWebDir} --ts_opt long_type_number ${resolvedFile}`,
+      `protoc --plugin=node_modules/.bin/protoc-gen-ts --proto_path=${protoDir} --ts_out=${pbWebDir} --ts_opt long_type_number ${resolvedFile}`,
       { stdio: "inherit" }
     );
   });
 
-  createIndex(protoWebDir);
+  createIndex(pbWebDir);
 }
 
 function createIndex(inputPath) {

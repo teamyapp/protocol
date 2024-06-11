@@ -1,7 +1,7 @@
 {
   "name": "@teamyapp/proto",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
@@ -19,5 +19,5 @@
   },
   "author": "Teamy",
   "description": "",
-  "license": "Private"
+  "license": "MIT"
 }
