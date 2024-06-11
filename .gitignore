@@ -4,7 +4,6 @@ node_modules
 /proto/pbweb/dist/
 /proto/pbweb/src/google/
 /proto/pbweb/src/index.ts
-/proto/pbweb/src/index.d.ts
 /proto/pbweb/src/*.js
 /proto/pbweb/src/*.d.ts
 
