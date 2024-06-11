@@ -1,0 +1,23 @@
+{
+  "name": "@teamyapp/proto",
+  "private": false,
+  "version": "0.0.1",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc && cp package.json dist",
+    "release": "yarn build && cd dist && yarn publish --access restricted --no-git-checks"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "@protobuf-ts/runtime-rpc": "^2.9.4"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "author": "Teamy",
+  "description": "",
+  "license": "Private"
+}
