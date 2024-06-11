@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
+const path = require('path');
 const { join, resolve } = require("path");
 const { execSync } = require("child_process");
 
@@ -33,21 +34,34 @@ for (let path of paths) {
 
 function createIndex(inputPath) {
   let indexContent = "";
-  const files = fs.readdirSync(inputPath);
-  files.forEach((file) => {
-    if (
-      file.endsWith(".ts") &&
-      !file.endsWith(".d.ts") &&
-      file !== "index.ts"
-    ) {
-      const moduleName = file.replace(".ts", "");
-      indexContent += `export * from './${moduleName}';\n`;
-    }
-  });
+  const stack = [inputPath];
 
-  fs.writeFileSync(`${inputPath}/index.ts`, indexContent);
+  while (stack.length > 0) {
+    const currentDir = stack.pop();
+    const files = fs.readdirSync(currentDir);
+
+    files.forEach((file) => {
+      const fullPath = path.join(currentDir, file);
+      const stats = fs.statSync(fullPath);
+      if (stats.isDirectory()) {
+        stack.push(fullPath);
+        return;
+      }
+
+      if (file.endsWith(".ts") && file !== "index.ts") {
+        const relativeFilePath = path.relative(inputPath, fullPath);
+        const moduleName = relativeFilePath
+            .replace(".ts", "")
+            .replace(/\\/g, "/");
+        indexContent += `export * from './${moduleName}';\n`;
+      }
+    });
+  }
+
+  fs.writeFileSync(path.join(inputPath, 'index.ts'), indexContent);
   console.log(`index.ts has been created/updated in ${inputPath}`);
 }
+
 function findFilesRec(dir, outputFile) {
   const files = fs.readdirSync(dir);
   files.forEach((file) => {
