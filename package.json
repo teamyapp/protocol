@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "@protobuf-ts/plugin": "^2.9.4"
+  },
+  "author": "Teamy",
+  "license": "Private"
+}

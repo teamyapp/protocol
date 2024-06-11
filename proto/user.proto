@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/teamy-backend/core/api/proto";
+option go_package = "github.com/protocol/proto/pbgo";
 
 service User {
 	rpc CreateUser(CreateUserRequest) returns (google.protobuf.Empty);

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/protocol/proto";
+option go_package = "github.com/protocol/proto/pbgo";
 
 service Github {
 	rpc BackfillPullRequestMetadata(google.protobuf.Empty) returns (google.protobuf.Empty);
