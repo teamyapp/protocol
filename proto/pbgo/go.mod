@@ -1,4 +1,4 @@
-module github.com/protocol/proto/pbgo
+module github.com/teamyapp/protocol/proto/pbgo
 
 go 1.21.9
 
