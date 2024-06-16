@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+
+message TaskActivity {
+    message DragTaskActivity {
+        bool isDragging = 1;
+        Client client = 2;
+    }
+
+    message Client {
+        uint64 id = 1;
+        uint64 userId = 2;
+    }    
+
+    uint64 taskId = 1;
+    DragTaskActivity dragTaskActivity = 2;
+}
+
+
+
+
+
+

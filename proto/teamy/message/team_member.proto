@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message TeamMember {
+    uint64 teamId = 1;
+    uint64 userId = 2;
+    google.protobuf.Duration weeklyBandwidth = 3;
+    google.protobuf.Timestamp createdAt = 4;
+    optional google.protobuf.Timestamp updatedAt = 5;
+}
+
+
+
+
+
+
+
+
+
+

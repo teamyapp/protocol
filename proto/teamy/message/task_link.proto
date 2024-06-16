@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+import "google/protobuf/timestamp.proto";
+
+message TaskLink {
+    uint64 id = 1;
+    uint64 taskId = 2;
+    string title = 3;
+    string previewTitle = 4;
+    string url = 5;
+    optional string iconUrl = 6;
+    optional string iconHoverUrl = 7;
+    google.protobuf.Timestamp createdAt = 8;
+    optional google.protobuf.Timestamp updatedAt = 9;
+}

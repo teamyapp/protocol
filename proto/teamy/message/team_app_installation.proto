@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+
+message TeamAppInstallation {
+    uint64 id = 1;
+    string installedTeamId = 2;
+    string appId = 3;
+    int32 activeAppVersionNumber = 4;
+}
+
+

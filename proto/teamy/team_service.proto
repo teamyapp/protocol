@@ -1,0 +1,100 @@
+syntax = "proto3";
+option go_package = "ggithub.com/teamyapp/protocol/pb/pbgo/pbteamy";
+import "google/protobuf/empty.proto";
+import "teamy/message/team_member.proto";
+import "teamy/message/team.proto";
+import "google/protobuf/duration.proto";
+
+service TeamService {
+	rpc GetTeam(GetTeamRequest) returns (GetTeamResponse);
+	rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse);
+	rpc UpdateTeam(UpdateTeamRequest) returns (google.protobuf.Empty);
+	rpc DeleteTeam(DeleteTeamRequest) returns (google.protobuf.Empty);
+	rpc UpdateTeamActiveSprint(UpdateTeamActiveSprintRequest) returns (google.protobuf.Empty);
+	rpc GetTeamMember(GetTeamMemberRequest) returns (GetTeamMemberResponse);
+	rpc UpdateTeamMember(UpdateTeamMemberRequest) returns (google.protobuf.Empty);
+	rpc ListTeamMembers(ListTeamMembersRequest) returns (ListTeamMembersResponse);
+	rpc AddMemberToTeam(AddMemberToTeamRequest) returns (google.protobuf.Empty);
+	rpc RemoveMemberFromTeam(RemoveMemberFromTeamRequest) returns (google.protobuf.Empty);
+	rpc CreateTeamIconUploadSession(CreateTeamIconUploadSessionRequest) returns (CreateTeamIconUploadSessionResponse);
+	rpc FinishTeamIconUploadSession(FinishTeamIconUploadSessionRequest) returns (google.protobuf.Empty);
+}
+
+message GetTeamRequest {
+	uint64 teamId = 1;
+}
+
+message GetTeamResponse {
+	Team team = 1;
+}
+
+message GetTeamMemberRequest {
+	uint64 teamId = 1;
+	uint64 userId = 2;
+}
+
+message GetTeamMemberResponse {
+	TeamMember member = 1;
+}
+
+message CreateTeamRequest {
+	string name = 1;
+}
+
+message CreateTeamResponse {
+	uint64 teamId = 1;
+}
+
+message UpdateTeamRequest {
+	uint64 teamId = 1;
+	optional string name = 2;
+	optional string iconUrl = 3;
+	optional uint64 ownerUserId = 4;
+}
+
+message DeleteTeamRequest {
+	uint64 teamId = 1;
+}
+
+message UpdateTeamActiveSprintRequest {
+	uint64 teamId = 1;
+	uint64 sprintId = 2;
+}
+
+message UpdateTeamMemberRequest {
+	uint64 teamId = 1;
+	uint64 userId = 2;
+	optional google.protobuf.Duration weeklyBandwidth = 3;
+}
+
+message ListTeamMembersRequest {
+	uint64 teamId = 1;
+}
+
+message ListTeamMembersResponse {
+	repeated TeamMember teamMembers = 1;
+}
+
+message AddMemberToTeamRequest {
+	uint64 teamId = 1;
+	uint64 memberUserId = 2;
+}
+
+message RemoveMemberFromTeamRequest {
+	uint64 teamId = 1;
+	uint64 memberUserId = 2;
+}
+
+message CreateTeamIconUploadSessionRequest {
+	uint64 teamId = 1;
+}
+
+message CreateTeamIconUploadSessionResponse {
+	uint64 uploadSessionId = 1;
+}
+
+message FinishTeamIconUploadSessionRequest {
+	uint64 uploadSessionId = 1;
+}
+
+

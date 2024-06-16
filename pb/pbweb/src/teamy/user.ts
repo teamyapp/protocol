@@ -12,6 +12,25 @@ import { UnknownFieldHandler } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
+import { User } from "./message/user";
+/**
+ * @generated from protobuf message GetUserRequest
+ */
+export interface GetUserRequest {
+    /**
+     * @generated from protobuf field: uint64 userId = 1;
+     */
+    userId: number;
+}
+/**
+ * @generated from protobuf message GetUserResponse
+ */
+export interface GetUserResponse {
+    /**
+     * @generated from protobuf field: User User = 1 [json_name = "User"];
+     */
+    user?: User;
+}
 /**
  * @generated from protobuf message CreateUserRequest
  */
@@ -59,6 +78,99 @@ export interface UpdateUserRequest {
      */
     profileUrl: string;
 }
+// @generated message type with reflection information, may provide speed optimized methods
+class GetUserRequest$Type extends MessageType<GetUserRequest> {
+    constructor() {
+        super("GetUserRequest", [
+            { no: 1, name: "userId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetUserRequest>): GetUserRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.userId = 0;
+        if (value !== undefined)
+            reflectionMergePartial<GetUserRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetUserRequest): GetUserRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint64 userId */ 1:
+                    message.userId = reader.uint64().toNumber();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetUserRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint64 userId = 1; */
+        if (message.userId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.userId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message GetUserRequest
+ */
+export const GetUserRequest = new GetUserRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetUserResponse$Type extends MessageType<GetUserResponse> {
+    constructor() {
+        super("GetUserResponse", [
+            { no: 1, name: "User", kind: "message", jsonName: "User", T: () => User }
+        ]);
+    }
+    create(value?: PartialMessage<GetUserResponse>): GetUserResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<GetUserResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetUserResponse): GetUserResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* User User = 1 [json_name = "User"];*/ 1:
+                    message.user = User.internalBinaryRead(reader, reader.uint32(), options, message.user);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetUserResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* User User = 1 [json_name = "User"]; */
+        if (message.user)
+            User.internalBinaryWrite(message.user, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message GetUserResponse
+ */
+export const GetUserResponse = new GetUserResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class CreateUserRequest$Type extends MessageType<CreateUserRequest> {
     constructor() {
@@ -241,9 +353,10 @@ class UpdateUserRequest$Type extends MessageType<UpdateUserRequest> {
  */
 export const UpdateUserRequest = new UpdateUserRequest$Type();
 /**
- * @generated ServiceType for protobuf service User
+ * @generated ServiceType for protobuf service UserService
  */
-export const User = new ServiceType("User", [
+export const UserService = new ServiceType("UserService", [
     { name: "CreateUser", options: {}, I: CreateUserRequest, O: Empty },
-    { name: "UpdateUser", options: {}, I: UpdateUserRequest, O: Empty }
+    { name: "UpdateUser", options: {}, I: UpdateUserRequest, O: Empty },
+    { name: "GetUser", options: {}, I: GetUserRequest, O: GetUserResponse }
 ]);

@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+import "google/protobuf/timestamp.proto";
+
+message App {
+    uint64 id = 1;
+    google.protobuf.Timestamp createdAt = 2;
+    optional google.protobuf.Timestamp updatedAt = 3;
+    int32 totalInstallations = 4;
+    uint64 managedByTeamId = 5;
+    int32 latestVersionNumberForTeam = 6;
+    repeated uint64 secretIds = 7;
+    repeated uint64 installationIds = 8;
+    repeated int32 versionNumbers = 9;
+    repeated uint64 groupIds = 10;
+    repeated uint64 userRolloutIds = 11;
+    repeated uint64 teamRolloutIds = 12;
+    repeated uint64 tagIds = 13;
+}
+
+

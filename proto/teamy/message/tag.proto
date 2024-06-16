@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+
+message Tag {
+    uint64 id = 1;
+    string value = 2;
+}
+
+
+

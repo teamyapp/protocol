@@ -1,11 +1,29 @@
 syntax = "proto3";
-
-import "google/protobuf/empty.proto";
 option go_package = "ggithub.com/teamyapp/protocol/pb/pbgo/pbteamy";
+import "google/protobuf/empty.proto";
+import "teamy/message/task_link.proto";
 
-service TaskLink {
+service TaskLinkService {
+	rpc GetTaskLink(GetTaskLinkRequest) returns (GetTaskLinkResponse);
+	rpc ListTaskLinks(ListTaskLinksRequest) returns (ListTaskLinksResponse);
 	rpc CreateTaskLink(CreateTaskLinkRequest) returns (CreateTaskLinkResponse);
 	rpc DeleteTaskLink(DeleteTaskLinkRequest) returns (google.protobuf.Empty);
+}
+
+message GetTaskLinkRequest {
+	uint64 linkId = 1;
+}
+
+message GetTaskLinkResponse {
+	TaskLink taskLink = 1;
+}
+
+message ListTaskLinksRequest {
+	repeated uint64 linkIds = 1;
+}
+
+message ListTaskLinksResponse {
+	repeated TaskLink taskLinks = 1;
 }
 
 message CreateTaskLinkRequest {

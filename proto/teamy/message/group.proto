@@ -1,0 +1,56 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+import "google/protobuf/timestamp.proto";
+
+enum GroupType {
+    GROUP_TYPE_STATIC = 0;
+    GROUP_TYPE_FILTER = 1;
+}
+
+enum GroupMemberType {
+    GROUP_MEMBER_TYPE_USER = 0;
+    GROUP_MEMBER_TYPE_TEAM = 1;
+}
+
+message GroupBase {
+    uint64 id = 1;
+    bool locked = 2;
+    int32 maxRolloutIndex = 3;
+    string name = 4;
+    GroupType type = 5;
+    GroupMemberType memberType = 6;
+    google.protobuf.Timestamp createdAt = 7;
+    optional google.protobuf.Timestamp updatedAt = 8;
+    repeated GroupRolloutRelation groupRolloutRelations = 9;
+    repeated uint64 appIds = 10;
+}
+
+message GroupRolloutRelation {
+    uint64 groupId = 1;
+    uint64 rolloutId = 2;
+    int32 orderIndex = 3;
+}
+
+message UserStaticGroup {
+    GroupBase base = 1;
+    repeated uint64 userIds = 2;
+}
+
+message TeamStaticGroup {
+    GroupBase base = 1;
+    repeated uint64 teamIds = 2;
+}
+
+message FilterGroup {
+    GroupBase base = 1;
+    string filter = 2;
+}
+
+message Group {
+    oneof group {
+        UserStaticGroup userStaticGroup = 1;
+        TeamStaticGroup teamStaticGroup = 2;
+        FilterGroup filterGroup = 3;
+    }
+}
+

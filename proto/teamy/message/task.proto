@@ -1,0 +1,45 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "teamy/message/common.proto";
+
+enum TaskStatus {
+    TASK_STATUS_TODO = 0;
+    TASK_STATUS_IN_PROGRESS = 1;
+    TASK_STATUS_PAUSED = 2;
+    TASK_STATUS_AWAITING = 3;
+    TASK_STATUS_BLOCK = 4;
+    TASK_STATUS_DELIVERED = 5;
+}
+
+enum TaskAction {
+    TASK_ACTION_START = 0;
+    TASK_ACTION_DELETE = 1;
+    TASK_ACTION_ASSIGN_OWNER = 2;
+    TASK_ACTION_REPORT_BLOCKED = 3;
+    TASK_ACTION_MARK_COMPLETE = 4;
+}
+
+message Task {
+    uint64 id = 1;
+    string goal = 2;
+    optional string context = 3;
+    uint64 owningTeamId = 4;
+    uint64 creatorId = 5;
+    optional uint64 ownerUserId = 6;
+    TaskStatus status = 7;
+    bool isScheduled = 8;
+    bool isPlanned = 9;
+    google.protobuf.Timestamp createdAt = 10;
+    optional google.protobuf.Timestamp updatedAt = 11;
+    optional google.protobuf.Timestamp deliveredAt = 12;
+    optional google.protobuf.Timestamp dueAt = 13;
+    optional google.protobuf.Duration effort = 14;
+    optional Priority priority = 15;
+    repeated TaskAction availableActions = 16;
+    repeated uint64 awaitForTaskIds = 17;
+    repeated uint64 linkIds = 18;
+    uint64 contextAttachmentListId = 19;
+    uint64 commentThreadId = 20;
+}

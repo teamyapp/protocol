@@ -3,18 +3,30 @@
 // tslint:disable
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
-import { TaskLink } from "./task_link";
+import { TaskLinkService } from "./task_link";
 import type { Empty } from "../google/protobuf/empty";
 import type { DeleteTaskLinkRequest } from "./task_link";
-import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { CreateTaskLinkResponse } from "./task_link";
 import type { CreateTaskLinkRequest } from "./task_link";
+import type { ListTaskLinksResponse } from "./task_link";
+import type { ListTaskLinksRequest } from "./task_link";
+import { stackIntercept } from "@protobuf-ts/runtime-rpc";
+import type { GetTaskLinkResponse } from "./task_link";
+import type { GetTaskLinkRequest } from "./task_link";
 import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
- * @generated from protobuf service TaskLink
+ * @generated from protobuf service TaskLinkService
  */
-export interface ITaskLinkClient {
+export interface ITaskLinkServiceClient {
+    /**
+     * @generated from protobuf rpc: GetTaskLink(GetTaskLinkRequest) returns (GetTaskLinkResponse);
+     */
+    getTaskLink(input: GetTaskLinkRequest, options?: RpcOptions): UnaryCall<GetTaskLinkRequest, GetTaskLinkResponse>;
+    /**
+     * @generated from protobuf rpc: ListTaskLinks(ListTaskLinksRequest) returns (ListTaskLinksResponse);
+     */
+    listTaskLinks(input: ListTaskLinksRequest, options?: RpcOptions): UnaryCall<ListTaskLinksRequest, ListTaskLinksResponse>;
     /**
      * @generated from protobuf rpc: CreateTaskLink(CreateTaskLinkRequest) returns (CreateTaskLinkResponse);
      */
@@ -25,26 +37,40 @@ export interface ITaskLinkClient {
     deleteTaskLink(input: DeleteTaskLinkRequest, options?: RpcOptions): UnaryCall<DeleteTaskLinkRequest, Empty>;
 }
 /**
- * @generated from protobuf service TaskLink
+ * @generated from protobuf service TaskLinkService
  */
-export class TaskLinkClient implements ITaskLinkClient, ServiceInfo {
-    typeName = TaskLink.typeName;
-    methods = TaskLink.methods;
-    options = TaskLink.options;
+export class TaskLinkServiceClient implements ITaskLinkServiceClient, ServiceInfo {
+    typeName = TaskLinkService.typeName;
+    methods = TaskLinkService.methods;
+    options = TaskLinkService.options;
     constructor(private readonly _transport: RpcTransport) {
+    }
+    /**
+     * @generated from protobuf rpc: GetTaskLink(GetTaskLinkRequest) returns (GetTaskLinkResponse);
+     */
+    getTaskLink(input: GetTaskLinkRequest, options?: RpcOptions): UnaryCall<GetTaskLinkRequest, GetTaskLinkResponse> {
+        const method = this.methods[0], opt = this._transport.mergeOptions(options);
+        return stackIntercept<GetTaskLinkRequest, GetTaskLinkResponse>("unary", this._transport, method, opt, input);
+    }
+    /**
+     * @generated from protobuf rpc: ListTaskLinks(ListTaskLinksRequest) returns (ListTaskLinksResponse);
+     */
+    listTaskLinks(input: ListTaskLinksRequest, options?: RpcOptions): UnaryCall<ListTaskLinksRequest, ListTaskLinksResponse> {
+        const method = this.methods[1], opt = this._transport.mergeOptions(options);
+        return stackIntercept<ListTaskLinksRequest, ListTaskLinksResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: CreateTaskLink(CreateTaskLinkRequest) returns (CreateTaskLinkResponse);
      */
     createTaskLink(input: CreateTaskLinkRequest, options?: RpcOptions): UnaryCall<CreateTaskLinkRequest, CreateTaskLinkResponse> {
-        const method = this.methods[0], opt = this._transport.mergeOptions(options);
+        const method = this.methods[2], opt = this._transport.mergeOptions(options);
         return stackIntercept<CreateTaskLinkRequest, CreateTaskLinkResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: DeleteTaskLink(DeleteTaskLinkRequest) returns (google.protobuf.Empty);
      */
     deleteTaskLink(input: DeleteTaskLinkRequest, options?: RpcOptions): UnaryCall<DeleteTaskLinkRequest, Empty> {
-        const method = this.methods[1], opt = this._transport.mergeOptions(options);
+        const method = this.methods[3], opt = this._transport.mergeOptions(options);
         return stackIntercept<DeleteTaskLinkRequest, Empty>("unary", this._transport, method, opt, input);
     }
 }

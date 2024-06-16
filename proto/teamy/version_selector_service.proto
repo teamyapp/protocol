@@ -1,0 +1,63 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy";
+import "google/protobuf/empty.proto";
+import "teamy/message/version_selector.proto";
+
+service VersionSelectorService {
+    rpc GetVersionSelector(GetVersionSelectorRequest) returns (GetVersionSelectorResponse);
+    rpc ListVersionSelectors(ListVersionSelectorsRequest) returns (ListVersionSelectorsResponse);
+    rpc CreateStaticVersionSelector(CreateStaticVersionSelectorRequest) returns (CreateStaticVersionSelectorResponse);
+    rpc CreateExperimentVersionSelector(CreateExperimentVersionSelectorRequest) returns (CreateExperimentVersionSelectorResponse);
+    rpc UpdateVersionSelector(UpdateVersionSelectorRequest) returns (UpdateVersionSelectorResponse);
+    rpc DeleteVersionSelector(DeleteVersionSelectorRequest) returns (google.protobuf.Empty);
+}
+
+message GetVersionSelectorRequest {
+    uint64 versionSelectorId = 1;
+}
+
+message GetVersionSelectorResponse {
+    VersionSelector versionSelector = 1;
+}
+
+message ListVersionSelectorsRequest {
+    repeated uint64 versionSelectorIds = 1;
+}
+
+message ListVersionSelectorsResponse {
+    repeated VersionSelector versionSelectors = 1;
+}
+
+message CreateStaticVersionSelectorRequest {
+    uint64 appId = 1;
+    uint32 versionNumber = 2;
+}
+
+message CreateStaticVersionSelectorResponse {
+    StaticVersionSelector staticVersionSelector = 1;
+}
+
+message CreateExperimentVersionSelectorRequest {
+    uint64 appId = 1;
+    repeated uint64 versionNumbers = 2;
+}
+
+message CreateExperimentVersionSelectorResponse {
+    ExperimentVersionSelector experimentVersionSelector = 1;
+}
+
+message UpdateVersionSelectorRequest {
+    uint64 appId = 1;
+    uint64 versionSelectorId = 2;
+    VersionSelectorType type = 3;
+    optional uint32 versionNumber = 4;
+    repeated uint32 versionNumbers = 5;
+}
+
+message UpdateVersionSelectorResponse {
+    VersionSelector versionSelector = 1;
+}
+
+message DeleteVersionSelectorRequest {
+    uint64 versionSelectorId = 1;
+}

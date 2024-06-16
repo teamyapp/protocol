@@ -1,0 +1,24 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+import "google/protobuf/timestamp.proto";
+import "teamy/message/common.proto";
+
+enum StoryStatus {
+    TODO = 0;
+    IN_PROGRESS = 1;
+    PAUSED = 2;
+    COMPLETED = 3;
+}
+
+message Story {
+    uint64 id = 1;
+    string name = 2;
+    optional uint64 ownerId = 3;
+    bool isPlanned = 4;
+    StoryStatus status = 5;
+    optional Priority priority = 6;
+    uint64 creatorId = 7;
+    google.protobuf.Timestamp createdAt = 8;
+    optional google.protobuf.Timestamp updatedAt = 9;
+    repeated uint64 taskIds = 10;
+}

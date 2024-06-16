@@ -1,0 +1,82 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "teamy/message/phase.proto";
+
+service PhaseService {
+    rpc GetPhase(GetPhaseRequest) returns (GetPhaseResponse);
+    rpc ListPhases(ListPhasesRequest) returns (ListPhasesResponse);
+    rpc CreatePhase(CreatePhaseRequest) returns (CreatePhaseResponse);
+    rpc UpdatePhase(UpdatePhaseRequest) returns (UpdatePhaseResponse);
+    rpc DeletePhase(DeletePhaseRequest) returns (google.protobuf.Empty);
+    rpc AddStoryToPhase(AddStoryToPhaseRequest) returns (google.protobuf.Empty);
+    rpc RemoveStoryFromPhase(RemoveStoryFromPhaseRequest) returns (google.protobuf.Empty);
+    rpc AddStoriesToPhase(AddStoriesToPhaseRequest) returns (google.protobuf.Empty);
+    rpc RemoveStoriesFromPhase(RemoveStoriesFromPhaseRequest) returns (google.protobuf.Empty);
+}
+
+message GetPhaseRequest {
+    uint64 phaseId = 1;
+}
+
+message GetPhaseResponse {
+    Phase phase = 1;
+}
+
+message ListPhasesRequest {
+    repeated uint64 phaseIds = 1;
+}
+
+message ListPhasesResponse {
+    repeated Phase phases = 1;
+}
+
+message CreatePhaseRequest {
+    uint64 projectId = 1;
+    string name = 2;
+    google.protobuf.Timestamp expectedStartAt = 3;
+    google.protobuf.Timestamp expectedEndAt = 4;
+}
+
+message CreatePhaseResponse {
+    Phase phase = 1;
+}
+
+message UpdatePhaseRequest {
+    uint64 phaseId = 1;
+    optional string name = 2;
+    optional google.protobuf.Timestamp expectedStartAt = 3;
+    optional google.protobuf.Timestamp expectedEndAt = 4;
+    optional google.protobuf.Timestamp actualStartAt = 5;
+    optional google.protobuf.Timestamp actualEndAt = 6;
+    optional PhaseStatus status = 7;
+}
+
+message UpdatePhaseResponse {
+    Phase phase = 1;
+}
+
+message DeletePhaseRequest {
+    uint64 phaseId = 1;
+}
+
+message AddStoryToPhaseRequest {
+    uint64 phaseId = 1;
+    uint64 storyId = 2;
+}
+
+message RemoveStoryFromPhaseRequest {
+    uint64 phaseId = 1;
+    uint64 storyId = 2;
+}
+
+message AddStoriesToPhaseRequest {
+    uint64 phaseId = 1;
+    repeated uint64 storyIds = 2;
+}
+
+message RemoveStoriesFromPhaseRequest {
+    uint64 phaseId = 1;
+    repeated uint64 storyIds = 2;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+import "google/protobuf/timestamp.proto";
+
+enum AppRolloutType {
+    APP_ROLLOUT_TYPE_USER = 0;
+    APP_ROLLOUT_TYPE_TEAM = 1;
+}
+
+message Rollout {
+    uint64 id = 1;
+    string name = 2;
+    bool isEnabled = 3;
+    bool locked = 4;
+    google.protobuf.Timestamp createdAt = 5;
+    optional google.protobuf.Timestamp updatedAt = 6;
+    uint64 activatorId = 7;
+    uint64 versionSelectorId = 8;
+    repeated uint64 groupIds = 9;
+}

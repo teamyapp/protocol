@@ -1,0 +1,74 @@
+syntax = "proto3";
+option go_package = "ggithub.com/teamyapp/protocol/pb/pbgo/pbteamy";
+import "google/protobuf/empty.proto";
+import "teamy/message/team_member_group.proto";
+
+service TeamMemberGroupService {
+	rpc GetMemberGroup(GetMemberGroupRequest) returns (GetMemberGroupResponse);
+	rpc ListMemberGroups(ListMemberGroupsRequest) returns (ListTeamMemberGroupsResponse);
+	rpc CreateMemberGroup(CreateTeamMemberGroupRequest) returns (CreateTeamMemberGroupResponse);
+	rpc UpdateMemberGroup(UpdateTeamMemberGroupRequest) returns (google.protobuf.Empty);
+	rpc DeleteMemberGroup(DeleteTeamMemberGroupRequest) returns (google.protobuf.Empty);
+	rpc AddMemberToGroup(AddTeamMemberToGroupRequest) returns (google.protobuf.Empty);
+	rpc RemoveMemberFromGroup(RemoveTeamMemberFromGroupRequest) returns (google.protobuf.Empty);
+	rpc MoveUpTeamMemberGroup(MoveUpTeamMemberGroupRequest) returns (google.protobuf.Empty);
+	rpc MoveDownTeamMemberGroup(MoveDownTeamMemberGroupRequest) returns (google.protobuf.Empty);
+}
+
+message GetMemberGroupRequest {
+	uint64 groupId = 1;
+}
+
+message GetMemberGroupResponse {
+	TeamMemberGroup group = 1;
+}
+
+message UpdateTeamActiveSprintRequest {
+	uint64 teamId = 1;
+	uint64 sprintId = 2;
+}
+
+message ListMemberGroupsRequest {
+	repeated uint64 teamMemberGroupIds = 1;
+}
+
+message ListTeamMemberGroupsResponse {
+	repeated TeamMemberGroup groups = 1;
+}
+
+message CreateTeamMemberGroupRequest {
+	uint64 teamId = 1;
+	string name = 2;
+}
+
+message CreateTeamMemberGroupResponse {
+	uint64 groupId = 1;
+}
+
+message UpdateTeamMemberGroupRequest {
+	uint64 groupId = 1;
+	string name = 2;
+}
+
+message DeleteTeamMemberGroupRequest {
+	uint64 groupId = 1;
+}
+
+message AddTeamMemberToGroupRequest {
+	uint64 groupId = 1;
+	uint64 memberUserId = 2;
+}
+
+message RemoveTeamMemberFromGroupRequest {
+	uint64 groupId = 1;
+	uint64 memberUserId = 2;
+}
+
+message MoveUpTeamMemberGroupRequest {
+	uint64 groupId = 1;
+}
+
+message MoveDownTeamMemberGroupRequest {
+	uint64 groupId = 1;
+}
+

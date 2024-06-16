@@ -3,7 +3,9 @@
 // tslint:disable
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
-import { User } from "./user";
+import { UserService } from "./user";
+import type { GetUserResponse } from "./user";
+import type { GetUserRequest } from "./user";
 import type { UpdateUserRequest } from "./user";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { Empty } from "../google/protobuf/empty";
@@ -11,9 +13,9 @@ import type { CreateUserRequest } from "./user";
 import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
- * @generated from protobuf service User
+ * @generated from protobuf service UserService
  */
-export interface IUserClient {
+export interface IUserServiceClient {
     /**
      * @generated from protobuf rpc: CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
      */
@@ -22,14 +24,18 @@ export interface IUserClient {
      * @generated from protobuf rpc: UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty);
      */
     updateUser(input: UpdateUserRequest, options?: RpcOptions): UnaryCall<UpdateUserRequest, Empty>;
+    /**
+     * @generated from protobuf rpc: GetUser(GetUserRequest) returns (GetUserResponse);
+     */
+    getUser(input: GetUserRequest, options?: RpcOptions): UnaryCall<GetUserRequest, GetUserResponse>;
 }
 /**
- * @generated from protobuf service User
+ * @generated from protobuf service UserService
  */
-export class UserClient implements IUserClient, ServiceInfo {
-    typeName = User.typeName;
-    methods = User.methods;
-    options = User.options;
+export class UserServiceClient implements IUserServiceClient, ServiceInfo {
+    typeName = UserService.typeName;
+    methods = UserService.methods;
+    options = UserService.options;
     constructor(private readonly _transport: RpcTransport) {
     }
     /**
@@ -45,5 +51,12 @@ export class UserClient implements IUserClient, ServiceInfo {
     updateUser(input: UpdateUserRequest, options?: RpcOptions): UnaryCall<UpdateUserRequest, Empty> {
         const method = this.methods[1], opt = this._transport.mergeOptions(options);
         return stackIntercept<UpdateUserRequest, Empty>("unary", this._transport, method, opt, input);
+    }
+    /**
+     * @generated from protobuf rpc: GetUser(GetUserRequest) returns (GetUserResponse);
+     */
+    getUser(input: GetUserRequest, options?: RpcOptions): UnaryCall<GetUserRequest, GetUserResponse> {
+        const method = this.methods[2], opt = this._transport.mergeOptions(options);
+        return stackIntercept<GetUserRequest, GetUserResponse>("unary", this._transport, method, opt, input);
     }
 }

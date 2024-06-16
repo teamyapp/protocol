@@ -1,0 +1,12 @@
+
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+
+enum Currency {
+    USD = 0;
+}
+
+message Money {
+    Currency currency = 1;
+    int32 amount = 2;
+}
