@@ -8,6 +8,7 @@ import "teamy/message/common.proto";
 
 service TaskService {
 	rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
+	rpc GetAwaitForTasks(GetAwaitForTasksRequest) returns (GetAwaitForTasksResponse);
 	rpc ListTasks(ListTasksRequest) returns (ListTasksResponse);
 	rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
 	rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
@@ -28,6 +29,14 @@ message GetTaskRequest {
 
 message GetTaskResponse {
 	Task task = 1;
+}
+
+message GetAwaitForTasksRequest {
+	uint64 taskId = 1;
+}
+
+message GetAwaitForTasksResponse {
+	repeated Task tasks = 1;
 }
 
 message ListTasksRequest {

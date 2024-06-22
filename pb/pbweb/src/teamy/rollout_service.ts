@@ -339,7 +339,7 @@ class CreateAppRolloutRequest$Type extends MessageType<CreateAppRolloutRequest> 
     constructor() {
         super("CreateAppRolloutRequest", [
             { no: 1, name: "appId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "type", kind: "enum", T: () => ["AppRolloutType", AppRolloutType, "APP_ROLLOUT_TYPE_"] },
+            { no: 2, name: "type", kind: "enum", T: () => ["AppRolloutType", AppRolloutType] },
             { no: 3, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "activatorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 5, name: "versionSelectorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },

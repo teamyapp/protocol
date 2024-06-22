@@ -9,7 +9,7 @@ service SprintService {
 	rpc ListSprints(ListSprintsRequest) returns (ListSprintsResponse);
 	rpc CreateSprint(CreateSprintRequest) returns (CreateSprintResponse);
 	rpc DeleteSprint(DeleteSprintRequest) returns (google.protobuf.Empty);
-	rpc GetActiveSprint(GetActiveSprintRequest) returns (GetSprintResponse);
+	rpc GetActiveSprint(GetActiveSprintRequest) returns (GetActiveSprintResponse);
 	rpc AddTaskToSprint(AddTaskToSprintRequest) returns (google.protobuf.Empty);
 	rpc RemoveTaskFromSprint(RemoveTaskToSprintRequest) returns (google.protobuf.Empty);
 	rpc AddTeamMemberToSprint(AddTeamMemberToSprintRequest) returns (google.protobuf.Empty);
@@ -47,6 +47,10 @@ message GetSprintResponse {
 
 message GetActiveSprintRequest {
 	uint64 teamId = 1;
+}
+
+message GetActiveSprintResponse {
+	Sprint sprint = 1;
 }
 
 message AddTaskToSprintRequest {

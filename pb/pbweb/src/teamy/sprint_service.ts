@@ -90,6 +90,15 @@ export interface GetActiveSprintRequest {
     teamId: number;
 }
 /**
+ * @generated from protobuf message GetActiveSprintResponse
+ */
+export interface GetActiveSprintResponse {
+    /**
+     * @generated from protobuf field: Sprint sprint = 1;
+     */
+    sprint?: Sprint;
+}
+/**
  * @generated from protobuf message AddTaskToSprintRequest
  */
 export interface AddTaskToSprintRequest {
@@ -535,6 +544,52 @@ class GetActiveSprintRequest$Type extends MessageType<GetActiveSprintRequest> {
  */
 export const GetActiveSprintRequest = new GetActiveSprintRequest$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class GetActiveSprintResponse$Type extends MessageType<GetActiveSprintResponse> {
+    constructor() {
+        super("GetActiveSprintResponse", [
+            { no: 1, name: "sprint", kind: "message", T: () => Sprint }
+        ]);
+    }
+    create(value?: PartialMessage<GetActiveSprintResponse>): GetActiveSprintResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<GetActiveSprintResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetActiveSprintResponse): GetActiveSprintResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* Sprint sprint */ 1:
+                    message.sprint = Sprint.internalBinaryRead(reader, reader.uint32(), options, message.sprint);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetActiveSprintResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* Sprint sprint = 1; */
+        if (message.sprint)
+            Sprint.internalBinaryWrite(message.sprint, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message GetActiveSprintResponse
+ */
+export const GetActiveSprintResponse = new GetActiveSprintResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class AddTaskToSprintRequest$Type extends MessageType<AddTaskToSprintRequest> {
     constructor() {
         super("AddTaskToSprintRequest", [
@@ -959,7 +1014,7 @@ export const SprintService = new ServiceType("SprintService", [
     { name: "ListSprints", options: {}, I: ListSprintsRequest, O: ListSprintsResponse },
     { name: "CreateSprint", options: {}, I: CreateSprintRequest, O: CreateSprintResponse },
     { name: "DeleteSprint", options: {}, I: DeleteSprintRequest, O: Empty },
-    { name: "GetActiveSprint", options: {}, I: GetActiveSprintRequest, O: GetSprintResponse },
+    { name: "GetActiveSprint", options: {}, I: GetActiveSprintRequest, O: GetActiveSprintResponse },
     { name: "AddTaskToSprint", options: {}, I: AddTaskToSprintRequest, O: Empty },
     { name: "RemoveTaskFromSprint", options: {}, I: RemoveTaskToSprintRequest, O: Empty },
     { name: "AddTeamMemberToSprint", options: {}, I: AddTeamMemberToSprintRequest, O: Empty },

@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	TaskService_GetTask_FullMethodName              = "/TaskService/GetTask"
+	TaskService_GetAwaitForTasks_FullMethodName     = "/TaskService/GetAwaitForTasks"
 	TaskService_ListTasks_FullMethodName            = "/TaskService/ListTasks"
 	TaskService_CreateTask_FullMethodName           = "/TaskService/CreateTask"
 	TaskService_UpdateTask_FullMethodName           = "/TaskService/UpdateTask"
@@ -40,6 +41,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TaskServiceClient interface {
 	GetTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*GetTaskResponse, error)
+	GetAwaitForTasks(ctx context.Context, in *GetAwaitForTasksRequest, opts ...grpc.CallOption) (*GetAwaitForTasksResponse, error)
 	ListTasks(ctx context.Context, in *ListTasksRequest, opts ...grpc.CallOption) (*ListTasksResponse, error)
 	CreateTask(ctx context.Context, in *CreateTaskRequest, opts ...grpc.CallOption) (*CreateTaskResponse, error)
 	UpdateTask(ctx context.Context, in *UpdateTaskRequest, opts ...grpc.CallOption) (*UpdateTaskResponse, error)
@@ -65,6 +67,15 @@ func NewTaskServiceClient(cc grpc.ClientConnInterface) TaskServiceClient {
 func (c *taskServiceClient) GetTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*GetTaskResponse, error) {
 	out := new(GetTaskResponse)
 	err := c.cc.Invoke(ctx, TaskService_GetTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskServiceClient) GetAwaitForTasks(ctx context.Context, in *GetAwaitForTasksRequest, opts ...grpc.CallOption) (*GetAwaitForTasksResponse, error) {
+	out := new(GetAwaitForTasksResponse)
+	err := c.cc.Invoke(ctx, TaskService_GetAwaitForTasks_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -184,6 +195,7 @@ func (c *taskServiceClient) StopDraggingTask(ctx context.Context, in *StopDraggi
 // for forward compatibility
 type TaskServiceServer interface {
 	GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error)
+	GetAwaitForTasks(context.Context, *GetAwaitForTasksRequest) (*GetAwaitForTasksResponse, error)
 	ListTasks(context.Context, *ListTasksRequest) (*ListTasksResponse, error)
 	CreateTask(context.Context, *CreateTaskRequest) (*CreateTaskResponse, error)
 	UpdateTask(context.Context, *UpdateTaskRequest) (*UpdateTaskResponse, error)
@@ -205,6 +217,9 @@ type UnimplementedTaskServiceServer struct {
 
 func (UnimplementedTaskServiceServer) GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTask not implemented")
+}
+func (UnimplementedTaskServiceServer) GetAwaitForTasks(context.Context, *GetAwaitForTasksRequest) (*GetAwaitForTasksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAwaitForTasks not implemented")
 }
 func (UnimplementedTaskServiceServer) ListTasks(context.Context, *ListTasksRequest) (*ListTasksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTasks not implemented")
@@ -269,6 +284,24 @@ func _TaskService_GetTask_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskServiceServer).GetTask(ctx, req.(*GetTaskRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TaskService_GetAwaitForTasks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAwaitForTasksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskServiceServer).GetAwaitForTasks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskService_GetAwaitForTasks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskServiceServer).GetAwaitForTasks(ctx, req.(*GetAwaitForTasksRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -499,6 +532,10 @@ var TaskService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTask",
 			Handler:    _TaskService_GetTask_Handler,
+		},
+		{
+			MethodName: "GetAwaitForTasks",
+			Handler:    _TaskService_GetAwaitForTasks_Handler,
 		},
 		{
 			MethodName: "ListTasks",

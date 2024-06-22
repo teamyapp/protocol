@@ -3,8 +3,8 @@ option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum AppRolloutType {
-    APP_ROLLOUT_TYPE_USER = 0;
-    APP_ROLLOUT_TYPE_TEAM = 1;
+    USER = 0;
+    TEAM = 1;
 }
 
 message Rollout {

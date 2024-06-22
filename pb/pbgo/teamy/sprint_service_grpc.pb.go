@@ -41,7 +41,7 @@ type SprintServiceClient interface {
 	ListSprints(ctx context.Context, in *ListSprintsRequest, opts ...grpc.CallOption) (*ListSprintsResponse, error)
 	CreateSprint(ctx context.Context, in *CreateSprintRequest, opts ...grpc.CallOption) (*CreateSprintResponse, error)
 	DeleteSprint(ctx context.Context, in *DeleteSprintRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetActiveSprint(ctx context.Context, in *GetActiveSprintRequest, opts ...grpc.CallOption) (*GetSprintResponse, error)
+	GetActiveSprint(ctx context.Context, in *GetActiveSprintRequest, opts ...grpc.CallOption) (*GetActiveSprintResponse, error)
 	AddTaskToSprint(ctx context.Context, in *AddTaskToSprintRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RemoveTaskFromSprint(ctx context.Context, in *RemoveTaskToSprintRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AddTeamMemberToSprint(ctx context.Context, in *AddTeamMemberToSprintRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -94,8 +94,8 @@ func (c *sprintServiceClient) DeleteSprint(ctx context.Context, in *DeleteSprint
 	return out, nil
 }
 
-func (c *sprintServiceClient) GetActiveSprint(ctx context.Context, in *GetActiveSprintRequest, opts ...grpc.CallOption) (*GetSprintResponse, error) {
-	out := new(GetSprintResponse)
+func (c *sprintServiceClient) GetActiveSprint(ctx context.Context, in *GetActiveSprintRequest, opts ...grpc.CallOption) (*GetActiveSprintResponse, error) {
+	out := new(GetActiveSprintResponse)
 	err := c.cc.Invoke(ctx, SprintService_GetActiveSprint_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -165,7 +165,7 @@ type SprintServiceServer interface {
 	ListSprints(context.Context, *ListSprintsRequest) (*ListSprintsResponse, error)
 	CreateSprint(context.Context, *CreateSprintRequest) (*CreateSprintResponse, error)
 	DeleteSprint(context.Context, *DeleteSprintRequest) (*emptypb.Empty, error)
-	GetActiveSprint(context.Context, *GetActiveSprintRequest) (*GetSprintResponse, error)
+	GetActiveSprint(context.Context, *GetActiveSprintRequest) (*GetActiveSprintResponse, error)
 	AddTaskToSprint(context.Context, *AddTaskToSprintRequest) (*emptypb.Empty, error)
 	RemoveTaskFromSprint(context.Context, *RemoveTaskToSprintRequest) (*emptypb.Empty, error)
 	AddTeamMemberToSprint(context.Context, *AddTeamMemberToSprintRequest) (*emptypb.Empty, error)
@@ -191,7 +191,7 @@ func (UnimplementedSprintServiceServer) CreateSprint(context.Context, *CreateSpr
 func (UnimplementedSprintServiceServer) DeleteSprint(context.Context, *DeleteSprintRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteSprint not implemented")
 }
-func (UnimplementedSprintServiceServer) GetActiveSprint(context.Context, *GetActiveSprintRequest) (*GetSprintResponse, error) {
+func (UnimplementedSprintServiceServer) GetActiveSprint(context.Context, *GetActiveSprintRequest) (*GetActiveSprintResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetActiveSprint not implemented")
 }
 func (UnimplementedSprintServiceServer) AddTaskToSprint(context.Context, *AddTaskToSprintRequest) (*emptypb.Empty, error) {

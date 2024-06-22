@@ -10,6 +10,7 @@ import type { RemoveTeamMemberFromSprintRequest } from "./sprint_service";
 import type { AddTeamMemberToSprintRequest } from "./sprint_service";
 import type { RemoveTaskToSprintRequest } from "./sprint_service";
 import type { AddTaskToSprintRequest } from "./sprint_service";
+import type { GetActiveSprintResponse } from "./sprint_service";
 import type { GetActiveSprintRequest } from "./sprint_service";
 import type { Empty } from "../google/protobuf/empty";
 import type { DeleteSprintRequest } from "./sprint_service";
@@ -43,9 +44,9 @@ export interface ISprintServiceClient {
      */
     deleteSprint(input: DeleteSprintRequest, options?: RpcOptions): UnaryCall<DeleteSprintRequest, Empty>;
     /**
-     * @generated from protobuf rpc: GetActiveSprint(GetActiveSprintRequest) returns (GetSprintResponse);
+     * @generated from protobuf rpc: GetActiveSprint(GetActiveSprintRequest) returns (GetActiveSprintResponse);
      */
-    getActiveSprint(input: GetActiveSprintRequest, options?: RpcOptions): UnaryCall<GetActiveSprintRequest, GetSprintResponse>;
+    getActiveSprint(input: GetActiveSprintRequest, options?: RpcOptions): UnaryCall<GetActiveSprintRequest, GetActiveSprintResponse>;
     /**
      * @generated from protobuf rpc: AddTaskToSprint(AddTaskToSprintRequest) returns (google.protobuf.Empty);
      */
@@ -109,11 +110,11 @@ export class SprintServiceClient implements ISprintServiceClient, ServiceInfo {
         return stackIntercept<DeleteSprintRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: GetActiveSprint(GetActiveSprintRequest) returns (GetSprintResponse);
+     * @generated from protobuf rpc: GetActiveSprint(GetActiveSprintRequest) returns (GetActiveSprintResponse);
      */
-    getActiveSprint(input: GetActiveSprintRequest, options?: RpcOptions): UnaryCall<GetActiveSprintRequest, GetSprintResponse> {
+    getActiveSprint(input: GetActiveSprintRequest, options?: RpcOptions): UnaryCall<GetActiveSprintRequest, GetActiveSprintResponse> {
         const method = this.methods[4], opt = this._transport.mergeOptions(options);
-        return stackIntercept<GetActiveSprintRequest, GetSprintResponse>("unary", this._transport, method, opt, input);
+        return stackIntercept<GetActiveSprintRequest, GetActiveSprintResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: AddTaskToSprint(AddTaskToSprintRequest) returns (google.protobuf.Empty);

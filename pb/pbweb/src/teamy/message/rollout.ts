@@ -57,11 +57,11 @@ export interface Rollout {
  */
 export enum AppRolloutType {
     /**
-     * @generated from protobuf enum value: APP_ROLLOUT_TYPE_USER = 0;
+     * @generated from protobuf enum value: USER = 0;
      */
     USER = 0,
     /**
-     * @generated from protobuf enum value: APP_ROLLOUT_TYPE_TEAM = 1;
+     * @generated from protobuf enum value: TEAM = 1;
      */
     TEAM = 1
 }

@@ -3,13 +3,13 @@ option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum GroupType {
-    GROUP_TYPE_STATIC = 0;
-    GROUP_TYPE_FILTER = 1;
+    STATIC = 0;
+    FILTER = 1;
 }
 
 enum GroupMemberType {
-    GROUP_MEMBER_TYPE_USER = 0;
-    GROUP_MEMBER_TYPE_TEAM = 1;
+    USER = 0;
+    TEAM = 1;
 }
 
 message GroupBase {

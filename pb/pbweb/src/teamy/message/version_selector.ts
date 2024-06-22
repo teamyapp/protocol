@@ -80,11 +80,11 @@ export interface VersionSelector {
  */
 export enum VersionSelectorType {
     /**
-     * @generated from protobuf enum value: VERSION_SELECTOR_TYPE_STATIC = 0;
+     * @generated from protobuf enum value: STATIC = 0;
      */
     STATIC = 0,
     /**
-     * @generated from protobuf enum value: VERSION_SELECTOR_TYPE_EXPERIMENT = 1;
+     * @generated from protobuf enum value: EXPERIMENT = 1;
      */
     EXPERIMENT = 1
 }
@@ -93,7 +93,7 @@ class VersionSelectorBase$Type extends MessageType<VersionSelectorBase> {
     constructor() {
         super("VersionSelectorBase", [
             { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "type", kind: "enum", T: () => ["VersionSelectorType", VersionSelectorType, "VERSION_SELECTOR_TYPE_"] },
+            { no: 2, name: "type", kind: "enum", T: () => ["VersionSelectorType", VersionSelectorType] },
             { no: 3, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 4, name: "updatedAt", kind: "message", T: () => Timestamp }
         ]);
@@ -277,7 +277,7 @@ export const ExperimentVersionSelector = new ExperimentVersionSelector$Type();
 class VersionSelector$Type extends MessageType<VersionSelector> {
     constructor() {
         super("VersionSelector", [
-            { no: 1, name: "type", kind: "enum", T: () => ["VersionSelectorType", VersionSelectorType, "VERSION_SELECTOR_TYPE_"] },
+            { no: 1, name: "type", kind: "enum", T: () => ["VersionSelectorType", VersionSelectorType] },
             { no: 2, name: "staticSelector", kind: "message", T: () => StaticVersionSelector },
             { no: 3, name: "experimentSelector", kind: "message", T: () => ExperimentVersionSelector }
         ]);

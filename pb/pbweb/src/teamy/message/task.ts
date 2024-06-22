@@ -103,27 +103,27 @@ export interface Task {
  */
 export enum TaskStatus {
     /**
-     * @generated from protobuf enum value: TASK_STATUS_TODO = 0;
+     * @generated from protobuf enum value: TODO = 0;
      */
     TODO = 0,
     /**
-     * @generated from protobuf enum value: TASK_STATUS_IN_PROGRESS = 1;
+     * @generated from protobuf enum value: IN_PROGRESS = 1;
      */
     IN_PROGRESS = 1,
     /**
-     * @generated from protobuf enum value: TASK_STATUS_PAUSED = 2;
+     * @generated from protobuf enum value: PAUSED = 2;
      */
     PAUSED = 2,
     /**
-     * @generated from protobuf enum value: TASK_STATUS_AWAITING = 3;
+     * @generated from protobuf enum value: AWAITING = 3;
      */
     AWAITING = 3,
     /**
-     * @generated from protobuf enum value: TASK_STATUS_BLOCK = 4;
+     * @generated from protobuf enum value: BLOCKED = 4;
      */
-    BLOCK = 4,
+    BLOCKED = 4,
     /**
-     * @generated from protobuf enum value: TASK_STATUS_DELIVERED = 5;
+     * @generated from protobuf enum value: DELIVERED = 5;
      */
     DELIVERED = 5
 }
@@ -132,23 +132,23 @@ export enum TaskStatus {
  */
 export enum TaskAction {
     /**
-     * @generated from protobuf enum value: TASK_ACTION_START = 0;
+     * @generated from protobuf enum value: START = 0;
      */
     START = 0,
     /**
-     * @generated from protobuf enum value: TASK_ACTION_DELETE = 1;
+     * @generated from protobuf enum value: DELETE = 1;
      */
     DELETE = 1,
     /**
-     * @generated from protobuf enum value: TASK_ACTION_ASSIGN_OWNER = 2;
+     * @generated from protobuf enum value: ASSIGN_OWNER = 2;
      */
     ASSIGN_OWNER = 2,
     /**
-     * @generated from protobuf enum value: TASK_ACTION_REPORT_BLOCKED = 3;
+     * @generated from protobuf enum value: REPORT_BLOCKED = 3;
      */
     REPORT_BLOCKED = 3,
     /**
-     * @generated from protobuf enum value: TASK_ACTION_MARK_COMPLETE = 4;
+     * @generated from protobuf enum value: MARK_COMPLETE = 4;
      */
     MARK_COMPLETE = 4
 }
@@ -162,7 +162,7 @@ class Task$Type extends MessageType<Task> {
             { no: 4, name: "owningTeamId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 5, name: "creatorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 6, name: "ownerUserId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 7, name: "status", kind: "enum", T: () => ["TaskStatus", TaskStatus, "TASK_STATUS_"] },
+            { no: 7, name: "status", kind: "enum", T: () => ["TaskStatus", TaskStatus] },
             { no: 8, name: "isScheduled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 9, name: "isPlanned", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 10, name: "createdAt", kind: "message", T: () => Timestamp },
@@ -171,7 +171,7 @@ class Task$Type extends MessageType<Task> {
             { no: 13, name: "dueAt", kind: "message", T: () => Timestamp },
             { no: 14, name: "effort", kind: "message", T: () => Duration },
             { no: 15, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority] },
-            { no: 16, name: "availableActions", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["TaskAction", TaskAction, "TASK_ACTION_"] },
+            { no: 16, name: "availableActions", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["TaskAction", TaskAction] },
             { no: 17, name: "awaitForTaskIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 18, name: "linkIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 19, name: "contextAttachmentListId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },

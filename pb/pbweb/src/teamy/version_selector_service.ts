@@ -550,7 +550,7 @@ class UpdateVersionSelectorRequest$Type extends MessageType<UpdateVersionSelecto
         super("UpdateVersionSelectorRequest", [
             { no: 1, name: "appId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "versionSelectorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 3, name: "type", kind: "enum", T: () => ["VersionSelectorType", VersionSelectorType, "VERSION_SELECTOR_TYPE_"] },
+            { no: 3, name: "type", kind: "enum", T: () => ["VersionSelectorType", VersionSelectorType] },
             { no: 4, name: "versionNumber", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
             { no: 5, name: "versionNumbers", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 13 /*ScalarType.UINT32*/ }
         ]);

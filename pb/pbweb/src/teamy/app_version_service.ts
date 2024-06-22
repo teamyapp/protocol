@@ -444,7 +444,7 @@ class UpdateAppVersionRequest$Type extends MessageType<UpdateAppVersionRequest> 
         super("UpdateAppVersionRequest", [
             { no: 1, name: "appId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "versionNumber", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-            { no: 3, name: "status", kind: "enum", opt: true, T: () => ["AppVersionStatus", AppVersionStatus, "APP_VERSION_STATUS_"] }
+            { no: 3, name: "status", kind: "enum", opt: true, T: () => ["AppVersionStatus", AppVersionStatus] }
         ]);
     }
     create(value?: PartialMessage<UpdateAppVersionRequest>): UpdateAppVersionRequest {

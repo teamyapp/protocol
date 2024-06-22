@@ -9,8 +9,12 @@ const paths = ["proto"];
 const pbDir = resolve(__dirname, "..", "pb");
 const pbGoDir = resolve(pbDir, "pbgo");
 const pbWebDir = resolve(pbDir, "pbweb", "src");
-// remove all in pbweb dir 
-deleteContentsOfDirectory(pbWebDir);
+
+const dirsToClear = [pbWebDir, resolve(pbGoDir, "cloud"), resolve(pbGoDir, "teamy")];
+dirsToClear.forEach((dir) => {
+  deleteContentsOfDirectory(dir);
+});
+
 for (let path of paths) {
   const protoDir = resolve(__dirname, "..", path);
 

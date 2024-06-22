@@ -69,19 +69,19 @@ export interface Invitation {
  */
 export enum InvitationStatus {
     /**
-     * @generated from protobuf enum value: INVITATION_STATUS_PENDING = 0;
+     * @generated from protobuf enum value: PENDING = 0;
      */
     PENDING = 0,
     /**
-     * @generated from protobuf enum value: INVITATION_STATUS_ACCEPTED = 1;
+     * @generated from protobuf enum value: ACCEPTED = 1;
      */
     ACCEPTED = 1,
     /**
-     * @generated from protobuf enum value: INVITATION_STATUS_DECLINED = 2;
+     * @generated from protobuf enum value: DECLINED = 2;
      */
     DECLINED = 2,
     /**
-     * @generated from protobuf enum value: INVITATION_STATUS_EXPIRED = 3;
+     * @generated from protobuf enum value: EXPIRED = 3;
      */
     EXPIRED = 3
 }
@@ -99,7 +99,7 @@ class Invitation$Type extends MessageType<Invitation> {
             { no: 8, name: "expireAt", kind: "message", T: () => Timestamp },
             { no: 9, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 10, name: "updatedAt", kind: "message", T: () => Timestamp },
-            { no: 11, name: "status", kind: "enum", T: () => ["InvitationStatus", InvitationStatus, "INVITATION_STATUS_"] },
+            { no: 11, name: "status", kind: "enum", T: () => ["InvitationStatus", InvitationStatus] },
             { no: 12, name: "code", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }

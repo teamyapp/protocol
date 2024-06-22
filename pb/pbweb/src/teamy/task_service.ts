@@ -36,6 +36,24 @@ export interface GetTaskResponse {
     task?: Task;
 }
 /**
+ * @generated from protobuf message GetAwaitForTasksRequest
+ */
+export interface GetAwaitForTasksRequest {
+    /**
+     * @generated from protobuf field: uint64 taskId = 1;
+     */
+    taskId: number;
+}
+/**
+ * @generated from protobuf message GetAwaitForTasksResponse
+ */
+export interface GetAwaitForTasksResponse {
+    /**
+     * @generated from protobuf field: repeated Task tasks = 1;
+     */
+    tasks: Task[];
+}
+/**
  * @generated from protobuf message ListTasksRequest
  */
 export interface ListTasksRequest {
@@ -348,13 +366,107 @@ class GetTaskResponse$Type extends MessageType<GetTaskResponse> {
  */
 export const GetTaskResponse = new GetTaskResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class GetAwaitForTasksRequest$Type extends MessageType<GetAwaitForTasksRequest> {
+    constructor() {
+        super("GetAwaitForTasksRequest", [
+            { no: 1, name: "taskId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetAwaitForTasksRequest>): GetAwaitForTasksRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.taskId = 0;
+        if (value !== undefined)
+            reflectionMergePartial<GetAwaitForTasksRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetAwaitForTasksRequest): GetAwaitForTasksRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint64 taskId */ 1:
+                    message.taskId = reader.uint64().toNumber();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetAwaitForTasksRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint64 taskId = 1; */
+        if (message.taskId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.taskId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message GetAwaitForTasksRequest
+ */
+export const GetAwaitForTasksRequest = new GetAwaitForTasksRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetAwaitForTasksResponse$Type extends MessageType<GetAwaitForTasksResponse> {
+    constructor() {
+        super("GetAwaitForTasksResponse", [
+            { no: 1, name: "tasks", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Task }
+        ]);
+    }
+    create(value?: PartialMessage<GetAwaitForTasksResponse>): GetAwaitForTasksResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.tasks = [];
+        if (value !== undefined)
+            reflectionMergePartial<GetAwaitForTasksResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetAwaitForTasksResponse): GetAwaitForTasksResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated Task tasks */ 1:
+                    message.tasks.push(Task.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetAwaitForTasksResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated Task tasks = 1; */
+        for (let i = 0; i < message.tasks.length; i++)
+            Task.internalBinaryWrite(message.tasks[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message GetAwaitForTasksResponse
+ */
+export const GetAwaitForTasksResponse = new GetAwaitForTasksResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class ListTasksRequest$Type extends MessageType<ListTasksRequest> {
     constructor() {
         super("ListTasksRequest", [
             { no: 1, name: "taskIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 3, name: "ownerId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 4, name: "goalContains", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-            { no: 5, name: "status", kind: "enum", opt: true, T: () => ["TaskStatus", TaskStatus, "TASK_STATUS_"] },
+            { no: 5, name: "status", kind: "enum", opt: true, T: () => ["TaskStatus", TaskStatus] },
             { no: 6, name: "isScheduled", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 7, name: "isPlanned", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
@@ -1217,6 +1329,7 @@ export const StopDraggingTaskRequest = new StopDraggingTaskRequest$Type();
  */
 export const TaskService = new ServiceType("TaskService", [
     { name: "GetTask", options: {}, I: GetTaskRequest, O: GetTaskResponse },
+    { name: "GetAwaitForTasks", options: {}, I: GetAwaitForTasksRequest, O: GetAwaitForTasksResponse },
     { name: "ListTasks", options: {}, I: ListTasksRequest, O: ListTasksResponse },
     { name: "CreateTask", options: {}, I: CreateTaskRequest, O: CreateTaskResponse },
     { name: "UpdateTask", options: {}, I: UpdateTaskRequest, O: UpdateTaskResponse },

@@ -142,11 +142,11 @@ export interface Group {
  */
 export enum GroupType {
     /**
-     * @generated from protobuf enum value: GROUP_TYPE_STATIC = 0;
+     * @generated from protobuf enum value: STATIC = 0;
      */
     STATIC = 0,
     /**
-     * @generated from protobuf enum value: GROUP_TYPE_FILTER = 1;
+     * @generated from protobuf enum value: FILTER = 1;
      */
     FILTER = 1
 }
@@ -155,11 +155,11 @@ export enum GroupType {
  */
 export enum GroupMemberType {
     /**
-     * @generated from protobuf enum value: GROUP_MEMBER_TYPE_USER = 0;
+     * @generated from protobuf enum value: USER = 0;
      */
     USER = 0,
     /**
-     * @generated from protobuf enum value: GROUP_MEMBER_TYPE_TEAM = 1;
+     * @generated from protobuf enum value: TEAM = 1;
      */
     TEAM = 1
 }
@@ -171,8 +171,8 @@ class GroupBase$Type extends MessageType<GroupBase> {
             { no: 2, name: "locked", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 3, name: "maxRolloutIndex", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 4, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 5, name: "type", kind: "enum", T: () => ["GroupType", GroupType, "GROUP_TYPE_"] },
-            { no: 6, name: "memberType", kind: "enum", T: () => ["GroupMemberType", GroupMemberType, "GROUP_MEMBER_TYPE_"] },
+            { no: 5, name: "type", kind: "enum", T: () => ["GroupType", GroupType] },
+            { no: 6, name: "memberType", kind: "enum", T: () => ["GroupMemberType", GroupMemberType] },
             { no: 7, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 8, name: "updatedAt", kind: "message", T: () => Timestamp },
             { no: 9, name: "groupRolloutRelations", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => GroupRolloutRelation },
@@ -533,8 +533,8 @@ export const FilterGroup = new FilterGroup$Type();
 class Group$Type extends MessageType<Group> {
     constructor() {
         super("Group", [
-            { no: 1, name: "type", kind: "enum", T: () => ["GroupType", GroupType, "GROUP_TYPE_"] },
-            { no: 2, name: "memberType", kind: "enum", T: () => ["GroupMemberType", GroupMemberType, "GROUP_MEMBER_TYPE_"] },
+            { no: 1, name: "type", kind: "enum", T: () => ["GroupType", GroupType] },
+            { no: 2, name: "memberType", kind: "enum", T: () => ["GroupMemberType", GroupMemberType] },
             { no: 3, name: "userStaticGroup", kind: "message", T: () => UserStaticGroup },
             { no: 4, name: "teamStaticGroup", kind: "message", T: () => TeamStaticGroup },
             { no: 5, name: "filterGroup", kind: "message", T: () => FilterGroup }

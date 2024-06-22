@@ -49,7 +49,7 @@ export interface AttachmentList {
  */
 export enum AttachmentListOwnerType {
     /**
-     * @generated from protobuf enum value: ATTACHMENT_LIST_OWNER_TYPE_TASK = 0;
+     * @generated from protobuf enum value: TASK = 0;
      */
     TASK = 0
 }
@@ -60,7 +60,7 @@ class AttachmentList$Type extends MessageType<AttachmentList> {
             { no: 1, name: "ownerId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "listLabel", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "listId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 4, name: "ownerType", kind: "enum", T: () => ["AttachmentListOwnerType", AttachmentListOwnerType, "ATTACHMENT_LIST_OWNER_TYPE_"] },
+            { no: 4, name: "ownerType", kind: "enum", T: () => ["AttachmentListOwnerType", AttachmentListOwnerType] },
             { no: 5, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 6, name: "updatedAt", kind: "message", T: () => Timestamp },
             { no: 7, name: "attachmentIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }

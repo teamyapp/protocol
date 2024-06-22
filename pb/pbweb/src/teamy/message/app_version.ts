@@ -74,23 +74,23 @@ export interface AppVersion {
  */
 export enum AppVersionStatus {
     /**
-     * @generated from protobuf enum value: APP_VERSION_STATUS_INIT = 0;
+     * @generated from protobuf enum value: INIT = 0;
      */
     INIT = 0,
     /**
-     * @generated from protobuf enum value: APP_VERSION_STATUS_UPLOADING = 1;
+     * @generated from protobuf enum value: UPLOADING = 1;
      */
     UPLOADING = 1,
     /**
-     * @generated from protobuf enum value: APP_VERSION_STATUS_PROCESSING = 2;
+     * @generated from protobuf enum value: PROCESSING = 2;
      */
     PROCESSING = 2,
     /**
-     * @generated from protobuf enum value: APP_VERSION_STATUS_READY = 3;
+     * @generated from protobuf enum value: READY = 3;
      */
     READY = 3,
     /**
-     * @generated from protobuf enum value: APP_VERSION_STATUS_ERROR = 4;
+     * @generated from protobuf enum value: ERROR = 4;
      */
     ERROR = 4
 }
@@ -108,7 +108,7 @@ class AppVersion$Type extends MessageType<AppVersion> {
             { no: 8, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 9, name: "updatedAt", kind: "message", T: () => Timestamp },
             { no: 10, name: "createdById", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 11, name: "status", kind: "enum", T: () => ["AppVersionStatus", AppVersionStatus, "APP_VERSION_STATUS_"] },
+            { no: 11, name: "status", kind: "enum", T: () => ["AppVersionStatus", AppVersionStatus] },
             { no: 12, name: "changeIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 13, name: "prices", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Money }
         ]);

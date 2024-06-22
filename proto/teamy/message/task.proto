@@ -5,20 +5,20 @@ import "google/protobuf/duration.proto";
 import "teamy/message/common.proto";
 
 enum TaskStatus {
-    TASK_STATUS_TODO = 0;
-    TASK_STATUS_IN_PROGRESS = 1;
-    TASK_STATUS_PAUSED = 2;
-    TASK_STATUS_AWAITING = 3;
-    TASK_STATUS_BLOCK = 4;
-    TASK_STATUS_DELIVERED = 5;
+    TODO = 0;
+    IN_PROGRESS = 1;
+    PAUSED = 2;
+    AWAITING = 3;
+    BLOCKED = 4;
+    DELIVERED = 5;
 }
 
 enum TaskAction {
-    TASK_ACTION_START = 0;
-    TASK_ACTION_DELETE = 1;
-    TASK_ACTION_ASSIGN_OWNER = 2;
-    TASK_ACTION_REPORT_BLOCKED = 3;
-    TASK_ACTION_MARK_COMPLETE = 4;
+    START = 0;
+    DELETE = 1;
+    ASSIGN_OWNER = 2;
+    REPORT_BLOCKED = 3;
+    MARK_COMPLETE = 4;
 }
 
 message Task {

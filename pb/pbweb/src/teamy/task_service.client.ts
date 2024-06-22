@@ -20,6 +20,8 @@ import type { CreateTaskResponse } from "./task_service";
 import type { CreateTaskRequest } from "./task_service";
 import type { ListTasksResponse } from "./task_service";
 import type { ListTasksRequest } from "./task_service";
+import type { GetAwaitForTasksResponse } from "./task_service";
+import type { GetAwaitForTasksRequest } from "./task_service";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { GetTaskResponse } from "./task_service";
 import type { GetTaskRequest } from "./task_service";
@@ -33,6 +35,10 @@ export interface ITaskServiceClient {
      * @generated from protobuf rpc: GetTask(GetTaskRequest) returns (GetTaskResponse);
      */
     getTask(input: GetTaskRequest, options?: RpcOptions): UnaryCall<GetTaskRequest, GetTaskResponse>;
+    /**
+     * @generated from protobuf rpc: GetAwaitForTasks(GetAwaitForTasksRequest) returns (GetAwaitForTasksResponse);
+     */
+    getAwaitForTasks(input: GetAwaitForTasksRequest, options?: RpcOptions): UnaryCall<GetAwaitForTasksRequest, GetAwaitForTasksResponse>;
     /**
      * @generated from protobuf rpc: ListTasks(ListTasksRequest) returns (ListTasksResponse);
      */
@@ -99,87 +105,94 @@ export class TaskServiceClient implements ITaskServiceClient, ServiceInfo {
         return stackIntercept<GetTaskRequest, GetTaskResponse>("unary", this._transport, method, opt, input);
     }
     /**
+     * @generated from protobuf rpc: GetAwaitForTasks(GetAwaitForTasksRequest) returns (GetAwaitForTasksResponse);
+     */
+    getAwaitForTasks(input: GetAwaitForTasksRequest, options?: RpcOptions): UnaryCall<GetAwaitForTasksRequest, GetAwaitForTasksResponse> {
+        const method = this.methods[1], opt = this._transport.mergeOptions(options);
+        return stackIntercept<GetAwaitForTasksRequest, GetAwaitForTasksResponse>("unary", this._transport, method, opt, input);
+    }
+    /**
      * @generated from protobuf rpc: ListTasks(ListTasksRequest) returns (ListTasksResponse);
      */
     listTasks(input: ListTasksRequest, options?: RpcOptions): UnaryCall<ListTasksRequest, ListTasksResponse> {
-        const method = this.methods[1], opt = this._transport.mergeOptions(options);
+        const method = this.methods[2], opt = this._transport.mergeOptions(options);
         return stackIntercept<ListTasksRequest, ListTasksResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
      */
     createTask(input: CreateTaskRequest, options?: RpcOptions): UnaryCall<CreateTaskRequest, CreateTaskResponse> {
-        const method = this.methods[2], opt = this._transport.mergeOptions(options);
+        const method = this.methods[3], opt = this._transport.mergeOptions(options);
         return stackIntercept<CreateTaskRequest, CreateTaskResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
      */
     updateTask(input: UpdateTaskRequest, options?: RpcOptions): UnaryCall<UpdateTaskRequest, UpdateTaskResponse> {
-        const method = this.methods[3], opt = this._transport.mergeOptions(options);
+        const method = this.methods[4], opt = this._transport.mergeOptions(options);
         return stackIntercept<UpdateTaskRequest, UpdateTaskResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: DeleteTask(DeleteTaskRequest) returns (google.protobuf.Empty);
      */
     deleteTask(input: DeleteTaskRequest, options?: RpcOptions): UnaryCall<DeleteTaskRequest, Empty> {
-        const method = this.methods[4], opt = this._transport.mergeOptions(options);
+        const method = this.methods[5], opt = this._transport.mergeOptions(options);
         return stackIntercept<DeleteTaskRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: MoveTaskToUpcoming(MoveTaskToUpcomingRequest) returns (google.protobuf.Empty);
      */
     moveTaskToUpcoming(input: MoveTaskToUpcomingRequest, options?: RpcOptions): UnaryCall<MoveTaskToUpcomingRequest, Empty> {
-        const method = this.methods[5], opt = this._transport.mergeOptions(options);
+        const method = this.methods[6], opt = this._transport.mergeOptions(options);
         return stackIntercept<MoveTaskToUpcomingRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: MoveTaskToInProgress(MoveTaskToInProgressRequest) returns (google.protobuf.Empty);
      */
     moveTaskToInProgress(input: MoveTaskToInProgressRequest, options?: RpcOptions): UnaryCall<MoveTaskToInProgressRequest, Empty> {
-        const method = this.methods[6], opt = this._transport.mergeOptions(options);
+        const method = this.methods[7], opt = this._transport.mergeOptions(options);
         return stackIntercept<MoveTaskToInProgressRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: MoveTaskToDelivered(MoveTaskToDeliveredRequest) returns (google.protobuf.Empty);
      */
     moveTaskToDelivered(input: MoveTaskToDeliveredRequest, options?: RpcOptions): UnaryCall<MoveTaskToDeliveredRequest, Empty> {
-        const method = this.methods[7], opt = this._transport.mergeOptions(options);
+        const method = this.methods[8], opt = this._transport.mergeOptions(options);
         return stackIntercept<MoveTaskToDeliveredRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: MoveTaskToBlocked(MoveTaskToBlockedRequest) returns (google.protobuf.Empty);
      */
     moveTaskToBlocked(input: MoveTaskToBlockedRequest, options?: RpcOptions): UnaryCall<MoveTaskToBlockedRequest, Empty> {
-        const method = this.methods[8], opt = this._transport.mergeOptions(options);
+        const method = this.methods[9], opt = this._transport.mergeOptions(options);
         return stackIntercept<MoveTaskToBlockedRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: AddAwaitForTask(AddAwaitForTaskRequest) returns (google.protobuf.Empty);
      */
     addAwaitForTask(input: AddAwaitForTaskRequest, options?: RpcOptions): UnaryCall<AddAwaitForTaskRequest, Empty> {
-        const method = this.methods[9], opt = this._transport.mergeOptions(options);
+        const method = this.methods[10], opt = this._transport.mergeOptions(options);
         return stackIntercept<AddAwaitForTaskRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: RemoveAwaitForTask(RemoveAwaitForTaskRequest) returns (google.protobuf.Empty);
      */
     removeAwaitForTask(input: RemoveAwaitForTaskRequest, options?: RpcOptions): UnaryCall<RemoveAwaitForTaskRequest, Empty> {
-        const method = this.methods[10], opt = this._transport.mergeOptions(options);
+        const method = this.methods[11], opt = this._transport.mergeOptions(options);
         return stackIntercept<RemoveAwaitForTaskRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: StartDraggingTask(StartDraggingTaskRequest) returns (google.protobuf.Empty);
      */
     startDraggingTask(input: StartDraggingTaskRequest, options?: RpcOptions): UnaryCall<StartDraggingTaskRequest, Empty> {
-        const method = this.methods[11], opt = this._transport.mergeOptions(options);
+        const method = this.methods[12], opt = this._transport.mergeOptions(options);
         return stackIntercept<StartDraggingTaskRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: StopDraggingTask(StopDraggingTaskRequest) returns (google.protobuf.Empty);
      */
     stopDraggingTask(input: StopDraggingTaskRequest, options?: RpcOptions): UnaryCall<StopDraggingTaskRequest, Empty> {
-        const method = this.methods[12], opt = this._transport.mergeOptions(options);
+        const method = this.methods[13], opt = this._transport.mergeOptions(options);
         return stackIntercept<StopDraggingTaskRequest, Empty>("unary", this._transport, method, opt, input);
     }
 }
