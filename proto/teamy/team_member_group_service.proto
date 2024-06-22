@@ -23,11 +23,6 @@ message GetMemberGroupResponse {
 	TeamMemberGroup group = 1;
 }
 
-message UpdateTeamActiveSprintRequest {
-	uint64 teamId = 1;
-	uint64 sprintId = 2;
-}
-
 message ListMemberGroupsRequest {
 	repeated uint64 teamMemberGroupIds = 1;
 }

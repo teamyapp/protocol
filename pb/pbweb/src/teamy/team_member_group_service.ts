@@ -32,19 +32,6 @@ export interface GetMemberGroupResponse {
     group?: TeamMemberGroup;
 }
 /**
- * @generated from protobuf message UpdateTeamActiveSprintRequest
- */
-export interface UpdateTeamActiveSprintRequest {
-    /**
-     * @generated from protobuf field: uint64 teamId = 1;
-     */
-    teamId: number;
-    /**
-     * @generated from protobuf field: uint64 sprintId = 2;
-     */
-    sprintId: number;
-}
-/**
  * @generated from protobuf message ListMemberGroupsRequest
  */
 export interface ListMemberGroupsRequest {
@@ -243,61 +230,6 @@ class GetMemberGroupResponse$Type extends MessageType<GetMemberGroupResponse> {
  * @generated MessageType for protobuf message GetMemberGroupResponse
  */
 export const GetMemberGroupResponse = new GetMemberGroupResponse$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class UpdateTeamActiveSprintRequest$Type extends MessageType<UpdateTeamActiveSprintRequest> {
-    constructor() {
-        super("UpdateTeamActiveSprintRequest", [
-            { no: 1, name: "teamId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "sprintId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
-        ]);
-    }
-    create(value?: PartialMessage<UpdateTeamActiveSprintRequest>): UpdateTeamActiveSprintRequest {
-        const message = globalThis.Object.create((this.messagePrototype!));
-        message.teamId = 0;
-        message.sprintId = 0;
-        if (value !== undefined)
-            reflectionMergePartial<UpdateTeamActiveSprintRequest>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateTeamActiveSprintRequest): UpdateTeamActiveSprintRequest {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* uint64 teamId */ 1:
-                    message.teamId = reader.uint64().toNumber();
-                    break;
-                case /* uint64 sprintId */ 2:
-                    message.sprintId = reader.uint64().toNumber();
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message: UpdateTeamActiveSprintRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 teamId = 1; */
-        if (message.teamId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.teamId);
-        /* uint64 sprintId = 2; */
-        if (message.sprintId !== 0)
-            writer.tag(2, WireType.Varint).uint64(message.sprintId);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message UpdateTeamActiveSprintRequest
- */
-export const UpdateTeamActiveSprintRequest = new UpdateTeamActiveSprintRequest$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class ListMemberGroupsRequest$Type extends MessageType<ListMemberGroupsRequest> {
     constructor() {
