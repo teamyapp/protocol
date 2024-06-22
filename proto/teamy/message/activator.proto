@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum ActivatorType {
@@ -37,12 +37,11 @@ message PercentageActivator {
 }
 
 message Activator {
-    oneof activator {
-        StaticActivator staticActivator = 1;
-        TimeRangeActivator timeRangeActivator = 2;
-        MaxViewersActivator maxViewersActivator = 3;
-        PercentageActivator percentageActivator = 4;
-    }
+    ActivatorType type = 1; 
+    StaticActivator staticActivator = 2;
+    TimeRangeActivator timeRangeActivator = 3;
+    MaxViewersActivator maxViewersActivator = 4;
+    PercentageActivator percentageActivator = 5;
 }
 
 

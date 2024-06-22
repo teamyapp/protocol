@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum GroupType {
@@ -47,10 +47,10 @@ message FilterGroup {
 }
 
 message Group {
-    oneof group {
-        UserStaticGroup userStaticGroup = 1;
-        TeamStaticGroup teamStaticGroup = 2;
-        FilterGroup filterGroup = 3;
-    }
+    GroupType type = 1;
+    GroupMemberType memberType = 2;
+    UserStaticGroup userStaticGroup = 3;
+    TeamStaticGroup teamStaticGroup = 4;
+    FilterGroup filterGroup = 5;
 }
 

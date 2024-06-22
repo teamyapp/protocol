@@ -63,23 +63,17 @@ export interface ExperimentVersionSelector {
  */
 export interface VersionSelector {
     /**
-     * @generated from protobuf oneof: selector
+     * @generated from protobuf field: VersionSelectorType type = 1;
      */
-    selector: {
-        oneofKind: "staticSelector";
-        /**
-         * @generated from protobuf field: StaticVersionSelector staticSelector = 1;
-         */
-        staticSelector: StaticVersionSelector;
-    } | {
-        oneofKind: "experimentSelector";
-        /**
-         * @generated from protobuf field: ExperimentVersionSelector experimentSelector = 2;
-         */
-        experimentSelector: ExperimentVersionSelector;
-    } | {
-        oneofKind: undefined;
-    };
+    type: VersionSelectorType;
+    /**
+     * @generated from protobuf field: StaticVersionSelector staticSelector = 2;
+     */
+    staticSelector?: StaticVersionSelector;
+    /**
+     * @generated from protobuf field: ExperimentVersionSelector experimentSelector = 3;
+     */
+    experimentSelector?: ExperimentVersionSelector;
 }
 /**
  * @generated from protobuf enum VersionSelectorType
@@ -283,13 +277,14 @@ export const ExperimentVersionSelector = new ExperimentVersionSelector$Type();
 class VersionSelector$Type extends MessageType<VersionSelector> {
     constructor() {
         super("VersionSelector", [
-            { no: 1, name: "staticSelector", kind: "message", oneof: "selector", T: () => StaticVersionSelector },
-            { no: 2, name: "experimentSelector", kind: "message", oneof: "selector", T: () => ExperimentVersionSelector }
+            { no: 1, name: "type", kind: "enum", T: () => ["VersionSelectorType", VersionSelectorType, "VERSION_SELECTOR_TYPE_"] },
+            { no: 2, name: "staticSelector", kind: "message", T: () => StaticVersionSelector },
+            { no: 3, name: "experimentSelector", kind: "message", T: () => ExperimentVersionSelector }
         ]);
     }
     create(value?: PartialMessage<VersionSelector>): VersionSelector {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.selector = { oneofKind: undefined };
+        message.type = 0;
         if (value !== undefined)
             reflectionMergePartial<VersionSelector>(this, message, value);
         return message;
@@ -299,17 +294,14 @@ class VersionSelector$Type extends MessageType<VersionSelector> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* StaticVersionSelector staticSelector */ 1:
-                    message.selector = {
-                        oneofKind: "staticSelector",
-                        staticSelector: StaticVersionSelector.internalBinaryRead(reader, reader.uint32(), options, (message.selector as any).staticSelector)
-                    };
+                case /* VersionSelectorType type */ 1:
+                    message.type = reader.int32();
                     break;
-                case /* ExperimentVersionSelector experimentSelector */ 2:
-                    message.selector = {
-                        oneofKind: "experimentSelector",
-                        experimentSelector: ExperimentVersionSelector.internalBinaryRead(reader, reader.uint32(), options, (message.selector as any).experimentSelector)
-                    };
+                case /* StaticVersionSelector staticSelector */ 2:
+                    message.staticSelector = StaticVersionSelector.internalBinaryRead(reader, reader.uint32(), options, message.staticSelector);
+                    break;
+                case /* ExperimentVersionSelector experimentSelector */ 3:
+                    message.experimentSelector = ExperimentVersionSelector.internalBinaryRead(reader, reader.uint32(), options, message.experimentSelector);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -323,12 +315,15 @@ class VersionSelector$Type extends MessageType<VersionSelector> {
         return message;
     }
     internalBinaryWrite(message: VersionSelector, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* StaticVersionSelector staticSelector = 1; */
-        if (message.selector.oneofKind === "staticSelector")
-            StaticVersionSelector.internalBinaryWrite(message.selector.staticSelector, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        /* ExperimentVersionSelector experimentSelector = 2; */
-        if (message.selector.oneofKind === "experimentSelector")
-            ExperimentVersionSelector.internalBinaryWrite(message.selector.experimentSelector, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* VersionSelectorType type = 1; */
+        if (message.type !== 0)
+            writer.tag(1, WireType.Varint).int32(message.type);
+        /* StaticVersionSelector staticSelector = 2; */
+        if (message.staticSelector)
+            StaticVersionSelector.internalBinaryWrite(message.staticSelector, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* ExperimentVersionSelector experimentSelector = 3; */
+        if (message.experimentSelector)
+            ExperimentVersionSelector.internalBinaryWrite(message.experimentSelector, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

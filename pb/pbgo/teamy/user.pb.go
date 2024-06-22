@@ -4,10 +4,10 @@
 // 	protoc        v3.21.12
 // source: teamy/user.proto
 
-package pbteamy
+package teamy
 
 import (
-	message "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message"
+	message "github.com/teamyapp/protocol/pb/pbgo/teamy/message"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"

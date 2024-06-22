@@ -89,35 +89,25 @@ export interface PercentageActivator {
  */
 export interface Activator {
     /**
-     * @generated from protobuf oneof: activator
+     * @generated from protobuf field: ActivatorType type = 1;
      */
-    activator: {
-        oneofKind: "staticActivator";
-        /**
-         * @generated from protobuf field: StaticActivator staticActivator = 1;
-         */
-        staticActivator: StaticActivator;
-    } | {
-        oneofKind: "timeRangeActivator";
-        /**
-         * @generated from protobuf field: TimeRangeActivator timeRangeActivator = 2;
-         */
-        timeRangeActivator: TimeRangeActivator;
-    } | {
-        oneofKind: "maxViewersActivator";
-        /**
-         * @generated from protobuf field: MaxViewersActivator maxViewersActivator = 3;
-         */
-        maxViewersActivator: MaxViewersActivator;
-    } | {
-        oneofKind: "percentageActivator";
-        /**
-         * @generated from protobuf field: PercentageActivator percentageActivator = 4;
-         */
-        percentageActivator: PercentageActivator;
-    } | {
-        oneofKind: undefined;
-    };
+    type: ActivatorType;
+    /**
+     * @generated from protobuf field: StaticActivator staticActivator = 2;
+     */
+    staticActivator?: StaticActivator;
+    /**
+     * @generated from protobuf field: TimeRangeActivator timeRangeActivator = 3;
+     */
+    timeRangeActivator?: TimeRangeActivator;
+    /**
+     * @generated from protobuf field: MaxViewersActivator maxViewersActivator = 4;
+     */
+    maxViewersActivator?: MaxViewersActivator;
+    /**
+     * @generated from protobuf field: PercentageActivator percentageActivator = 5;
+     */
+    percentageActivator?: PercentageActivator;
 }
 /**
  * @generated from protobuf enum ActivatorType
@@ -427,15 +417,16 @@ export const PercentageActivator = new PercentageActivator$Type();
 class Activator$Type extends MessageType<Activator> {
     constructor() {
         super("Activator", [
-            { no: 1, name: "staticActivator", kind: "message", oneof: "activator", T: () => StaticActivator },
-            { no: 2, name: "timeRangeActivator", kind: "message", oneof: "activator", T: () => TimeRangeActivator },
-            { no: 3, name: "maxViewersActivator", kind: "message", oneof: "activator", T: () => MaxViewersActivator },
-            { no: 4, name: "percentageActivator", kind: "message", oneof: "activator", T: () => PercentageActivator }
+            { no: 1, name: "type", kind: "enum", T: () => ["ActivatorType", ActivatorType, "ACTIVATOR_TYPE_"] },
+            { no: 2, name: "staticActivator", kind: "message", T: () => StaticActivator },
+            { no: 3, name: "timeRangeActivator", kind: "message", T: () => TimeRangeActivator },
+            { no: 4, name: "maxViewersActivator", kind: "message", T: () => MaxViewersActivator },
+            { no: 5, name: "percentageActivator", kind: "message", T: () => PercentageActivator }
         ]);
     }
     create(value?: PartialMessage<Activator>): Activator {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.activator = { oneofKind: undefined };
+        message.type = 0;
         if (value !== undefined)
             reflectionMergePartial<Activator>(this, message, value);
         return message;
@@ -445,29 +436,20 @@ class Activator$Type extends MessageType<Activator> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* StaticActivator staticActivator */ 1:
-                    message.activator = {
-                        oneofKind: "staticActivator",
-                        staticActivator: StaticActivator.internalBinaryRead(reader, reader.uint32(), options, (message.activator as any).staticActivator)
-                    };
+                case /* ActivatorType type */ 1:
+                    message.type = reader.int32();
                     break;
-                case /* TimeRangeActivator timeRangeActivator */ 2:
-                    message.activator = {
-                        oneofKind: "timeRangeActivator",
-                        timeRangeActivator: TimeRangeActivator.internalBinaryRead(reader, reader.uint32(), options, (message.activator as any).timeRangeActivator)
-                    };
+                case /* StaticActivator staticActivator */ 2:
+                    message.staticActivator = StaticActivator.internalBinaryRead(reader, reader.uint32(), options, message.staticActivator);
                     break;
-                case /* MaxViewersActivator maxViewersActivator */ 3:
-                    message.activator = {
-                        oneofKind: "maxViewersActivator",
-                        maxViewersActivator: MaxViewersActivator.internalBinaryRead(reader, reader.uint32(), options, (message.activator as any).maxViewersActivator)
-                    };
+                case /* TimeRangeActivator timeRangeActivator */ 3:
+                    message.timeRangeActivator = TimeRangeActivator.internalBinaryRead(reader, reader.uint32(), options, message.timeRangeActivator);
                     break;
-                case /* PercentageActivator percentageActivator */ 4:
-                    message.activator = {
-                        oneofKind: "percentageActivator",
-                        percentageActivator: PercentageActivator.internalBinaryRead(reader, reader.uint32(), options, (message.activator as any).percentageActivator)
-                    };
+                case /* MaxViewersActivator maxViewersActivator */ 4:
+                    message.maxViewersActivator = MaxViewersActivator.internalBinaryRead(reader, reader.uint32(), options, message.maxViewersActivator);
+                    break;
+                case /* PercentageActivator percentageActivator */ 5:
+                    message.percentageActivator = PercentageActivator.internalBinaryRead(reader, reader.uint32(), options, message.percentageActivator);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -481,18 +463,21 @@ class Activator$Type extends MessageType<Activator> {
         return message;
     }
     internalBinaryWrite(message: Activator, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* StaticActivator staticActivator = 1; */
-        if (message.activator.oneofKind === "staticActivator")
-            StaticActivator.internalBinaryWrite(message.activator.staticActivator, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        /* TimeRangeActivator timeRangeActivator = 2; */
-        if (message.activator.oneofKind === "timeRangeActivator")
-            TimeRangeActivator.internalBinaryWrite(message.activator.timeRangeActivator, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        /* MaxViewersActivator maxViewersActivator = 3; */
-        if (message.activator.oneofKind === "maxViewersActivator")
-            MaxViewersActivator.internalBinaryWrite(message.activator.maxViewersActivator, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
-        /* PercentageActivator percentageActivator = 4; */
-        if (message.activator.oneofKind === "percentageActivator")
-            PercentageActivator.internalBinaryWrite(message.activator.percentageActivator, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* ActivatorType type = 1; */
+        if (message.type !== 0)
+            writer.tag(1, WireType.Varint).int32(message.type);
+        /* StaticActivator staticActivator = 2; */
+        if (message.staticActivator)
+            StaticActivator.internalBinaryWrite(message.staticActivator, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* TimeRangeActivator timeRangeActivator = 3; */
+        if (message.timeRangeActivator)
+            TimeRangeActivator.internalBinaryWrite(message.timeRangeActivator, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* MaxViewersActivator maxViewersActivator = 4; */
+        if (message.maxViewersActivator)
+            MaxViewersActivator.internalBinaryWrite(message.maxViewersActivator, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* PercentageActivator percentageActivator = 5; */
+        if (message.percentageActivator)
+            PercentageActivator.internalBinaryWrite(message.percentageActivator, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: teamy/message.proto
 
-package pbteamy
+package teamy
 
 import (
 	context "context"

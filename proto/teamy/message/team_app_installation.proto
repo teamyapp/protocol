@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 
 message TeamAppInstallation {
     uint64 id = 1;

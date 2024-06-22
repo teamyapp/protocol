@@ -5,43 +5,12 @@ const path = require('path');
 const { join, resolve } = require("path");
 const { execSync } = require("child_process");
 
-
-
-
 const paths = ["proto"];
 const pbDir = resolve(__dirname, "..", "pb");
 const pbGoDir = resolve(pbDir, "pbgo");
 const pbWebDir = resolve(pbDir, "pbweb", "src");
-
-// remove all in pbwebdir 
-
-// Function to delete all files and subdirectories in a directory
-function deleteContentsOfDirectory(directory) {
-  if (fs.existsSync(directory)) {
-    fs.readdirSync(directory).forEach((file) => {
-      const filePath = path.join(directory, file);
-      const stats = fs.lstatSync(filePath);
-
-      if (stats.isDirectory()) {
-        // Recursively delete contents of subdirectory
-        deleteContentsOfDirectory(filePath);
-        // Remove the now-empty subdirectory
-        fs.rmdirSync(filePath);
-        console.log(`Deleted directory: ${filePath}`);
-      } else {
-        // Delete file
-        fs.unlinkSync(filePath);
-        console.log(`Deleted file: ${filePath}`);
-      }
-    });
-  } else {
-    console.log(`Directory does not exist: ${directory}`);
-  }
-}
-
+// remove all in pbweb dir 
 deleteContentsOfDirectory(pbWebDir);
-
-
 for (let path of paths) {
   const protoDir = resolve(__dirname, "..", path);
 
@@ -108,3 +77,27 @@ function findFilesRec(dir, outputFile) {
     }
   });
 }
+
+function deleteContentsOfDirectory(directory) {
+  if (fs.existsSync(directory)) {
+    fs.readdirSync(directory).forEach((file) => {
+      const filePath = path.join(directory, file);
+      const stats = fs.lstatSync(filePath);
+
+      if (stats.isDirectory()) {
+        // Recursively delete contents of subdirectory
+        deleteContentsOfDirectory(filePath);
+        // Remove the now-empty subdirectory
+        fs.rmdirSync(filePath);
+        console.log(`Deleted directory: ${filePath}`);
+      } else {
+        // Delete file
+        fs.unlinkSync(filePath);
+        console.log(`Deleted file: ${filePath}`);
+      }
+    });
+  } else {
+    console.log(`Directory does not exist: ${directory}`);
+  }
+}
+

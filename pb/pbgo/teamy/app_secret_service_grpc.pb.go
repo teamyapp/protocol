@@ -4,7 +4,7 @@
 // - protoc             v5.27.1
 // source: teamy/app_secret_service.proto
 
-package pbteamy
+package teamy
 
 import (
 	context "context"

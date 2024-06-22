@@ -117,29 +117,25 @@ export interface FilterGroup {
  */
 export interface Group {
     /**
-     * @generated from protobuf oneof: group
+     * @generated from protobuf field: GroupType type = 1;
      */
-    group: {
-        oneofKind: "userStaticGroup";
-        /**
-         * @generated from protobuf field: UserStaticGroup userStaticGroup = 1;
-         */
-        userStaticGroup: UserStaticGroup;
-    } | {
-        oneofKind: "teamStaticGroup";
-        /**
-         * @generated from protobuf field: TeamStaticGroup teamStaticGroup = 2;
-         */
-        teamStaticGroup: TeamStaticGroup;
-    } | {
-        oneofKind: "filterGroup";
-        /**
-         * @generated from protobuf field: FilterGroup filterGroup = 3;
-         */
-        filterGroup: FilterGroup;
-    } | {
-        oneofKind: undefined;
-    };
+    type: GroupType;
+    /**
+     * @generated from protobuf field: GroupMemberType memberType = 2;
+     */
+    memberType: GroupMemberType;
+    /**
+     * @generated from protobuf field: UserStaticGroup userStaticGroup = 3;
+     */
+    userStaticGroup?: UserStaticGroup;
+    /**
+     * @generated from protobuf field: TeamStaticGroup teamStaticGroup = 4;
+     */
+    teamStaticGroup?: TeamStaticGroup;
+    /**
+     * @generated from protobuf field: FilterGroup filterGroup = 5;
+     */
+    filterGroup?: FilterGroup;
 }
 /**
  * @generated from protobuf enum GroupType
@@ -537,14 +533,17 @@ export const FilterGroup = new FilterGroup$Type();
 class Group$Type extends MessageType<Group> {
     constructor() {
         super("Group", [
-            { no: 1, name: "userStaticGroup", kind: "message", oneof: "group", T: () => UserStaticGroup },
-            { no: 2, name: "teamStaticGroup", kind: "message", oneof: "group", T: () => TeamStaticGroup },
-            { no: 3, name: "filterGroup", kind: "message", oneof: "group", T: () => FilterGroup }
+            { no: 1, name: "type", kind: "enum", T: () => ["GroupType", GroupType, "GROUP_TYPE_"] },
+            { no: 2, name: "memberType", kind: "enum", T: () => ["GroupMemberType", GroupMemberType, "GROUP_MEMBER_TYPE_"] },
+            { no: 3, name: "userStaticGroup", kind: "message", T: () => UserStaticGroup },
+            { no: 4, name: "teamStaticGroup", kind: "message", T: () => TeamStaticGroup },
+            { no: 5, name: "filterGroup", kind: "message", T: () => FilterGroup }
         ]);
     }
     create(value?: PartialMessage<Group>): Group {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.group = { oneofKind: undefined };
+        message.type = 0;
+        message.memberType = 0;
         if (value !== undefined)
             reflectionMergePartial<Group>(this, message, value);
         return message;
@@ -554,23 +553,20 @@ class Group$Type extends MessageType<Group> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* UserStaticGroup userStaticGroup */ 1:
-                    message.group = {
-                        oneofKind: "userStaticGroup",
-                        userStaticGroup: UserStaticGroup.internalBinaryRead(reader, reader.uint32(), options, (message.group as any).userStaticGroup)
-                    };
+                case /* GroupType type */ 1:
+                    message.type = reader.int32();
                     break;
-                case /* TeamStaticGroup teamStaticGroup */ 2:
-                    message.group = {
-                        oneofKind: "teamStaticGroup",
-                        teamStaticGroup: TeamStaticGroup.internalBinaryRead(reader, reader.uint32(), options, (message.group as any).teamStaticGroup)
-                    };
+                case /* GroupMemberType memberType */ 2:
+                    message.memberType = reader.int32();
                     break;
-                case /* FilterGroup filterGroup */ 3:
-                    message.group = {
-                        oneofKind: "filterGroup",
-                        filterGroup: FilterGroup.internalBinaryRead(reader, reader.uint32(), options, (message.group as any).filterGroup)
-                    };
+                case /* UserStaticGroup userStaticGroup */ 3:
+                    message.userStaticGroup = UserStaticGroup.internalBinaryRead(reader, reader.uint32(), options, message.userStaticGroup);
+                    break;
+                case /* TeamStaticGroup teamStaticGroup */ 4:
+                    message.teamStaticGroup = TeamStaticGroup.internalBinaryRead(reader, reader.uint32(), options, message.teamStaticGroup);
+                    break;
+                case /* FilterGroup filterGroup */ 5:
+                    message.filterGroup = FilterGroup.internalBinaryRead(reader, reader.uint32(), options, message.filterGroup);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -584,15 +580,21 @@ class Group$Type extends MessageType<Group> {
         return message;
     }
     internalBinaryWrite(message: Group, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* UserStaticGroup userStaticGroup = 1; */
-        if (message.group.oneofKind === "userStaticGroup")
-            UserStaticGroup.internalBinaryWrite(message.group.userStaticGroup, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        /* TeamStaticGroup teamStaticGroup = 2; */
-        if (message.group.oneofKind === "teamStaticGroup")
-            TeamStaticGroup.internalBinaryWrite(message.group.teamStaticGroup, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        /* FilterGroup filterGroup = 3; */
-        if (message.group.oneofKind === "filterGroup")
-            FilterGroup.internalBinaryWrite(message.group.filterGroup, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* GroupType type = 1; */
+        if (message.type !== 0)
+            writer.tag(1, WireType.Varint).int32(message.type);
+        /* GroupMemberType memberType = 2; */
+        if (message.memberType !== 0)
+            writer.tag(2, WireType.Varint).int32(message.memberType);
+        /* UserStaticGroup userStaticGroup = 3; */
+        if (message.userStaticGroup)
+            UserStaticGroup.internalBinaryWrite(message.userStaticGroup, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* TeamStaticGroup teamStaticGroup = 4; */
+        if (message.teamStaticGroup)
+            TeamStaticGroup.internalBinaryWrite(message.teamStaticGroup, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* FilterGroup filterGroup = 5; */
+        if (message.filterGroup)
+            FilterGroup.internalBinaryWrite(message.filterGroup, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

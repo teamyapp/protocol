@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum AppRolloutType {

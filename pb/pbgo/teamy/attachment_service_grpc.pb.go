@@ -4,7 +4,7 @@
 // - protoc             v5.27.1
 // source: teamy/attachment_service.proto
 
-package pbteamy
+package teamy
 
 import (
 	context "context"

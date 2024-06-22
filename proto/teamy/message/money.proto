@@ -1,6 +1,6 @@
 
 syntax = "proto3";
-option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 
 enum Currency {
     USD = 0;

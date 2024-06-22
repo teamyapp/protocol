@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/teamyapp/protocol/pb/pbgo/pbteamy/message";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum VersionSelectorType {
@@ -25,10 +25,9 @@ message ExperimentVersionSelector {
 }
 
 message VersionSelector {
-    oneof selector {
-        StaticVersionSelector staticSelector = 1;
-        ExperimentVersionSelector experimentSelector = 2;
-    }
+    VersionSelectorType type = 1;
+    StaticVersionSelector staticSelector = 2;
+    ExperimentVersionSelector experimentSelector = 3;
 }
 
 

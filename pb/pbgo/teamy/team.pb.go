@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: teamy/team.proto
 
-package pbteamy
+package teamy
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
