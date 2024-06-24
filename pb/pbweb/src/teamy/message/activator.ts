@@ -114,19 +114,19 @@ export interface Activator {
  */
 export enum ActivatorType {
     /**
-     * @generated from protobuf enum value: STATIC = 0;
+     * @generated from protobuf enum value: ACTIVATOR_TYPE_STATIC = 0;
      */
     STATIC = 0,
     /**
-     * @generated from protobuf enum value: TIME_RANGE = 1;
+     * @generated from protobuf enum value: ACTIVATOR_TYPE_TIME_RANGE = 1;
      */
     TIME_RANGE = 1,
     /**
-     * @generated from protobuf enum value: MAX_VIEWERS = 2;
+     * @generated from protobuf enum value: ACTIVATOR_TYPE_MAX_VIEWERS = 2;
      */
     MAX_VIEWERS = 2,
     /**
-     * @generated from protobuf enum value: PERCENTAGE = 3;
+     * @generated from protobuf enum value: ACTIVATOR_TYPE_PERCENTAGE = 3;
      */
     PERCENTAGE = 3
 }
@@ -135,7 +135,7 @@ class ActivatorBase$Type extends MessageType<ActivatorBase> {
     constructor() {
         super("ActivatorBase", [
             { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "type", kind: "enum", T: () => ["ActivatorType", ActivatorType] },
+            { no: 2, name: "type", kind: "enum", T: () => ["ActivatorType", ActivatorType, "ACTIVATOR_TYPE_"] },
             { no: 3, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 4, name: "updatedAt", kind: "message", T: () => Timestamp }
         ]);
@@ -417,7 +417,7 @@ export const PercentageActivator = new PercentageActivator$Type();
 class Activator$Type extends MessageType<Activator> {
     constructor() {
         super("Activator", [
-            { no: 1, name: "type", kind: "enum", T: () => ["ActivatorType", ActivatorType] },
+            { no: 1, name: "type", kind: "enum", T: () => ["ActivatorType", ActivatorType, "ACTIVATOR_TYPE_"] },
             { no: 2, name: "staticActivator", kind: "message", T: () => StaticActivator },
             { no: 3, name: "timeRangeActivator", kind: "message", T: () => TimeRangeActivator },
             { no: 4, name: "maxViewersActivator", kind: "message", T: () => MaxViewersActivator },

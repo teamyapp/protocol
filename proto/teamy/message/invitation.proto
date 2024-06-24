@@ -3,15 +3,15 @@ option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum InvitationStatus {
-    PENDING = 0;
-    ACCEPTED = 1;
-    DECLINED = 2;
-    EXPIRED = 3;
+    INVITATION_STATUS_PENDING = 0;
+    INVITATION_STATUS_ACCEPTED = 1;
+    INVITATION_STATUS_DECLINED = 2;
+    INVITATION_STATUS_EXPIRED = 3;
 }
 
 message Invitation {
     uint64 id = 1;
-    uint64 senderId = 2;
+    uint64 senderUserId = 2;
     optional string receiverFirstName = 3;
     optional string receiverLastName = 4;
     optional string receiverEmail = 5;

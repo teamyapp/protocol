@@ -23,9 +23,9 @@ export interface AppVersionChange {
      */
     appId: number;
     /**
-     * @generated from protobuf field: int32 appVersionNumber = 3;
+     * @generated from protobuf field: int32 versionNumber = 3;
      */
-    appVersionNumber: number;
+    versionNumber: number;
     /**
      * @generated from protobuf field: string change = 4;
      */
@@ -37,7 +37,7 @@ class AppVersionChange$Type extends MessageType<AppVersionChange> {
         super("AppVersionChange", [
             { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "appId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 3, name: "appVersionNumber", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 3, name: "versionNumber", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 4, name: "change", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
@@ -45,7 +45,7 @@ class AppVersionChange$Type extends MessageType<AppVersionChange> {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.id = 0;
         message.appId = 0;
-        message.appVersionNumber = 0;
+        message.versionNumber = 0;
         message.change = "";
         if (value !== undefined)
             reflectionMergePartial<AppVersionChange>(this, message, value);
@@ -62,8 +62,8 @@ class AppVersionChange$Type extends MessageType<AppVersionChange> {
                 case /* uint64 appId */ 2:
                     message.appId = reader.uint64().toNumber();
                     break;
-                case /* int32 appVersionNumber */ 3:
-                    message.appVersionNumber = reader.int32();
+                case /* int32 versionNumber */ 3:
+                    message.versionNumber = reader.int32();
                     break;
                 case /* string change */ 4:
                     message.change = reader.string();
@@ -86,9 +86,9 @@ class AppVersionChange$Type extends MessageType<AppVersionChange> {
         /* uint64 appId = 2; */
         if (message.appId !== 0)
             writer.tag(2, WireType.Varint).uint64(message.appId);
-        /* int32 appVersionNumber = 3; */
-        if (message.appVersionNumber !== 0)
-            writer.tag(3, WireType.Varint).int32(message.appVersionNumber);
+        /* int32 versionNumber = 3; */
+        if (message.versionNumber !== 0)
+            writer.tag(3, WireType.Varint).int32(message.versionNumber);
         /* string change = 4; */
         if (message.change !== "")
             writer.tag(4, WireType.LengthDelimited).string(message.change);

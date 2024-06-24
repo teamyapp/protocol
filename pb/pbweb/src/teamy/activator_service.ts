@@ -700,7 +700,7 @@ class UpdateActivatorRequest$Type extends MessageType<UpdateActivatorRequest> {
     constructor() {
         super("UpdateActivatorRequest", [
             { no: 1, name: "activatorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "type", kind: "enum", T: () => ["ActivatorType", ActivatorType] },
+            { no: 2, name: "type", kind: "enum", T: () => ["ActivatorType", ActivatorType, "ACTIVATOR_TYPE_"] },
             { no: 3, name: "startAt", kind: "message", T: () => Timestamp },
             { no: 4, name: "endAt", kind: "message", T: () => Timestamp },
             { no: 5, name: "maxViewer", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },

@@ -40,13 +40,13 @@ export interface TeamMemberGroup {
      */
     updatedAt?: Timestamp;
     /**
-     * @generated from protobuf field: repeated uint64 memberUserIds = 7;
+     * @generated from protobuf field: uint64 authorizationUserGroupId = 7;
+     */
+    authorizationUserGroupId: number;
+    /**
+     * @generated from protobuf field: repeated uint64 memberUserIds = 8;
      */
     memberUserIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 invitationIds = 8;
-     */
-    invitationIds: number[];
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
@@ -58,8 +58,8 @@ class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
             { no: 4, name: "teamId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 5, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 6, name: "updatedAt", kind: "message", T: () => Timestamp },
-            { no: 7, name: "memberUserIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 8, name: "invitationIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 7, name: "authorizationUserGroupId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 8, name: "memberUserIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<TeamMemberGroup>): TeamMemberGroup {
@@ -68,8 +68,8 @@ class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
         message.name = "";
         message.orderIndex = 0;
         message.teamId = 0;
+        message.authorizationUserGroupId = 0;
         message.memberUserIds = [];
-        message.invitationIds = [];
         if (value !== undefined)
             reflectionMergePartial<TeamMemberGroup>(this, message, value);
         return message;
@@ -97,19 +97,15 @@ class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
                 case /* optional google.protobuf.Timestamp updatedAt */ 6:
                     message.updatedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.updatedAt);
                     break;
-                case /* repeated uint64 memberUserIds */ 7:
+                case /* uint64 authorizationUserGroupId */ 7:
+                    message.authorizationUserGroupId = reader.uint64().toNumber();
+                    break;
+                case /* repeated uint64 memberUserIds */ 8:
                     if (wireType === WireType.LengthDelimited)
                         for (let e = reader.int32() + reader.pos; reader.pos < e;)
                             message.memberUserIds.push(reader.uint64().toNumber());
                     else
                         message.memberUserIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 invitationIds */ 8:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.invitationIds.push(reader.uint64().toNumber());
-                    else
-                        message.invitationIds.push(reader.uint64().toNumber());
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -141,18 +137,14 @@ class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
         /* optional google.protobuf.Timestamp updatedAt = 6; */
         if (message.updatedAt)
             Timestamp.internalBinaryWrite(message.updatedAt, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
-        /* repeated uint64 memberUserIds = 7; */
+        /* uint64 authorizationUserGroupId = 7; */
+        if (message.authorizationUserGroupId !== 0)
+            writer.tag(7, WireType.Varint).uint64(message.authorizationUserGroupId);
+        /* repeated uint64 memberUserIds = 8; */
         if (message.memberUserIds.length) {
-            writer.tag(7, WireType.LengthDelimited).fork();
+            writer.tag(8, WireType.LengthDelimited).fork();
             for (let i = 0; i < message.memberUserIds.length; i++)
                 writer.uint64(message.memberUserIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 invitationIds = 8; */
-        if (message.invitationIds.length) {
-            writer.tag(8, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.invitationIds.length; i++)
-                writer.uint64(message.invitationIds[i]);
             writer.join();
         }
         let u = options.writeUnknownFields;

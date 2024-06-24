@@ -62,19 +62,19 @@ export interface Story {
  */
 export enum StoryStatus {
     /**
-     * @generated from protobuf enum value: TODO = 0;
+     * @generated from protobuf enum value: STORY_STATUS_TODO = 0;
      */
     TODO = 0,
     /**
-     * @generated from protobuf enum value: IN_PROGRESS = 1;
+     * @generated from protobuf enum value: STORY_STATUS_IN_PROGRESS = 1;
      */
     IN_PROGRESS = 1,
     /**
-     * @generated from protobuf enum value: PAUSED = 2;
+     * @generated from protobuf enum value: STORY_STATUS_PAUSED = 2;
      */
     PAUSED = 2,
     /**
-     * @generated from protobuf enum value: COMPLETED = 3;
+     * @generated from protobuf enum value: STORY_STATUS_COMPLETED = 3;
      */
     COMPLETED = 3
 }
@@ -86,8 +86,8 @@ class Story$Type extends MessageType<Story> {
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "ownerId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 4, name: "isPlanned", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 5, name: "status", kind: "enum", T: () => ["StoryStatus", StoryStatus] },
-            { no: 6, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority] },
+            { no: 5, name: "status", kind: "enum", T: () => ["StoryStatus", StoryStatus, "STORY_STATUS_"] },
+            { no: 6, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority, "PRIORITY_"] },
             { no: 7, name: "creatorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 8, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 9, name: "updatedAt", kind: "message", T: () => Timestamp },

@@ -1,0 +1,9 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
+import "teamy/message/money.proto";
+
+message AppVersionPrice {
+    uint64 appId = 1;
+    int32 versionNumber = 2;
+    Money price = 3;
+}

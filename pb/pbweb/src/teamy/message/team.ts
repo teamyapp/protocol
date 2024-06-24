@@ -3,10 +3,10 @@
 // tslint:disable
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
+import { WireType } from "@protobuf-ts/runtime";
 import type { BinaryReadOptions } from "@protobuf-ts/runtime";
 import type { IBinaryReader } from "@protobuf-ts/runtime";
 import { UnknownFieldHandler } from "@protobuf-ts/runtime";
-import { WireType } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
@@ -36,45 +36,21 @@ export interface Team {
      */
     updatedAt?: Timestamp;
     /**
-     * @generated from protobuf field: uint64 creatorId = 6;
+     * @generated from protobuf field: uint64 creatorUserId = 6;
      */
-    creatorId: number;
+    creatorUserId: number;
     /**
-     * @generated from protobuf field: uint64 ownerId = 7;
+     * @generated from protobuf field: uint64 ownerUserId = 7;
      */
-    ownerId: number;
+    ownerUserId: number;
     /**
      * @generated from protobuf field: optional uint64 activeSprintId = 8;
      */
     activeSprintId?: number;
     /**
-     * @generated from protobuf field: repeated uint64 taskIds = 9;
+     * @generated from protobuf field: int32 maxGroupOrderIndex = 9;
      */
-    taskIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 invitationIds = 10;
-     */
-    invitationIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 sprintIds = 11;
-     */
-    sprintIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 appInstallationIds = 12;
-     */
-    appInstallationIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 managedAppIds = 13;
-     */
-    managedAppIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 projectIds = 14;
-     */
-    projectIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 memberGroupIds = 16;
-     */
-    memberGroupIds: number[];
+    maxGroupOrderIndex: number;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Team$Type extends MessageType<Team> {
@@ -85,31 +61,19 @@ class Team$Type extends MessageType<Team> {
             { no: 3, name: "iconUrl", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 5, name: "updatedAt", kind: "message", T: () => Timestamp },
-            { no: 6, name: "creatorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 7, name: "ownerId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 6, name: "creatorUserId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 7, name: "ownerUserId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 8, name: "activeSprintId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 9, name: "taskIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 10, name: "invitationIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 11, name: "sprintIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 12, name: "appInstallationIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 13, name: "managedAppIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 14, name: "projectIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 16, name: "memberGroupIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 9, name: "maxGroupOrderIndex", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<Team>): Team {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.id = 0;
         message.name = "";
-        message.creatorId = 0;
-        message.ownerId = 0;
-        message.taskIds = [];
-        message.invitationIds = [];
-        message.sprintIds = [];
-        message.appInstallationIds = [];
-        message.managedAppIds = [];
-        message.projectIds = [];
-        message.memberGroupIds = [];
+        message.creatorUserId = 0;
+        message.ownerUserId = 0;
+        message.maxGroupOrderIndex = 0;
         if (value !== undefined)
             reflectionMergePartial<Team>(this, message, value);
         return message;
@@ -134,63 +98,17 @@ class Team$Type extends MessageType<Team> {
                 case /* optional google.protobuf.Timestamp updatedAt */ 5:
                     message.updatedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.updatedAt);
                     break;
-                case /* uint64 creatorId */ 6:
-                    message.creatorId = reader.uint64().toNumber();
+                case /* uint64 creatorUserId */ 6:
+                    message.creatorUserId = reader.uint64().toNumber();
                     break;
-                case /* uint64 ownerId */ 7:
-                    message.ownerId = reader.uint64().toNumber();
+                case /* uint64 ownerUserId */ 7:
+                    message.ownerUserId = reader.uint64().toNumber();
                     break;
                 case /* optional uint64 activeSprintId */ 8:
                     message.activeSprintId = reader.uint64().toNumber();
                     break;
-                case /* repeated uint64 taskIds */ 9:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.taskIds.push(reader.uint64().toNumber());
-                    else
-                        message.taskIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 invitationIds */ 10:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.invitationIds.push(reader.uint64().toNumber());
-                    else
-                        message.invitationIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 sprintIds */ 11:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.sprintIds.push(reader.uint64().toNumber());
-                    else
-                        message.sprintIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 appInstallationIds */ 12:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.appInstallationIds.push(reader.uint64().toNumber());
-                    else
-                        message.appInstallationIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 managedAppIds */ 13:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.managedAppIds.push(reader.uint64().toNumber());
-                    else
-                        message.managedAppIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 projectIds */ 14:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.projectIds.push(reader.uint64().toNumber());
-                    else
-                        message.projectIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 memberGroupIds */ 16:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.memberGroupIds.push(reader.uint64().toNumber());
-                    else
-                        message.memberGroupIds.push(reader.uint64().toNumber());
+                case /* int32 maxGroupOrderIndex */ 9:
+                    message.maxGroupOrderIndex = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -219,64 +137,18 @@ class Team$Type extends MessageType<Team> {
         /* optional google.protobuf.Timestamp updatedAt = 5; */
         if (message.updatedAt)
             Timestamp.internalBinaryWrite(message.updatedAt, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
-        /* uint64 creatorId = 6; */
-        if (message.creatorId !== 0)
-            writer.tag(6, WireType.Varint).uint64(message.creatorId);
-        /* uint64 ownerId = 7; */
-        if (message.ownerId !== 0)
-            writer.tag(7, WireType.Varint).uint64(message.ownerId);
+        /* uint64 creatorUserId = 6; */
+        if (message.creatorUserId !== 0)
+            writer.tag(6, WireType.Varint).uint64(message.creatorUserId);
+        /* uint64 ownerUserId = 7; */
+        if (message.ownerUserId !== 0)
+            writer.tag(7, WireType.Varint).uint64(message.ownerUserId);
         /* optional uint64 activeSprintId = 8; */
         if (message.activeSprintId !== undefined)
             writer.tag(8, WireType.Varint).uint64(message.activeSprintId);
-        /* repeated uint64 taskIds = 9; */
-        if (message.taskIds.length) {
-            writer.tag(9, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.taskIds.length; i++)
-                writer.uint64(message.taskIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 invitationIds = 10; */
-        if (message.invitationIds.length) {
-            writer.tag(10, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.invitationIds.length; i++)
-                writer.uint64(message.invitationIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 sprintIds = 11; */
-        if (message.sprintIds.length) {
-            writer.tag(11, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.sprintIds.length; i++)
-                writer.uint64(message.sprintIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 appInstallationIds = 12; */
-        if (message.appInstallationIds.length) {
-            writer.tag(12, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.appInstallationIds.length; i++)
-                writer.uint64(message.appInstallationIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 managedAppIds = 13; */
-        if (message.managedAppIds.length) {
-            writer.tag(13, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.managedAppIds.length; i++)
-                writer.uint64(message.managedAppIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 projectIds = 14; */
-        if (message.projectIds.length) {
-            writer.tag(14, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.projectIds.length; i++)
-                writer.uint64(message.projectIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 memberGroupIds = 16; */
-        if (message.memberGroupIds.length) {
-            writer.tag(16, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.memberGroupIds.length; i++)
-                writer.uint64(message.memberGroupIds[i]);
-            writer.join();
-        }
+        /* int32 maxGroupOrderIndex = 9; */
+        if (message.maxGroupOrderIndex !== 0)
+            writer.tag(9, WireType.Varint).int32(message.maxGroupOrderIndex);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

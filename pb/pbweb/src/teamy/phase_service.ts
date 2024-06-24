@@ -504,7 +504,7 @@ class UpdatePhaseRequest$Type extends MessageType<UpdatePhaseRequest> {
             { no: 4, name: "expectedEndAt", kind: "message", T: () => Timestamp },
             { no: 5, name: "actualStartAt", kind: "message", T: () => Timestamp },
             { no: 6, name: "actualEndAt", kind: "message", T: () => Timestamp },
-            { no: 7, name: "status", kind: "enum", opt: true, T: () => ["PhaseStatus", PhaseStatus] }
+            { no: 7, name: "status", kind: "enum", opt: true, T: () => ["PhaseStatus", PhaseStatus, "PHASE_STATUS_"] }
         ]);
     }
     create(value?: PartialMessage<UpdatePhaseRequest>): UpdatePhaseRequest {

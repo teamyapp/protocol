@@ -34,9 +34,9 @@ export interface Task {
      */
     owningTeamId: number;
     /**
-     * @generated from protobuf field: uint64 creatorId = 5;
+     * @generated from protobuf field: uint64 creatorUserId = 5;
      */
-    creatorId: number;
+    creatorUserId: number;
     /**
      * @generated from protobuf field: optional uint64 ownerUserId = 6;
      */
@@ -82,48 +82,36 @@ export interface Task {
      */
     availableActions: TaskAction[];
     /**
-     * @generated from protobuf field: repeated uint64 awaitForTaskIds = 17;
+     * @generated from protobuf field: uint64 commentsThreadId = 17;
      */
-    awaitForTaskIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 linkIds = 18;
-     */
-    linkIds: number[];
-    /**
-     * @generated from protobuf field: uint64 contextAttachmentListId = 19;
-     */
-    contextAttachmentListId: number;
-    /**
-     * @generated from protobuf field: uint64 commentThreadId = 20;
-     */
-    commentThreadId: number;
+    commentsThreadId: number;
 }
 /**
  * @generated from protobuf enum TaskStatus
  */
 export enum TaskStatus {
     /**
-     * @generated from protobuf enum value: TODO = 0;
+     * @generated from protobuf enum value: TASK_STATUS_TODO = 0;
      */
     TODO = 0,
     /**
-     * @generated from protobuf enum value: IN_PROGRESS = 1;
+     * @generated from protobuf enum value: TASK_STATUS_IN_PROGRESS = 1;
      */
     IN_PROGRESS = 1,
     /**
-     * @generated from protobuf enum value: PAUSED = 2;
+     * @generated from protobuf enum value: TASK_STATUS_PAUSED = 2;
      */
     PAUSED = 2,
     /**
-     * @generated from protobuf enum value: AWAITING = 3;
+     * @generated from protobuf enum value: TASK_STATUS_AWAITING = 3;
      */
     AWAITING = 3,
     /**
-     * @generated from protobuf enum value: BLOCKED = 4;
+     * @generated from protobuf enum value: TASK_STATUS_BLOCKED = 4;
      */
     BLOCKED = 4,
     /**
-     * @generated from protobuf enum value: DELIVERED = 5;
+     * @generated from protobuf enum value: TASK_STATUS_DELIVERED = 5;
      */
     DELIVERED = 5
 }
@@ -132,23 +120,23 @@ export enum TaskStatus {
  */
 export enum TaskAction {
     /**
-     * @generated from protobuf enum value: START = 0;
+     * @generated from protobuf enum value: TASK_ACTION_START = 0;
      */
     START = 0,
     /**
-     * @generated from protobuf enum value: DELETE = 1;
+     * @generated from protobuf enum value: TASK_ACTION_DELETE = 1;
      */
     DELETE = 1,
     /**
-     * @generated from protobuf enum value: ASSIGN_OWNER = 2;
+     * @generated from protobuf enum value: TASK_ACTION_ASSIGN_OWNER = 2;
      */
     ASSIGN_OWNER = 2,
     /**
-     * @generated from protobuf enum value: REPORT_BLOCKED = 3;
+     * @generated from protobuf enum value: TASK_ACTION_REPORT_BLOCKED = 3;
      */
     REPORT_BLOCKED = 3,
     /**
-     * @generated from protobuf enum value: MARK_COMPLETE = 4;
+     * @generated from protobuf enum value: TASK_ACTION_MARK_COMPLETE = 4;
      */
     MARK_COMPLETE = 4
 }
@@ -160,9 +148,9 @@ class Task$Type extends MessageType<Task> {
             { no: 2, name: "goal", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "context", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "owningTeamId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 5, name: "creatorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 5, name: "creatorUserId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 6, name: "ownerUserId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 7, name: "status", kind: "enum", T: () => ["TaskStatus", TaskStatus] },
+            { no: 7, name: "status", kind: "enum", T: () => ["TaskStatus", TaskStatus, "TASK_STATUS_"] },
             { no: 8, name: "isScheduled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 9, name: "isPlanned", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 10, name: "createdAt", kind: "message", T: () => Timestamp },
@@ -170,12 +158,9 @@ class Task$Type extends MessageType<Task> {
             { no: 12, name: "deliveredAt", kind: "message", T: () => Timestamp },
             { no: 13, name: "dueAt", kind: "message", T: () => Timestamp },
             { no: 14, name: "effort", kind: "message", T: () => Duration },
-            { no: 15, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority] },
-            { no: 16, name: "availableActions", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["TaskAction", TaskAction] },
-            { no: 17, name: "awaitForTaskIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 18, name: "linkIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 19, name: "contextAttachmentListId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 20, name: "commentThreadId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 15, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority, "PRIORITY_"] },
+            { no: 16, name: "availableActions", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["TaskAction", TaskAction, "TASK_ACTION_"] },
+            { no: 17, name: "commentsThreadId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<Task>): Task {
@@ -183,15 +168,12 @@ class Task$Type extends MessageType<Task> {
         message.id = 0;
         message.goal = "";
         message.owningTeamId = 0;
-        message.creatorId = 0;
+        message.creatorUserId = 0;
         message.status = 0;
         message.isScheduled = false;
         message.isPlanned = false;
         message.availableActions = [];
-        message.awaitForTaskIds = [];
-        message.linkIds = [];
-        message.contextAttachmentListId = 0;
-        message.commentThreadId = 0;
+        message.commentsThreadId = 0;
         if (value !== undefined)
             reflectionMergePartial<Task>(this, message, value);
         return message;
@@ -213,8 +195,8 @@ class Task$Type extends MessageType<Task> {
                 case /* uint64 owningTeamId */ 4:
                     message.owningTeamId = reader.uint64().toNumber();
                     break;
-                case /* uint64 creatorId */ 5:
-                    message.creatorId = reader.uint64().toNumber();
+                case /* uint64 creatorUserId */ 5:
+                    message.creatorUserId = reader.uint64().toNumber();
                     break;
                 case /* optional uint64 ownerUserId */ 6:
                     message.ownerUserId = reader.uint64().toNumber();
@@ -253,25 +235,8 @@ class Task$Type extends MessageType<Task> {
                     else
                         message.availableActions.push(reader.int32());
                     break;
-                case /* repeated uint64 awaitForTaskIds */ 17:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.awaitForTaskIds.push(reader.uint64().toNumber());
-                    else
-                        message.awaitForTaskIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 linkIds */ 18:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.linkIds.push(reader.uint64().toNumber());
-                    else
-                        message.linkIds.push(reader.uint64().toNumber());
-                    break;
-                case /* uint64 contextAttachmentListId */ 19:
-                    message.contextAttachmentListId = reader.uint64().toNumber();
-                    break;
-                case /* uint64 commentThreadId */ 20:
-                    message.commentThreadId = reader.uint64().toNumber();
+                case /* uint64 commentsThreadId */ 17:
+                    message.commentsThreadId = reader.uint64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -297,9 +262,9 @@ class Task$Type extends MessageType<Task> {
         /* uint64 owningTeamId = 4; */
         if (message.owningTeamId !== 0)
             writer.tag(4, WireType.Varint).uint64(message.owningTeamId);
-        /* uint64 creatorId = 5; */
-        if (message.creatorId !== 0)
-            writer.tag(5, WireType.Varint).uint64(message.creatorId);
+        /* uint64 creatorUserId = 5; */
+        if (message.creatorUserId !== 0)
+            writer.tag(5, WireType.Varint).uint64(message.creatorUserId);
         /* optional uint64 ownerUserId = 6; */
         if (message.ownerUserId !== undefined)
             writer.tag(6, WireType.Varint).uint64(message.ownerUserId);
@@ -337,26 +302,9 @@ class Task$Type extends MessageType<Task> {
                 writer.int32(message.availableActions[i]);
             writer.join();
         }
-        /* repeated uint64 awaitForTaskIds = 17; */
-        if (message.awaitForTaskIds.length) {
-            writer.tag(17, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.awaitForTaskIds.length; i++)
-                writer.uint64(message.awaitForTaskIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 linkIds = 18; */
-        if (message.linkIds.length) {
-            writer.tag(18, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.linkIds.length; i++)
-                writer.uint64(message.linkIds[i]);
-            writer.join();
-        }
-        /* uint64 contextAttachmentListId = 19; */
-        if (message.contextAttachmentListId !== 0)
-            writer.tag(19, WireType.Varint).uint64(message.contextAttachmentListId);
-        /* uint64 commentThreadId = 20; */
-        if (message.commentThreadId !== 0)
-            writer.tag(20, WireType.Varint).uint64(message.commentThreadId);
+        /* uint64 commentsThreadId = 17; */
+        if (message.commentsThreadId !== 0)
+            writer.tag(17, WireType.Varint).uint64(message.commentsThreadId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

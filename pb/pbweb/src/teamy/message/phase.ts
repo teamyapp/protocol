@@ -65,19 +65,19 @@ export interface Phase {
  */
 export enum PhaseStatus {
     /**
-     * @generated from protobuf enum value: TODO = 0;
+     * @generated from protobuf enum value: PHASE_STATUS_TODO = 0;
      */
     TODO = 0,
     /**
-     * @generated from protobuf enum value: IN_PROGRESS = 1;
+     * @generated from protobuf enum value: PHASE_STATUS_IN_PROGRESS = 1;
      */
     IN_PROGRESS = 1,
     /**
-     * @generated from protobuf enum value: PAUSED = 2;
+     * @generated from protobuf enum value: PHASE_STATUS_PAUSED = 2;
      */
     PAUSED = 2,
     /**
-     * @generated from protobuf enum value: COMPLETED = 3;
+     * @generated from protobuf enum value: PHASE_STATUS_COMPLETED = 3;
      */
     COMPLETED = 3
 }
@@ -87,7 +87,7 @@ class Phase$Type extends MessageType<Phase> {
         super("Phase", [
             { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 3, name: "status", kind: "enum", T: () => ["PhaseStatus", PhaseStatus] },
+            { no: 3, name: "status", kind: "enum", T: () => ["PhaseStatus", PhaseStatus, "PHASE_STATUS_"] },
             { no: 4, name: "expectedStartAt", kind: "message", T: () => Timestamp },
             { no: 5, name: "actualStartAt", kind: "message", T: () => Timestamp },
             { no: 6, name: "expectedEndAt", kind: "message", T: () => Timestamp },

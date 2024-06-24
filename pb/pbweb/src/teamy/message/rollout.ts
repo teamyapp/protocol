@@ -51,19 +51,10 @@ export interface Rollout {
      * @generated from protobuf field: repeated uint64 groupIds = 9;
      */
     groupIds: number[];
-}
-/**
- * @generated from protobuf enum AppRolloutType
- */
-export enum AppRolloutType {
     /**
-     * @generated from protobuf enum value: USER = 0;
+     * @generated from protobuf field: int32 viewers = 10;
      */
-    USER = 0,
-    /**
-     * @generated from protobuf enum value: TEAM = 1;
-     */
-    TEAM = 1
+    viewers: number;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Rollout$Type extends MessageType<Rollout> {
@@ -77,7 +68,8 @@ class Rollout$Type extends MessageType<Rollout> {
             { no: 6, name: "updatedAt", kind: "message", T: () => Timestamp },
             { no: 7, name: "activatorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 8, name: "versionSelectorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 9, name: "groupIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 9, name: "groupIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 10, name: "viewers", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<Rollout>): Rollout {
@@ -89,6 +81,7 @@ class Rollout$Type extends MessageType<Rollout> {
         message.activatorId = 0;
         message.versionSelectorId = 0;
         message.groupIds = [];
+        message.viewers = 0;
         if (value !== undefined)
             reflectionMergePartial<Rollout>(this, message, value);
         return message;
@@ -128,6 +121,9 @@ class Rollout$Type extends MessageType<Rollout> {
                             message.groupIds.push(reader.uint64().toNumber());
                     else
                         message.groupIds.push(reader.uint64().toNumber());
+                    break;
+                case /* int32 viewers */ 10:
+                    message.viewers = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -172,6 +168,9 @@ class Rollout$Type extends MessageType<Rollout> {
                 writer.uint64(message.groupIds[i]);
             writer.join();
         }
+        /* int32 viewers = 10; */
+        if (message.viewers !== 0)
+            writer.tag(10, WireType.Varint).int32(message.viewers);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

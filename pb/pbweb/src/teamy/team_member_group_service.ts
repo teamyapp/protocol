@@ -36,9 +36,9 @@ export interface GetMemberGroupResponse {
  */
 export interface ListMemberGroupsRequest {
     /**
-     * @generated from protobuf field: repeated uint64 teamMemberGroupIds = 1;
+     * @generated from protobuf field: uint64 teamId = 1;
      */
-    teamMemberGroupIds: number[];
+    teamId: number;
 }
 /**
  * @generated from protobuf message ListTeamMemberGroupsResponse
@@ -234,12 +234,12 @@ export const GetMemberGroupResponse = new GetMemberGroupResponse$Type();
 class ListMemberGroupsRequest$Type extends MessageType<ListMemberGroupsRequest> {
     constructor() {
         super("ListMemberGroupsRequest", [
-            { no: 1, name: "teamMemberGroupIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "teamId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<ListMemberGroupsRequest>): ListMemberGroupsRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.teamMemberGroupIds = [];
+        message.teamId = 0;
         if (value !== undefined)
             reflectionMergePartial<ListMemberGroupsRequest>(this, message, value);
         return message;
@@ -249,12 +249,8 @@ class ListMemberGroupsRequest$Type extends MessageType<ListMemberGroupsRequest> 
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* repeated uint64 teamMemberGroupIds */ 1:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.teamMemberGroupIds.push(reader.uint64().toNumber());
-                    else
-                        message.teamMemberGroupIds.push(reader.uint64().toNumber());
+                case /* uint64 teamId */ 1:
+                    message.teamId = reader.uint64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -268,13 +264,9 @@ class ListMemberGroupsRequest$Type extends MessageType<ListMemberGroupsRequest> 
         return message;
     }
     internalBinaryWrite(message: ListMemberGroupsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* repeated uint64 teamMemberGroupIds = 1; */
-        if (message.teamMemberGroupIds.length) {
-            writer.tag(1, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.teamMemberGroupIds.length; i++)
-                writer.uint64(message.teamMemberGroupIds[i]);
-            writer.join();
-        }
+        /* uint64 teamId = 1; */
+        if (message.teamId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.teamId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

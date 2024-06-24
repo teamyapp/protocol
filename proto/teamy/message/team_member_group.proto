@@ -9,8 +9,8 @@ message TeamMemberGroup {
     uint64 teamId = 4;
     google.protobuf.Timestamp createdAt = 5;
     optional google.protobuf.Timestamp updatedAt = 6;
-    repeated uint64 memberUserIds = 7;
-    repeated uint64 invitationIds = 8;
+    uint64 authorizationUserGroupId = 7;
+    repeated uint64 memberUserIds = 8;
 }
 
 

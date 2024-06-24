@@ -40,9 +40,9 @@ export interface GetTaskResponse {
  */
 export interface GetAwaitForTasksRequest {
     /**
-     * @generated from protobuf field: uint64 taskId = 1;
+     * @generated from protobuf field: uint64 AwaitingTaskId = 1 [json_name = "AwaitingTaskId"];
      */
-    taskId: number;
+    awaitingTaskId: number;
 }
 /**
  * @generated from protobuf message GetAwaitForTasksResponse
@@ -369,12 +369,12 @@ export const GetTaskResponse = new GetTaskResponse$Type();
 class GetAwaitForTasksRequest$Type extends MessageType<GetAwaitForTasksRequest> {
     constructor() {
         super("GetAwaitForTasksRequest", [
-            { no: 1, name: "taskId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "AwaitingTaskId", kind: "scalar", jsonName: "AwaitingTaskId", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<GetAwaitForTasksRequest>): GetAwaitForTasksRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.taskId = 0;
+        message.awaitingTaskId = 0;
         if (value !== undefined)
             reflectionMergePartial<GetAwaitForTasksRequest>(this, message, value);
         return message;
@@ -384,8 +384,8 @@ class GetAwaitForTasksRequest$Type extends MessageType<GetAwaitForTasksRequest> 
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 taskId */ 1:
-                    message.taskId = reader.uint64().toNumber();
+                case /* uint64 AwaitingTaskId = 1 [json_name = "AwaitingTaskId"];*/ 1:
+                    message.awaitingTaskId = reader.uint64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -399,9 +399,9 @@ class GetAwaitForTasksRequest$Type extends MessageType<GetAwaitForTasksRequest> 
         return message;
     }
     internalBinaryWrite(message: GetAwaitForTasksRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 taskId = 1; */
-        if (message.taskId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.taskId);
+        /* uint64 AwaitingTaskId = 1 [json_name = "AwaitingTaskId"]; */
+        if (message.awaitingTaskId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.awaitingTaskId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -466,7 +466,7 @@ class ListTasksRequest$Type extends MessageType<ListTasksRequest> {
             { no: 1, name: "taskIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 3, name: "ownerId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 4, name: "goalContains", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-            { no: 5, name: "status", kind: "enum", opt: true, T: () => ["TaskStatus", TaskStatus] },
+            { no: 5, name: "status", kind: "enum", opt: true, T: () => ["TaskStatus", TaskStatus, "TASK_STATUS_"] },
             { no: 6, name: "isScheduled", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 7, name: "isPlanned", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
@@ -730,7 +730,7 @@ class UpdateTaskRequest$Type extends MessageType<UpdateTaskRequest> {
             { no: 5, name: "owningTeamId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 6, name: "effort", kind: "message", T: () => Duration },
             { no: 7, name: "dueAt", kind: "message", T: () => Timestamp },
-            { no: 8, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority] }
+            { no: 8, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority, "PRIORITY_"] }
         ]);
     }
     create(value?: PartialMessage<UpdateTaskRequest>): UpdateTaskRequest {

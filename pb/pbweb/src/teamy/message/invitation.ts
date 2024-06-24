@@ -20,9 +20,9 @@ export interface Invitation {
      */
     id: number;
     /**
-     * @generated from protobuf field: uint64 senderId = 2;
+     * @generated from protobuf field: uint64 senderUserId = 2;
      */
-    senderId: number;
+    senderUserId: number;
     /**
      * @generated from protobuf field: optional string receiverFirstName = 3;
      */
@@ -69,19 +69,19 @@ export interface Invitation {
  */
 export enum InvitationStatus {
     /**
-     * @generated from protobuf enum value: PENDING = 0;
+     * @generated from protobuf enum value: INVITATION_STATUS_PENDING = 0;
      */
     PENDING = 0,
     /**
-     * @generated from protobuf enum value: ACCEPTED = 1;
+     * @generated from protobuf enum value: INVITATION_STATUS_ACCEPTED = 1;
      */
     ACCEPTED = 1,
     /**
-     * @generated from protobuf enum value: DECLINED = 2;
+     * @generated from protobuf enum value: INVITATION_STATUS_DECLINED = 2;
      */
     DECLINED = 2,
     /**
-     * @generated from protobuf enum value: EXPIRED = 3;
+     * @generated from protobuf enum value: INVITATION_STATUS_EXPIRED = 3;
      */
     EXPIRED = 3
 }
@@ -90,7 +90,7 @@ class Invitation$Type extends MessageType<Invitation> {
     constructor() {
         super("Invitation", [
             { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "senderId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 2, name: "senderUserId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 3, name: "receiverFirstName", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "receiverLastName", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 5, name: "receiverEmail", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
@@ -99,14 +99,14 @@ class Invitation$Type extends MessageType<Invitation> {
             { no: 8, name: "expireAt", kind: "message", T: () => Timestamp },
             { no: 9, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 10, name: "updatedAt", kind: "message", T: () => Timestamp },
-            { no: 11, name: "status", kind: "enum", T: () => ["InvitationStatus", InvitationStatus] },
+            { no: 11, name: "status", kind: "enum", T: () => ["InvitationStatus", InvitationStatus, "INVITATION_STATUS_"] },
             { no: 12, name: "code", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value?: PartialMessage<Invitation>): Invitation {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.id = 0;
-        message.senderId = 0;
+        message.senderUserId = 0;
         message.joiningTeamId = 0;
         message.status = 0;
         message.code = "";
@@ -122,8 +122,8 @@ class Invitation$Type extends MessageType<Invitation> {
                 case /* uint64 id */ 1:
                     message.id = reader.uint64().toNumber();
                     break;
-                case /* uint64 senderId */ 2:
-                    message.senderId = reader.uint64().toNumber();
+                case /* uint64 senderUserId */ 2:
+                    message.senderUserId = reader.uint64().toNumber();
                     break;
                 case /* optional string receiverFirstName */ 3:
                     message.receiverFirstName = reader.string();
@@ -170,9 +170,9 @@ class Invitation$Type extends MessageType<Invitation> {
         /* uint64 id = 1; */
         if (message.id !== 0)
             writer.tag(1, WireType.Varint).uint64(message.id);
-        /* uint64 senderId = 2; */
-        if (message.senderId !== 0)
-            writer.tag(2, WireType.Varint).uint64(message.senderId);
+        /* uint64 senderUserId = 2; */
+        if (message.senderUserId !== 0)
+            writer.tag(2, WireType.Varint).uint64(message.senderUserId);
         /* optional string receiverFirstName = 3; */
         if (message.receiverFirstName !== undefined)
             writer.tag(3, WireType.LengthDelimited).string(message.receiverFirstName);

@@ -22,7 +22,9 @@ message GetAttachmentResponse {
 }
 
 message GetAttachmentListRequest {
-    uint64 attachmentListId = 1;
+    uint64 ownerId = 1;
+    AttachmentListOwnerType ownerType = 2;
+    string listLabel = 3;
 }
 
 message GetAttachmentListResponse {
@@ -30,8 +32,7 @@ message GetAttachmentListResponse {
 }
 
 message ListAttachmentsRequest {
-    repeated uint64 attachmentIds = 1;
-    optional uint64 attachmentListId = 2;   
+    uint64 attachmentListId = 1;   
 }
 
 message ListAttachmentsResponse {

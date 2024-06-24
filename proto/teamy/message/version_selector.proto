@@ -3,8 +3,8 @@ option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum VersionSelectorType {
-    STATIC = 0;
-    EXPERIMENT = 1;
+    VERSION_SELECTOR_TYPE_STATIC = 0;
+    VERSION_SELECTOR_TYPE_EXPERIMENT = 1;
 }
 
 message VersionSelectorBase {

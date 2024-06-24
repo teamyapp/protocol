@@ -13,6 +13,7 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 import { AttachmentList } from "./message/attachment_list";
+import { AttachmentListOwnerType } from "./message/attachment_list";
 import { Attachment } from "./message/attachment";
 /**
  * @generated from protobuf message GetAttachmentRequest
@@ -37,9 +38,17 @@ export interface GetAttachmentResponse {
  */
 export interface GetAttachmentListRequest {
     /**
-     * @generated from protobuf field: uint64 attachmentListId = 1;
+     * @generated from protobuf field: uint64 ownerId = 1;
      */
-    attachmentListId: number;
+    ownerId: number;
+    /**
+     * @generated from protobuf field: AttachmentListOwnerType ownerType = 2;
+     */
+    ownerType: AttachmentListOwnerType;
+    /**
+     * @generated from protobuf field: string listLabel = 3;
+     */
+    listLabel: string;
 }
 /**
  * @generated from protobuf message GetAttachmentListResponse
@@ -55,13 +64,9 @@ export interface GetAttachmentListResponse {
  */
 export interface ListAttachmentsRequest {
     /**
-     * @generated from protobuf field: repeated uint64 attachmentIds = 1;
+     * @generated from protobuf field: uint64 attachmentListId = 1;
      */
-    attachmentIds: number[];
-    /**
-     * @generated from protobuf field: optional uint64 attachmentListId = 2;
-     */
-    attachmentListId?: number;
+    attachmentListId: number;
 }
 /**
  * @generated from protobuf message ListAttachmentsResponse
@@ -218,12 +223,16 @@ export const GetAttachmentResponse = new GetAttachmentResponse$Type();
 class GetAttachmentListRequest$Type extends MessageType<GetAttachmentListRequest> {
     constructor() {
         super("GetAttachmentListRequest", [
-            { no: 1, name: "attachmentListId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "ownerId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 2, name: "ownerType", kind: "enum", T: () => ["AttachmentListOwnerType", AttachmentListOwnerType, "ATTACHMENT_LIST_OWNER_TYPE_"] },
+            { no: 3, name: "listLabel", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value?: PartialMessage<GetAttachmentListRequest>): GetAttachmentListRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.attachmentListId = 0;
+        message.ownerId = 0;
+        message.ownerType = 0;
+        message.listLabel = "";
         if (value !== undefined)
             reflectionMergePartial<GetAttachmentListRequest>(this, message, value);
         return message;
@@ -233,8 +242,14 @@ class GetAttachmentListRequest$Type extends MessageType<GetAttachmentListRequest
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 attachmentListId */ 1:
-                    message.attachmentListId = reader.uint64().toNumber();
+                case /* uint64 ownerId */ 1:
+                    message.ownerId = reader.uint64().toNumber();
+                    break;
+                case /* AttachmentListOwnerType ownerType */ 2:
+                    message.ownerType = reader.int32();
+                    break;
+                case /* string listLabel */ 3:
+                    message.listLabel = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -248,9 +263,15 @@ class GetAttachmentListRequest$Type extends MessageType<GetAttachmentListRequest
         return message;
     }
     internalBinaryWrite(message: GetAttachmentListRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 attachmentListId = 1; */
-        if (message.attachmentListId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.attachmentListId);
+        /* uint64 ownerId = 1; */
+        if (message.ownerId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.ownerId);
+        /* AttachmentListOwnerType ownerType = 2; */
+        if (message.ownerType !== 0)
+            writer.tag(2, WireType.Varint).int32(message.ownerType);
+        /* string listLabel = 3; */
+        if (message.listLabel !== "")
+            writer.tag(3, WireType.LengthDelimited).string(message.listLabel);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -311,13 +332,12 @@ export const GetAttachmentListResponse = new GetAttachmentListResponse$Type();
 class ListAttachmentsRequest$Type extends MessageType<ListAttachmentsRequest> {
     constructor() {
         super("ListAttachmentsRequest", [
-            { no: 1, name: "attachmentIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "attachmentListId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "attachmentListId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<ListAttachmentsRequest>): ListAttachmentsRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.attachmentIds = [];
+        message.attachmentListId = 0;
         if (value !== undefined)
             reflectionMergePartial<ListAttachmentsRequest>(this, message, value);
         return message;
@@ -327,14 +347,7 @@ class ListAttachmentsRequest$Type extends MessageType<ListAttachmentsRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* repeated uint64 attachmentIds */ 1:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.attachmentIds.push(reader.uint64().toNumber());
-                    else
-                        message.attachmentIds.push(reader.uint64().toNumber());
-                    break;
-                case /* optional uint64 attachmentListId */ 2:
+                case /* uint64 attachmentListId */ 1:
                     message.attachmentListId = reader.uint64().toNumber();
                     break;
                 default:
@@ -349,16 +362,9 @@ class ListAttachmentsRequest$Type extends MessageType<ListAttachmentsRequest> {
         return message;
     }
     internalBinaryWrite(message: ListAttachmentsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* repeated uint64 attachmentIds = 1; */
-        if (message.attachmentIds.length) {
-            writer.tag(1, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.attachmentIds.length; i++)
-                writer.uint64(message.attachmentIds[i]);
-            writer.join();
-        }
-        /* optional uint64 attachmentListId = 2; */
-        if (message.attachmentListId !== undefined)
-            writer.tag(2, WireType.Varint).uint64(message.attachmentListId);
+        /* uint64 attachmentListId = 1; */
+        if (message.attachmentListId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.attachmentListId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

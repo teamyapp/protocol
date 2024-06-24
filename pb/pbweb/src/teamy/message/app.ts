@@ -3,10 +3,10 @@
 // tslint:disable
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
+import { WireType } from "@protobuf-ts/runtime";
 import type { BinaryReadOptions } from "@protobuf-ts/runtime";
 import type { IBinaryReader } from "@protobuf-ts/runtime";
 import { UnknownFieldHandler } from "@protobuf-ts/runtime";
-import { WireType } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
@@ -36,37 +36,39 @@ export interface App {
      */
     managedByTeamId: number;
     /**
-     * @generated from protobuf field: int32 latestVersionNumberForTeam = 6;
+     * @generated from protobuf field: repeated AppRolloutRelation appRolloutRelations = 6;
      */
-    latestVersionNumberForTeam: number;
+    appRolloutRelations: AppRolloutRelation[];
+}
+/**
+ * @generated from protobuf message AppRolloutRelation
+ */
+export interface AppRolloutRelation {
     /**
-     * @generated from protobuf field: repeated uint64 secretIds = 7;
+     * @generated from protobuf field: uint64 appId = 1;
      */
-    secretIds: number[];
+    appId: number;
     /**
-     * @generated from protobuf field: repeated uint64 installationIds = 8;
+     * @generated from protobuf field: uint64 rolloutId = 2;
      */
-    installationIds: number[];
+    rolloutId: number;
     /**
-     * @generated from protobuf field: repeated int32 versionNumbers = 9;
+     * @generated from protobuf field: AppRolloutType type = 3;
      */
-    versionNumbers: number[];
+    type: AppRolloutType;
+}
+/**
+ * @generated from protobuf enum AppRolloutType
+ */
+export enum AppRolloutType {
     /**
-     * @generated from protobuf field: repeated uint64 groupIds = 10;
+     * @generated from protobuf enum value: APP_ROLLOUT_TYPE_USER = 0;
      */
-    groupIds: number[];
+    USER = 0,
     /**
-     * @generated from protobuf field: repeated uint64 userRolloutIds = 11;
+     * @generated from protobuf enum value: APP_ROLLOUT_TYPE_TEAM = 1;
      */
-    userRolloutIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 teamRolloutIds = 12;
-     */
-    teamRolloutIds: number[];
-    /**
-     * @generated from protobuf field: repeated uint64 tagIds = 13;
-     */
-    tagIds: number[];
+    TEAM = 1
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class App$Type extends MessageType<App> {
@@ -77,14 +79,7 @@ class App$Type extends MessageType<App> {
             { no: 3, name: "updatedAt", kind: "message", T: () => Timestamp },
             { no: 4, name: "totalInstallations", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 5, name: "managedByTeamId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 6, name: "latestVersionNumberForTeam", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 7, name: "secretIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 8, name: "installationIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 9, name: "versionNumbers", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 5 /*ScalarType.INT32*/ },
-            { no: 10, name: "groupIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 11, name: "userRolloutIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 12, name: "teamRolloutIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 13, name: "tagIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 6, name: "appRolloutRelations", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => AppRolloutRelation }
         ]);
     }
     create(value?: PartialMessage<App>): App {
@@ -92,14 +87,7 @@ class App$Type extends MessageType<App> {
         message.id = 0;
         message.totalInstallations = 0;
         message.managedByTeamId = 0;
-        message.latestVersionNumberForTeam = 0;
-        message.secretIds = [];
-        message.installationIds = [];
-        message.versionNumbers = [];
-        message.groupIds = [];
-        message.userRolloutIds = [];
-        message.teamRolloutIds = [];
-        message.tagIds = [];
+        message.appRolloutRelations = [];
         if (value !== undefined)
             reflectionMergePartial<App>(this, message, value);
         return message;
@@ -124,57 +112,8 @@ class App$Type extends MessageType<App> {
                 case /* uint64 managedByTeamId */ 5:
                     message.managedByTeamId = reader.uint64().toNumber();
                     break;
-                case /* int32 latestVersionNumberForTeam */ 6:
-                    message.latestVersionNumberForTeam = reader.int32();
-                    break;
-                case /* repeated uint64 secretIds */ 7:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.secretIds.push(reader.uint64().toNumber());
-                    else
-                        message.secretIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 installationIds */ 8:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.installationIds.push(reader.uint64().toNumber());
-                    else
-                        message.installationIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated int32 versionNumbers */ 9:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.versionNumbers.push(reader.int32());
-                    else
-                        message.versionNumbers.push(reader.int32());
-                    break;
-                case /* repeated uint64 groupIds */ 10:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.groupIds.push(reader.uint64().toNumber());
-                    else
-                        message.groupIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 userRolloutIds */ 11:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.userRolloutIds.push(reader.uint64().toNumber());
-                    else
-                        message.userRolloutIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 teamRolloutIds */ 12:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.teamRolloutIds.push(reader.uint64().toNumber());
-                    else
-                        message.teamRolloutIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated uint64 tagIds */ 13:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.tagIds.push(reader.uint64().toNumber());
-                    else
-                        message.tagIds.push(reader.uint64().toNumber());
+                case /* repeated AppRolloutRelation appRolloutRelations */ 6:
+                    message.appRolloutRelations.push(AppRolloutRelation.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -203,58 +142,9 @@ class App$Type extends MessageType<App> {
         /* uint64 managedByTeamId = 5; */
         if (message.managedByTeamId !== 0)
             writer.tag(5, WireType.Varint).uint64(message.managedByTeamId);
-        /* int32 latestVersionNumberForTeam = 6; */
-        if (message.latestVersionNumberForTeam !== 0)
-            writer.tag(6, WireType.Varint).int32(message.latestVersionNumberForTeam);
-        /* repeated uint64 secretIds = 7; */
-        if (message.secretIds.length) {
-            writer.tag(7, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.secretIds.length; i++)
-                writer.uint64(message.secretIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 installationIds = 8; */
-        if (message.installationIds.length) {
-            writer.tag(8, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.installationIds.length; i++)
-                writer.uint64(message.installationIds[i]);
-            writer.join();
-        }
-        /* repeated int32 versionNumbers = 9; */
-        if (message.versionNumbers.length) {
-            writer.tag(9, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.versionNumbers.length; i++)
-                writer.int32(message.versionNumbers[i]);
-            writer.join();
-        }
-        /* repeated uint64 groupIds = 10; */
-        if (message.groupIds.length) {
-            writer.tag(10, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.groupIds.length; i++)
-                writer.uint64(message.groupIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 userRolloutIds = 11; */
-        if (message.userRolloutIds.length) {
-            writer.tag(11, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.userRolloutIds.length; i++)
-                writer.uint64(message.userRolloutIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 teamRolloutIds = 12; */
-        if (message.teamRolloutIds.length) {
-            writer.tag(12, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.teamRolloutIds.length; i++)
-                writer.uint64(message.teamRolloutIds[i]);
-            writer.join();
-        }
-        /* repeated uint64 tagIds = 13; */
-        if (message.tagIds.length) {
-            writer.tag(13, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.tagIds.length; i++)
-                writer.uint64(message.tagIds[i]);
-            writer.join();
-        }
+        /* repeated AppRolloutRelation appRolloutRelations = 6; */
+        for (let i = 0; i < message.appRolloutRelations.length; i++)
+            AppRolloutRelation.internalBinaryWrite(message.appRolloutRelations[i], writer.tag(6, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -265,3 +155,66 @@ class App$Type extends MessageType<App> {
  * @generated MessageType for protobuf message App
  */
 export const App = new App$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class AppRolloutRelation$Type extends MessageType<AppRolloutRelation> {
+    constructor() {
+        super("AppRolloutRelation", [
+            { no: 1, name: "appId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 2, name: "rolloutId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 3, name: "type", kind: "enum", T: () => ["AppRolloutType", AppRolloutType, "APP_ROLLOUT_TYPE_"] }
+        ]);
+    }
+    create(value?: PartialMessage<AppRolloutRelation>): AppRolloutRelation {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.appId = 0;
+        message.rolloutId = 0;
+        message.type = 0;
+        if (value !== undefined)
+            reflectionMergePartial<AppRolloutRelation>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: AppRolloutRelation): AppRolloutRelation {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint64 appId */ 1:
+                    message.appId = reader.uint64().toNumber();
+                    break;
+                case /* uint64 rolloutId */ 2:
+                    message.rolloutId = reader.uint64().toNumber();
+                    break;
+                case /* AppRolloutType type */ 3:
+                    message.type = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: AppRolloutRelation, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint64 appId = 1; */
+        if (message.appId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.appId);
+        /* uint64 rolloutId = 2; */
+        if (message.rolloutId !== 0)
+            writer.tag(2, WireType.Varint).uint64(message.rolloutId);
+        /* AppRolloutType type = 3; */
+        if (message.type !== 0)
+            writer.tag(3, WireType.Varint).int32(message.type);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message AppRolloutRelation
+ */
+export const AppRolloutRelation = new AppRolloutRelation$Type();

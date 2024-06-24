@@ -19,7 +19,7 @@ message GetTaskLinkResponse {
 }
 
 message ListTaskLinksRequest {
-	repeated uint64 linkIds = 1;
+	uint64 taskId = 1;
 }
 
 message ListTaskLinksResponse {

@@ -43,6 +43,7 @@ export * from './teamy/message/app';
 export * from './teamy/message/app_secret';
 export * from './teamy/message/app_version';
 export * from './teamy/message/app_version_change';
+export * from './teamy/message/app_version_price';
 export * from './teamy/message/attachment';
 export * from './teamy/message/attachment_list';
 export * from './teamy/message/common';

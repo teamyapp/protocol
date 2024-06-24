@@ -1,14 +1,13 @@
 syntax = "proto3";
 option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
-import "teamy/message/money.proto";
 
 enum AppVersionStatus {
-    INIT = 0;
-    UPLOADING = 1;
-    PROCESSING = 2;
-    READY = 3;
-    ERROR = 4;
+    APP_VERSION_STATUS_INIT = 0;
+    APP_VERSION_STATUS_UPLOADING = 1;
+    APP_VERSION_STATUS_PROCESSING = 2;
+    APP_VERSION_STATUS_READY = 3;
+    APP_VERSION_STATUS_ERROR = 4;
 }
 
 message AppVersion {
@@ -21,9 +20,7 @@ message AppVersion {
     bool hasUiExtension = 7;
     google.protobuf.Timestamp createdAt = 8;
     optional google.protobuf.Timestamp updatedAt = 9;
-    uint64 createdById = 10;
+    uint64 createdByUserId = 10;
     AppVersionStatus status = 11;
-    repeated uint64 changeIds = 12;
-    repeated Money prices = 13;
 }
 

@@ -3,10 +3,10 @@ option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum ActivatorType {
-    STATIC = 0;
-    TIME_RANGE = 1;
-    MAX_VIEWERS = 2;
-    PERCENTAGE = 3;
+    ACTIVATOR_TYPE_STATIC = 0;
+    ACTIVATOR_TYPE_TIME_RANGE = 1;
+    ACTIVATOR_TYPE_MAX_VIEWERS = 2;
+    ACTIVATOR_TYPE_PERCENTAGE = 3;
 }
 
 message ActivatorBase {

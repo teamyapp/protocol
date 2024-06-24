@@ -36,9 +36,9 @@ export interface GetTaskLinkResponse {
  */
 export interface ListTaskLinksRequest {
     /**
-     * @generated from protobuf field: repeated uint64 linkIds = 1;
+     * @generated from protobuf field: uint64 taskId = 1;
      */
-    linkIds: number[];
+    taskId: number;
 }
 /**
  * @generated from protobuf message ListTaskLinksResponse
@@ -193,12 +193,12 @@ export const GetTaskLinkResponse = new GetTaskLinkResponse$Type();
 class ListTaskLinksRequest$Type extends MessageType<ListTaskLinksRequest> {
     constructor() {
         super("ListTaskLinksRequest", [
-            { no: 1, name: "linkIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "taskId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<ListTaskLinksRequest>): ListTaskLinksRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.linkIds = [];
+        message.taskId = 0;
         if (value !== undefined)
             reflectionMergePartial<ListTaskLinksRequest>(this, message, value);
         return message;
@@ -208,12 +208,8 @@ class ListTaskLinksRequest$Type extends MessageType<ListTaskLinksRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* repeated uint64 linkIds */ 1:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.linkIds.push(reader.uint64().toNumber());
-                    else
-                        message.linkIds.push(reader.uint64().toNumber());
+                case /* uint64 taskId */ 1:
+                    message.taskId = reader.uint64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -227,13 +223,9 @@ class ListTaskLinksRequest$Type extends MessageType<ListTaskLinksRequest> {
         return message;
     }
     internalBinaryWrite(message: ListTaskLinksRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* repeated uint64 linkIds = 1; */
-        if (message.linkIds.length) {
-            writer.tag(1, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.linkIds.length; i++)
-                writer.uint64(message.linkIds[i]);
-            writer.join();
-        }
+        /* uint64 taskId = 1; */
+        if (message.taskId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.taskId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

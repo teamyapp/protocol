@@ -3,10 +3,10 @@ option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum PhaseStatus {
-    TODO = 0;
-    IN_PROGRESS = 1;
-    PAUSED = 2;
-    COMPLETED = 3;
+    PHASE_STATUS_TODO = 0;
+    PHASE_STATUS_IN_PROGRESS = 1;
+    PHASE_STATUS_PAUSED = 2;
+    PHASE_STATUS_COMPLETED = 3;
 }
 
 message Phase {

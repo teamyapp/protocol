@@ -3,14 +3,13 @@
 // tslint:disable
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
+import { WireType } from "@protobuf-ts/runtime";
 import type { BinaryReadOptions } from "@protobuf-ts/runtime";
 import type { IBinaryReader } from "@protobuf-ts/runtime";
 import { UnknownFieldHandler } from "@protobuf-ts/runtime";
-import { WireType } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
-import { Money } from "./money";
 import { Timestamp } from "../../google/protobuf/timestamp";
 /**
  * @generated from protobuf message AppVersion
@@ -53,44 +52,36 @@ export interface AppVersion {
      */
     updatedAt?: Timestamp;
     /**
-     * @generated from protobuf field: uint64 createdById = 10;
+     * @generated from protobuf field: uint64 createdByUserId = 10;
      */
-    createdById: number;
+    createdByUserId: number;
     /**
      * @generated from protobuf field: AppVersionStatus status = 11;
      */
     status: AppVersionStatus;
-    /**
-     * @generated from protobuf field: repeated uint64 changeIds = 12;
-     */
-    changeIds: number[];
-    /**
-     * @generated from protobuf field: repeated Money prices = 13;
-     */
-    prices: Money[];
 }
 /**
  * @generated from protobuf enum AppVersionStatus
  */
 export enum AppVersionStatus {
     /**
-     * @generated from protobuf enum value: INIT = 0;
+     * @generated from protobuf enum value: APP_VERSION_STATUS_INIT = 0;
      */
     INIT = 0,
     /**
-     * @generated from protobuf enum value: UPLOADING = 1;
+     * @generated from protobuf enum value: APP_VERSION_STATUS_UPLOADING = 1;
      */
     UPLOADING = 1,
     /**
-     * @generated from protobuf enum value: PROCESSING = 2;
+     * @generated from protobuf enum value: APP_VERSION_STATUS_PROCESSING = 2;
      */
     PROCESSING = 2,
     /**
-     * @generated from protobuf enum value: READY = 3;
+     * @generated from protobuf enum value: APP_VERSION_STATUS_READY = 3;
      */
     READY = 3,
     /**
-     * @generated from protobuf enum value: ERROR = 4;
+     * @generated from protobuf enum value: APP_VERSION_STATUS_ERROR = 4;
      */
     ERROR = 4
 }
@@ -107,10 +98,8 @@ class AppVersion$Type extends MessageType<AppVersion> {
             { no: 7, name: "hasUiExtension", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 8, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 9, name: "updatedAt", kind: "message", T: () => Timestamp },
-            { no: 10, name: "createdById", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 11, name: "status", kind: "enum", T: () => ["AppVersionStatus", AppVersionStatus] },
-            { no: 12, name: "changeIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 13, name: "prices", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Money }
+            { no: 10, name: "createdByUserId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 11, name: "status", kind: "enum", T: () => ["AppVersionStatus", AppVersionStatus, "APP_VERSION_STATUS_"] }
         ]);
     }
     create(value?: PartialMessage<AppVersion>): AppVersion {
@@ -121,10 +110,8 @@ class AppVersion$Type extends MessageType<AppVersion> {
         message.appName = "";
         message.description = "";
         message.hasUiExtension = false;
-        message.createdById = 0;
+        message.createdByUserId = 0;
         message.status = 0;
-        message.changeIds = [];
-        message.prices = [];
         if (value !== undefined)
             reflectionMergePartial<AppVersion>(this, message, value);
         return message;
@@ -161,21 +148,11 @@ class AppVersion$Type extends MessageType<AppVersion> {
                 case /* optional google.protobuf.Timestamp updatedAt */ 9:
                     message.updatedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.updatedAt);
                     break;
-                case /* uint64 createdById */ 10:
-                    message.createdById = reader.uint64().toNumber();
+                case /* uint64 createdByUserId */ 10:
+                    message.createdByUserId = reader.uint64().toNumber();
                     break;
                 case /* AppVersionStatus status */ 11:
                     message.status = reader.int32();
-                    break;
-                case /* repeated uint64 changeIds */ 12:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.changeIds.push(reader.uint64().toNumber());
-                    else
-                        message.changeIds.push(reader.uint64().toNumber());
-                    break;
-                case /* repeated Money prices */ 13:
-                    message.prices.push(Money.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -216,22 +193,12 @@ class AppVersion$Type extends MessageType<AppVersion> {
         /* optional google.protobuf.Timestamp updatedAt = 9; */
         if (message.updatedAt)
             Timestamp.internalBinaryWrite(message.updatedAt, writer.tag(9, WireType.LengthDelimited).fork(), options).join();
-        /* uint64 createdById = 10; */
-        if (message.createdById !== 0)
-            writer.tag(10, WireType.Varint).uint64(message.createdById);
+        /* uint64 createdByUserId = 10; */
+        if (message.createdByUserId !== 0)
+            writer.tag(10, WireType.Varint).uint64(message.createdByUserId);
         /* AppVersionStatus status = 11; */
         if (message.status !== 0)
             writer.tag(11, WireType.Varint).int32(message.status);
-        /* repeated uint64 changeIds = 12; */
-        if (message.changeIds.length) {
-            writer.tag(12, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.changeIds.length; i++)
-                writer.uint64(message.changeIds[i]);
-            writer.join();
-        }
-        /* repeated Money prices = 13; */
-        for (let i = 0; i < message.prices.length; i++)
-            Money.internalBinaryWrite(message.prices[i], writer.tag(13, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

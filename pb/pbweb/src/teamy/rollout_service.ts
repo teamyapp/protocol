@@ -12,7 +12,7 @@ import { UnknownFieldHandler } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
-import { AppRolloutType } from "./message/rollout";
+import { AppRolloutType } from "./message/app";
 import { Rollout } from "./message/rollout";
 /**
  * @generated from protobuf message GetRolloutRequest
@@ -339,7 +339,7 @@ class CreateAppRolloutRequest$Type extends MessageType<CreateAppRolloutRequest> 
     constructor() {
         super("CreateAppRolloutRequest", [
             { no: 1, name: "appId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "type", kind: "enum", T: () => ["AppRolloutType", AppRolloutType] },
+            { no: 2, name: "type", kind: "enum", T: () => ["AppRolloutType", AppRolloutType, "APP_ROLLOUT_TYPE_"] },
             { no: 3, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "activatorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 5, name: "versionSelectorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },

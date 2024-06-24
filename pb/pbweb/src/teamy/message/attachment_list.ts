@@ -3,10 +3,10 @@
 // tslint:disable
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
+import { WireType } from "@protobuf-ts/runtime";
 import type { BinaryReadOptions } from "@protobuf-ts/runtime";
 import type { IBinaryReader } from "@protobuf-ts/runtime";
 import { UnknownFieldHandler } from "@protobuf-ts/runtime";
-import { WireType } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
@@ -39,17 +39,13 @@ export interface AttachmentList {
      * @generated from protobuf field: optional google.protobuf.Timestamp updatedAt = 6;
      */
     updatedAt?: Timestamp;
-    /**
-     * @generated from protobuf field: repeated uint64 attachmentIds = 7;
-     */
-    attachmentIds: number[];
 }
 /**
  * @generated from protobuf enum AttachmentListOwnerType
  */
 export enum AttachmentListOwnerType {
     /**
-     * @generated from protobuf enum value: TASK = 0;
+     * @generated from protobuf enum value: ATTACHMENT_LIST_OWNER_TYPE_TASK = 0;
      */
     TASK = 0
 }
@@ -60,10 +56,9 @@ class AttachmentList$Type extends MessageType<AttachmentList> {
             { no: 1, name: "ownerId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "listLabel", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "listId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 4, name: "ownerType", kind: "enum", T: () => ["AttachmentListOwnerType", AttachmentListOwnerType] },
+            { no: 4, name: "ownerType", kind: "enum", T: () => ["AttachmentListOwnerType", AttachmentListOwnerType, "ATTACHMENT_LIST_OWNER_TYPE_"] },
             { no: 5, name: "createdAt", kind: "message", T: () => Timestamp },
-            { no: 6, name: "updatedAt", kind: "message", T: () => Timestamp },
-            { no: 7, name: "attachmentIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 6, name: "updatedAt", kind: "message", T: () => Timestamp }
         ]);
     }
     create(value?: PartialMessage<AttachmentList>): AttachmentList {
@@ -72,7 +67,6 @@ class AttachmentList$Type extends MessageType<AttachmentList> {
         message.listLabel = "";
         message.listId = 0;
         message.ownerType = 0;
-        message.attachmentIds = [];
         if (value !== undefined)
             reflectionMergePartial<AttachmentList>(this, message, value);
         return message;
@@ -99,13 +93,6 @@ class AttachmentList$Type extends MessageType<AttachmentList> {
                     break;
                 case /* optional google.protobuf.Timestamp updatedAt */ 6:
                     message.updatedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.updatedAt);
-                    break;
-                case /* repeated uint64 attachmentIds */ 7:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.attachmentIds.push(reader.uint64().toNumber());
-                    else
-                        message.attachmentIds.push(reader.uint64().toNumber());
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -137,13 +124,6 @@ class AttachmentList$Type extends MessageType<AttachmentList> {
         /* optional google.protobuf.Timestamp updatedAt = 6; */
         if (message.updatedAt)
             Timestamp.internalBinaryWrite(message.updatedAt, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
-        /* repeated uint64 attachmentIds = 7; */
-        if (message.attachmentIds.length) {
-            writer.tag(7, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.attachmentIds.length; i++)
-                writer.uint64(message.attachmentIds[i]);
-            writer.join();
-        }
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

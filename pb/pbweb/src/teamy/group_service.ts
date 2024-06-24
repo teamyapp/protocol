@@ -667,7 +667,7 @@ class CreateFilterGroupRequest$Type extends MessageType<CreateFilterGroupRequest
             { no: 1, name: "appId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "filter", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 4, name: "memberType", kind: "enum", T: () => ["GroupMemberType", GroupMemberType] },
+            { no: 4, name: "memberType", kind: "enum", T: () => ["GroupMemberType", GroupMemberType, "GROUP_MEMBER_TYPE_"] },
             { no: 5, name: "rolloutIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
@@ -800,8 +800,8 @@ class UpdateGroupRequest$Type extends MessageType<UpdateGroupRequest> {
             { no: 1, name: "appId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "groupId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 3, name: "name", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-            { no: 4, name: "type", kind: "enum", T: () => ["GroupType", GroupType] },
-            { no: 5, name: "memberType", kind: "enum", T: () => ["GroupMemberType", GroupMemberType] },
+            { no: 4, name: "type", kind: "enum", T: () => ["GroupType", GroupType, "GROUP_TYPE_"] },
+            { no: 5, name: "memberType", kind: "enum", T: () => ["GroupMemberType", GroupMemberType, "GROUP_MEMBER_TYPE_"] },
             { no: 6, name: "memberIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 7, name: "filter", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
         ]);

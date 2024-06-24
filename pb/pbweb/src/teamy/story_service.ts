@@ -382,8 +382,8 @@ class CreateStoryRequest$Type extends MessageType<CreateStoryRequest> {
             { no: 1, name: "projectId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "ownerUserId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 4, name: "priority", kind: "enum", T: () => ["Priority", Priority] },
-            { no: 5, name: "status", kind: "enum", T: () => ["StoryStatus", StoryStatus] }
+            { no: 4, name: "priority", kind: "enum", T: () => ["Priority", Priority, "PRIORITY_"] },
+            { no: 5, name: "status", kind: "enum", T: () => ["StoryStatus", StoryStatus, "STORY_STATUS_"] }
         ]);
     }
     create(value?: PartialMessage<CreateStoryRequest>): CreateStoryRequest {
@@ -507,8 +507,8 @@ class UpdateStoryRequest$Type extends MessageType<UpdateStoryRequest> {
             { no: 1, name: "storyId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "name", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "ownerUserId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 4, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority] },
-            { no: 5, name: "status", kind: "enum", opt: true, T: () => ["StoryStatus", StoryStatus] }
+            { no: 4, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority, "PRIORITY_"] },
+            { no: 5, name: "status", kind: "enum", opt: true, T: () => ["StoryStatus", StoryStatus, "STORY_STATUS_"] }
         ]);
     }
     create(value?: PartialMessage<UpdateStoryRequest>): UpdateStoryRequest {

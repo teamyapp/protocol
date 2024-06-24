@@ -32,7 +32,7 @@ export interface Attachment {
      */
     url: string;
     /**
-     * @generated from protobuf field: int32 size = 5;
+     * @generated from protobuf field: uint64 size = 5;
      */
     size: number;
     /**
@@ -49,7 +49,7 @@ export interface Attachment {
  */
 export enum AttachmentType {
     /**
-     * @generated from protobuf enum value: IMAGE = 0;
+     * @generated from protobuf enum value: ATTACHMENT_TYPE_IMAGE = 0;
      */
     IMAGE = 0
 }
@@ -59,9 +59,9 @@ class Attachment$Type extends MessageType<Attachment> {
         super("Attachment", [
             { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "attachmentListId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 3, name: "type", kind: "enum", T: () => ["AttachmentType", AttachmentType] },
+            { no: 3, name: "type", kind: "enum", T: () => ["AttachmentType", AttachmentType, "ATTACHMENT_TYPE_"] },
             { no: 4, name: "url", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 5, name: "size", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 5, name: "size", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 6, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 7, name: "updatedAt", kind: "message", T: () => Timestamp }
         ]);
@@ -94,8 +94,8 @@ class Attachment$Type extends MessageType<Attachment> {
                 case /* string url */ 4:
                     message.url = reader.string();
                     break;
-                case /* int32 size */ 5:
-                    message.size = reader.int32();
+                case /* uint64 size */ 5:
+                    message.size = reader.uint64().toNumber();
                     break;
                 case /* google.protobuf.Timestamp createdAt */ 6:
                     message.createdAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.createdAt);
@@ -127,9 +127,9 @@ class Attachment$Type extends MessageType<Attachment> {
         /* string url = 4; */
         if (message.url !== "")
             writer.tag(4, WireType.LengthDelimited).string(message.url);
-        /* int32 size = 5; */
+        /* uint64 size = 5; */
         if (message.size !== 0)
-            writer.tag(5, WireType.Varint).int32(message.size);
+            writer.tag(5, WireType.Varint).uint64(message.size);
         /* google.protobuf.Timestamp createdAt = 6; */
         if (message.createdAt)
             Timestamp.internalBinaryWrite(message.createdAt, writer.tag(6, WireType.LengthDelimited).fork(), options).join();

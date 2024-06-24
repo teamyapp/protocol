@@ -32,7 +32,7 @@ message GetTaskResponse {
 }
 
 message GetAwaitForTasksRequest {
-	uint64 taskId = 1;
+	uint64 AwaitingTaskId = 1;
 }
 
 message GetAwaitForTasksResponse {
