@@ -9,8 +9,8 @@ import type { CreateUserProfileUploadSessionResponse } from "./user_service";
 import type { CreateUserProfileUploadSessionRequest } from "./user_service";
 import type { UpdateUserRequest } from "./user_service";
 import type { CreateUserRequest } from "./user_service";
-import type { ListUsersResponse } from "./user_service";
-import type { ListUsersRequest } from "./user_service";
+import type { GetUsersResponse } from "./user_service";
+import type { GetUsersRequest } from "./user_service";
 import type { GetUserRequest } from "./user_service";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { GetUserResponse } from "./user_service";
@@ -30,9 +30,9 @@ export interface IUserServiceClient {
      */
     getUser(input: GetUserRequest, options?: RpcOptions): UnaryCall<GetUserRequest, GetUserResponse>;
     /**
-     * @generated from protobuf rpc: ListUsers(ListUsersRequest) returns (ListUsersResponse);
+     * @generated from protobuf rpc: GetUsers(GetUsersRequest) returns (GetUsersResponse);
      */
-    listUsers(input: ListUsersRequest, options?: RpcOptions): UnaryCall<ListUsersRequest, ListUsersResponse>;
+    getUsers(input: GetUsersRequest, options?: RpcOptions): UnaryCall<GetUsersRequest, GetUsersResponse>;
     /**
      * @generated from protobuf rpc: CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
      */
@@ -74,11 +74,11 @@ export class UserServiceClient implements IUserServiceClient, ServiceInfo {
         return stackIntercept<GetUserRequest, GetUserResponse>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: ListUsers(ListUsersRequest) returns (ListUsersResponse);
+     * @generated from protobuf rpc: GetUsers(GetUsersRequest) returns (GetUsersResponse);
      */
-    listUsers(input: ListUsersRequest, options?: RpcOptions): UnaryCall<ListUsersRequest, ListUsersResponse> {
+    getUsers(input: GetUsersRequest, options?: RpcOptions): UnaryCall<GetUsersRequest, GetUsersResponse> {
         const method = this.methods[2], opt = this._transport.mergeOptions(options);
-        return stackIntercept<ListUsersRequest, ListUsersResponse>("unary", this._transport, method, opt, input);
+        return stackIntercept<GetUsersRequest, GetUsersResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: CreateUser(CreateUserRequest) returns (google.protobuf.Empty);

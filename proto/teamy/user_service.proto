@@ -6,7 +6,7 @@ import "teamy/message/user.proto";
 service UserService {
 	rpc Me(google.protobuf.Empty) returns (GetUserResponse);
 	rpc GetUser(GetUserRequest) returns (GetUserResponse);
-	rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+	rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
 	rpc CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
 	rpc UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty);
 	rpc CreateUserProfileUploadSession(CreateUserProfileUploadSessionRequest) returns (CreateUserProfileUploadSessionResponse);
@@ -21,11 +21,11 @@ message GetUserResponse {
 	User User = 1;
 }
 
-message ListUsersRequest {
+message GetUsersRequest {
 	repeated uint64 userIds = 1;
 }
 
-message ListUsersResponse {
+message GetUsersResponse {
 	repeated User users = 1;
 }
 

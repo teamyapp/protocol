@@ -2,7 +2,7 @@ syntax = "proto3";
 option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
-import "teamy/message/common.proto";
+import "teamy/message/priority.proto";
 
 enum TaskStatus {
     TASK_STATUS_TODO = 0;
