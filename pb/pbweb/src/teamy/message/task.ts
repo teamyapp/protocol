@@ -158,7 +158,7 @@ class Task$Type extends MessageType<Task> {
             { no: 12, name: "deliveredAt", kind: "message", T: () => Timestamp },
             { no: 13, name: "dueAt", kind: "message", T: () => Timestamp },
             { no: 14, name: "effort", kind: "message", T: () => Duration },
-            { no: 15, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority, "PRIORITY_"] },
+            { no: 15, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority] },
             { no: 16, name: "availableActions", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["TaskAction", TaskAction, "TASK_ACTION_"] },
             { no: 17, name: "commentsThreadId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);

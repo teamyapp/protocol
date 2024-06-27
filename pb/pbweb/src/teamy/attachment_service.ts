@@ -224,7 +224,7 @@ class GetAttachmentListRequest$Type extends MessageType<GetAttachmentListRequest
     constructor() {
         super("GetAttachmentListRequest", [
             { no: 1, name: "ownerId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "ownerType", kind: "enum", T: () => ["AttachmentListOwnerType", AttachmentListOwnerType, "ATTACHMENT_LIST_OWNER_TYPE_"] },
+            { no: 2, name: "ownerType", kind: "enum", T: () => ["AttachmentListOwnerType", AttachmentListOwnerType] },
             { no: 3, name: "listLabel", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }

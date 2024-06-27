@@ -7,5 +7,5 @@ message Sprint {
     google.protobuf.Timestamp startAt = 2;
     google.protobuf.Timestamp endAt = 3;
     uint64 owningTeamId = 4;
-    google.protobuf.Timestamp createdAt = 6;
+    google.protobuf.Timestamp createdAt = 5;
 }

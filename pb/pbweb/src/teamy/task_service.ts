@@ -730,7 +730,7 @@ class UpdateTaskRequest$Type extends MessageType<UpdateTaskRequest> {
             { no: 5, name: "owningTeamId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 6, name: "effort", kind: "message", T: () => Duration },
             { no: 7, name: "dueAt", kind: "message", T: () => Timestamp },
-            { no: 8, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority, "PRIORITY_"] }
+            { no: 8, name: "priority", kind: "enum", opt: true, T: () => ["Priority", Priority] }
         ]);
     }
     create(value?: PartialMessage<UpdateTaskRequest>): UpdateTaskRequest {

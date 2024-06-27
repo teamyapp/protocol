@@ -3,10 +3,10 @@
 // tslint:disable
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
+import { WireType } from "@protobuf-ts/runtime";
 import type { BinaryReadOptions } from "@protobuf-ts/runtime";
 import type { IBinaryReader } from "@protobuf-ts/runtime";
 import { UnknownFieldHandler } from "@protobuf-ts/runtime";
-import { WireType } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
@@ -32,11 +32,7 @@ export interface Sprint {
      */
     owningTeamId: number;
     /**
-     * @generated from protobuf field: repeated uint64 taskIds = 5;
-     */
-    taskIds: number[];
-    /**
-     * @generated from protobuf field: google.protobuf.Timestamp createdAt = 6;
+     * @generated from protobuf field: google.protobuf.Timestamp createdAt = 5;
      */
     createdAt?: Timestamp;
 }
@@ -48,15 +44,13 @@ class Sprint$Type extends MessageType<Sprint> {
             { no: 2, name: "startAt", kind: "message", T: () => Timestamp },
             { no: 3, name: "endAt", kind: "message", T: () => Timestamp },
             { no: 4, name: "owningTeamId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 5, name: "taskIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 6, name: "createdAt", kind: "message", T: () => Timestamp }
+            { no: 5, name: "createdAt", kind: "message", T: () => Timestamp }
         ]);
     }
     create(value?: PartialMessage<Sprint>): Sprint {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.id = 0;
         message.owningTeamId = 0;
-        message.taskIds = [];
         if (value !== undefined)
             reflectionMergePartial<Sprint>(this, message, value);
         return message;
@@ -78,14 +72,7 @@ class Sprint$Type extends MessageType<Sprint> {
                 case /* uint64 owningTeamId */ 4:
                     message.owningTeamId = reader.uint64().toNumber();
                     break;
-                case /* repeated uint64 taskIds */ 5:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.taskIds.push(reader.uint64().toNumber());
-                    else
-                        message.taskIds.push(reader.uint64().toNumber());
-                    break;
-                case /* google.protobuf.Timestamp createdAt */ 6:
+                case /* google.protobuf.Timestamp createdAt */ 5:
                     message.createdAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.createdAt);
                     break;
                 default:
@@ -112,16 +99,9 @@ class Sprint$Type extends MessageType<Sprint> {
         /* uint64 owningTeamId = 4; */
         if (message.owningTeamId !== 0)
             writer.tag(4, WireType.Varint).uint64(message.owningTeamId);
-        /* repeated uint64 taskIds = 5; */
-        if (message.taskIds.length) {
-            writer.tag(5, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.taskIds.length; i++)
-                writer.uint64(message.taskIds[i]);
-            writer.join();
-        }
-        /* google.protobuf.Timestamp createdAt = 6; */
+        /* google.protobuf.Timestamp createdAt = 5; */
         if (message.createdAt)
-            Timestamp.internalBinaryWrite(message.createdAt, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
+            Timestamp.internalBinaryWrite(message.createdAt, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

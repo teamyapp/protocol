@@ -49,7 +49,7 @@ export interface Attachment {
  */
 export enum AttachmentType {
     /**
-     * @generated from protobuf enum value: ATTACHMENT_TYPE_IMAGE = 0;
+     * @generated from protobuf enum value: IMAGE = 0;
      */
     IMAGE = 0
 }
@@ -59,7 +59,7 @@ class Attachment$Type extends MessageType<Attachment> {
         super("Attachment", [
             { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "attachmentListId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 3, name: "type", kind: "enum", T: () => ["AttachmentType", AttachmentType, "ATTACHMENT_TYPE_"] },
+            { no: 3, name: "type", kind: "enum", T: () => ["AttachmentType", AttachmentType] },
             { no: 4, name: "url", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 5, name: "size", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 6, name: "createdAt", kind: "message", T: () => Timestamp },

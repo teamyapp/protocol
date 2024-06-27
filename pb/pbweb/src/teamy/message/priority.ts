@@ -6,19 +6,19 @@
  */
 export enum Priority {
     /**
-     * @generated from protobuf enum value: PRIORITY_URGENT = 0;
+     * @generated from protobuf enum value: URGENT = 0;
      */
     URGENT = 0,
     /**
-     * @generated from protobuf enum value: PRIORITY_HIGH = 1;
+     * @generated from protobuf enum value: HIGH = 1;
      */
     HIGH = 1,
     /**
-     * @generated from protobuf enum value: PRIORITY_MEDIUM = 2;
+     * @generated from protobuf enum value: MEDIUM = 2;
      */
     MEDIUM = 2,
     /**
-     * @generated from protobuf enum value: PRIORITY_LOW = 3;
+     * @generated from protobuf enum value: LOW = 3;
      */
     LOW = 3
 }
