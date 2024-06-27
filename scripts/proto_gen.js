@@ -103,4 +103,3 @@ function cleanupDir(dir) {
     console.log(`Deleted file: ${filePath}`);
   });
 }
-
