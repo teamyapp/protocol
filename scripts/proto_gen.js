@@ -82,7 +82,7 @@ function findFilesRec(dir, outputFile) {
   });
 }
 
-function cleanupDir(dir) {
+function cleanupDir(directory) {
   if (!fs.existsSync(directory)) {
       console.log(`Directory does not exist: ${directory}`);
       return;
