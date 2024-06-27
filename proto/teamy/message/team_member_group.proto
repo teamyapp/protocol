@@ -10,15 +10,4 @@ message TeamMemberGroup {
     google.protobuf.Timestamp createdAt = 5;
     optional google.protobuf.Timestamp updatedAt = 6;
     uint64 authorizationUserGroupId = 7;
-    repeated uint64 memberUserIds = 8;
 }
-
-
-
-
-
-
-
-
-
-

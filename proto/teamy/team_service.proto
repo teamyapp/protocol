@@ -96,5 +96,3 @@ message CreateTeamIconUploadSessionResponse {
 message FinishTeamIconUploadSessionRequest {
 	uint64 uploadSessionId = 1;
 }
-
-

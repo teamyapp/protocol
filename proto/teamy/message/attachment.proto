@@ -15,7 +15,3 @@ message Attachment {
     google.protobuf.Timestamp createdAt = 6;
     optional google.protobuf.Timestamp updatedAt = 7;
 }
-
-
-
-

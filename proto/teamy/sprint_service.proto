@@ -67,7 +67,6 @@ message DeleteSprintRequest {
 	uint64 sprintId = 1;
 }
 
-
 message AddTeamMemberToSprintRequest {
 	uint64 sprintId = 1;
 	uint64 teamId = 2;
