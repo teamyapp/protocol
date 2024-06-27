@@ -3,7 +3,7 @@ option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum AttachmentListOwnerType {
-   ATTACHMENT_LIST_OWNER_TYPE_TASK = 0;
+   TASK = 0;
 }
 
 message AttachmentList {
@@ -14,6 +14,3 @@ message AttachmentList {
     google.protobuf.Timestamp createdAt = 5;
     optional google.protobuf.Timestamp updatedAt = 6;
 }
-
-
-

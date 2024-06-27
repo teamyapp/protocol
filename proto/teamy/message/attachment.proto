@@ -3,7 +3,7 @@ option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
 import "google/protobuf/timestamp.proto";
 
 enum AttachmentType {
-    ATTACHMENT_TYPE_IMAGE = 0;
+    IMAGE = 0;
 }
 
 message Attachment {
