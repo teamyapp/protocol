@@ -10,9 +10,9 @@ const pbDir = resolve(__dirname, "..", "pb");
 const pbGoDir = resolve(pbDir, "pbgo");
 const pbWebDir = resolve(pbDir, "pbweb", "src");
 
-const dirsToClear = [pbWebDir, resolve(pbGoDir, "cloud"), resolve(pbGoDir, "teamy")];
-dirsToClear.forEach((dir) => {
-  deleteContentsOfDirectory(dir);
+const dirsToCleanUp = [pbWebDir, resolve(pbGoDir, "cloud"), resolve(pbGoDir, "teamy")];
+dirsToCleanUp.forEach((dir) => {
+  cleanupDir(dir);
 });
 
 for (let path of paths) {
@@ -82,26 +82,25 @@ function findFilesRec(dir, outputFile) {
   });
 }
 
-function deleteContentsOfDirectory(directory) {
-  if (fs.existsSync(directory)) {
-    fs.readdirSync(directory).forEach((file) => {
-      const filePath = path.join(directory, file);
-      const stats = fs.lstatSync(filePath);
-
-      if (stats.isDirectory()) {
-        // Recursively delete contents of subdirectory
-        deleteContentsOfDirectory(filePath);
-        // Remove the now-empty subdirectory
-        fs.rmdirSync(filePath);
-        console.log(`Deleted directory: ${filePath}`);
-      } else {
-        // Delete file
-        fs.unlinkSync(filePath);
-        console.log(`Deleted file: ${filePath}`);
-      }
-    });
-  } else {
-    console.log(`Directory does not exist: ${directory}`);
+function cleanupDir(dir) {
+  if (!fs.existsSync(directory)) {
+      console.log(`Directory does not exist: ${directory}`);
+      return;
   }
+  
+  fs.readdirSync(directory).forEach((file) => {
+    const filePath = path.join(directory, file);
+    const stats = fs.lstatSync(filePath);
+
+    if (stats.isDirectory()) {
+      cleanupDir(filePath);
+      fs.rmdirSync(filePath);
+      console.log(`Deleted directory: ${filePath}`);
+      return
+    }
+    
+    fs.unlinkSync(filePath);
+    console.log(`Deleted file: ${filePath}`);
+});
 }
 
