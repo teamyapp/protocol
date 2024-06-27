@@ -1,0 +1,61 @@
+syntax = "proto3";
+option go_package = "ggithub.com/teamyapp/protocol/pb/pbgo/teamy";
+import "teamy/message/attachment.proto";
+import "teamy/message/attachment_list.proto";
+import "google/protobuf/empty.proto";
+
+service AttachmentService {
+    rpc GetAttachment(GetAttachmentRequest) returns (GetAttachmentResponse);
+    rpc GetAttachmentList(GetAttachmentListRequest) returns (GetAttachmentListResponse);
+    rpc ListAttachments(ListAttachmentsRequest) returns (ListAttachmentsResponse);
+    rpc CreateAttachmentListFileUploadSession(CreateAttachmentListFileUploadSessionRequest) returns (CreateAttachmentListFileUploadSessionResponse);
+    rpc FinishAttachmentListFileUploadSession(FinishAttachmentListFileUploadSessionRequest) returns (FinishAttachmentListFileUploadSessionResponse);
+    rpc DeleteAttachmentListFile(DeleteAttachmentListFileRequest) returns (google.protobuf.Empty);
+}
+
+message GetAttachmentRequest {
+    uint64 attachmentId = 1;
+}
+
+message GetAttachmentResponse {
+    Attachment attachment = 1;
+}
+
+message GetAttachmentListRequest {
+    uint64 ownerId = 1;
+    AttachmentListOwnerType ownerType = 2;
+    string listLabel = 3;
+}
+
+message GetAttachmentListResponse {
+    AttachmentList attachmentList = 1;
+}
+
+message ListAttachmentsRequest {
+    uint64 attachmentListId = 1;   
+}
+
+message ListAttachmentsResponse {
+    repeated Attachment attachments = 1;
+}
+
+message CreateAttachmentListFileUploadSessionRequest {
+    uint64 attachmentListId = 1;
+}
+
+message CreateAttachmentListFileUploadSessionResponse {
+    uint64 uploadSessionId = 1;
+}
+
+message FinishAttachmentListFileUploadSessionRequest {
+    uint64 attachmentListId = 1;
+    uint64 uploadSessionId = 2;
+}
+
+message FinishAttachmentListFileUploadSessionResponse {
+    AttachmentList attachmentList = 1;
+}
+
+message DeleteAttachmentListFileRequest {
+    uint64 attachmentId = 1;
+}

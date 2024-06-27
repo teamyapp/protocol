@@ -1,0 +1,121 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+import "teamy/message/task.proto";
+import "teamy/message/priority.proto";
+
+service TaskService {
+	rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
+	rpc GetAwaitForTasks(GetAwaitForTasksRequest) returns (GetAwaitForTasksResponse);
+	rpc ListTasks(ListTasksRequest) returns (ListTasksResponse);
+	rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
+	rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
+	rpc DeleteTask(DeleteTaskRequest) returns (google.protobuf.Empty);
+	rpc MoveTaskToUpcoming(MoveTaskToUpcomingRequest) returns (google.protobuf.Empty);
+	rpc MoveTaskToInProgress(MoveTaskToInProgressRequest) returns (google.protobuf.Empty);
+	rpc MoveTaskToDelivered(MoveTaskToDeliveredRequest) returns (google.protobuf.Empty);
+	rpc MoveTaskToBlocked(MoveTaskToBlockedRequest) returns (google.protobuf.Empty);
+	rpc AddAwaitForTask(AddAwaitForTaskRequest) returns (google.protobuf.Empty);
+	rpc RemoveAwaitForTask(RemoveAwaitForTaskRequest) returns (google.protobuf.Empty);
+	rpc StartDraggingTask (StartDraggingTaskRequest) returns (google.protobuf.Empty);
+	rpc StopDraggingTask (StopDraggingTaskRequest) returns (google.protobuf.Empty);
+}
+
+message GetTaskRequest {
+	uint64 taskId = 1;
+}
+
+message GetTaskResponse {
+	Task task = 1;
+}
+
+message GetAwaitForTasksRequest {
+	uint64 AwaitingTaskId = 1;
+}
+
+message GetAwaitForTasksResponse {
+	repeated Task tasks = 1;
+}
+
+message ListTasksRequest {
+	repeated uint64 taskIds = 1;
+	optional uint64 ownerId = 3;
+	optional string goalContains = 4;
+	optional TaskStatus status = 5;
+	optional uint64 isScheduled = 6;
+	optional uint64 isPlanned = 7;
+}
+
+message ListTasksResponse {
+	repeated Task tasks = 1;
+}
+
+message CreateTaskRequest {
+	uint64 teamId = 1;
+	string goal = 2;
+	optional string context = 3;
+	optional uint64 ownerUserId = 4;
+	optional google.protobuf.Timestamp dueAt = 5;
+}
+
+message CreateTaskResponse {
+	uint64 taskId = 1;
+}
+
+message UpdateTaskRequest {
+	uint64 taskId = 1;
+	optional string goal = 2;
+	optional string context = 3;
+	optional uint64 ownerUserId = 4;
+	optional uint64 owningTeamId = 5;
+	optional google.protobuf.Duration effort = 6;
+	optional google.protobuf.Timestamp dueAt = 7;
+	optional Priority priority = 8;
+}
+
+message UpdateTaskResponse {
+	Task task = 1;
+}
+
+message DeleteTaskRequest {
+	uint64 taskId = 1;
+}
+
+message MoveTaskToUpcomingRequest {
+	uint64 taskId = 1;
+}
+
+message MoveTaskToInProgressRequest {
+	uint64 taskId = 1;
+}
+
+message MoveTaskToDeliveredRequest {
+	uint64 taskId = 1;
+}
+
+message MoveTaskToBlockedRequest {
+	uint64 taskId = 1;
+	string reason = 2;
+}
+
+message AddAwaitForTaskRequest {
+	uint64 awaitingTaskId = 1;
+	uint64 awaitForTaskId = 2;
+}
+
+message RemoveAwaitForTaskRequest {
+	uint64 awaitingTaskId = 1;
+	uint64 awaitForTaskId = 2;
+}
+
+message StartDraggingTaskRequest {
+	uint64 taskId = 1;
+	uint64 clientId = 2;
+}
+
+message StopDraggingTaskRequest {
+	uint64 taskId = 1;
+	uint64 clientId = 2;
+}

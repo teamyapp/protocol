@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
+import "google/protobuf/timestamp.proto";
+
+enum AttachmentType {
+    IMAGE = 0;
+}
+
+message Attachment {
+    uint64 id = 1;
+    uint64 attachmentListId = 2;
+    AttachmentType type = 3;
+    string url = 4;
+    uint64 size = 5;
+    google.protobuf.Timestamp createdAt = 6;
+    optional google.protobuf.Timestamp updatedAt = 7;
+}

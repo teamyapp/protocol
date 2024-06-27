@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
+import "google/protobuf/timestamp.proto";
+
+message User {
+	uint64 id = 1;
+	string firstName = 2;
+	string lastName = 3;
+	optional string profileUrl = 4;
+	google.protobuf.Timestamp createdAt = 5;
+	optional google.protobuf.Timestamp updatedAt = 6;
+}

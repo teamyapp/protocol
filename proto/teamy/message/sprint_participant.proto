@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message SprintParticipant {
+    uint64 userId = 1;
+    uint64 sprintId = 2;
+    google.protobuf.Duration totalBandwidth = 3;
+    google.protobuf.Duration unusedBandwidth = 4;
+    google.protobuf.Timestamp createdAt = 5;
+    optional google.protobuf.Timestamp updatedAt = 6;
+}

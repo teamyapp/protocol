@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
+import "google/protobuf/timestamp.proto";
+
+message Sprint {
+    uint64 id = 1;
+    google.protobuf.Timestamp startAt = 2;
+    google.protobuf.Timestamp endAt = 3;
+    uint64 owningTeamId = 4;
+    google.protobuf.Timestamp createdAt = 5;
+}

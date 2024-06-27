@@ -1,0 +1,59 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy";
+import "google/protobuf/empty.proto";
+import "teamy/message/user.proto";
+
+service UserService {
+	rpc Me(google.protobuf.Empty) returns (GetUserResponse);
+	rpc GetUser(GetUserRequest) returns (GetUserResponse);
+	rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
+	rpc CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
+	rpc UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty);
+	rpc CreateUserProfileUploadSession(CreateUserProfileUploadSessionRequest) returns (CreateUserProfileUploadSessionResponse);
+	rpc FinishUserProfileUploadSession(FinishUserProfileUploadSessionRequest) returns (google.protobuf.Empty);
+}
+
+message GetUserRequest {
+	uint64 userId = 1;
+}
+
+message GetUserResponse {
+	User User = 1;
+}
+
+message GetUsersRequest {
+	repeated uint64 userIds = 1;
+}
+
+message GetUsersResponse {
+	repeated User users = 1;
+}
+
+message CreateUserRequest {
+	string lastName = 1;
+	string firstName = 2;
+	optional string profileUrl = 3;
+}
+
+message CreateUserResponse {
+	uint64 messageId = 1;
+}
+
+message UpdateUserRequest {
+	uint64 userId = 1;
+	optional string lastName = 2;
+	optional string firstName = 3;
+	optional string profileUrl = 4;
+}
+
+message CreateUserProfileUploadSessionRequest {
+	uint64 userId = 1;
+}
+
+message CreateUserProfileUploadSessionResponse {
+	uint64 uploadSessionId = 1;
+}
+
+message FinishUserProfileUploadSessionRequest {
+	uint64 uploadSessionId = 1;
+}

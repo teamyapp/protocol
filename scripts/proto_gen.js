@@ -10,6 +10,11 @@ const pbDir = resolve(__dirname, "..", "pb");
 const pbGoDir = resolve(pbDir, "pbgo");
 const pbWebDir = resolve(pbDir, "pbweb", "src");
 
+const dirsToCleanUp = [pbWebDir, resolve(pbGoDir, "cloud"), resolve(pbGoDir, "teamy")];
+dirsToCleanUp.forEach((dir) => {
+  cleanupDir(dir);
+});
+
 for (let path of paths) {
   const protoDir = resolve(__dirname, "..", path);
 
@@ -74,5 +79,27 @@ function findFilesRec(dir, outputFile) {
     } else {
       outputFile(filePath);
     }
+  });
+}
+
+function cleanupDir(dir) {
+  if (!fs.existsSync(directory)) {
+      console.log(`Directory does not exist: ${directory}`);
+      return;
+  }
+  
+  fs.readdirSync(directory).forEach((file) => {
+    const filePath = path.join(directory, file);
+    const stats = fs.lstatSync(filePath);
+
+    if (stats.isDirectory()) {
+      cleanupDir(filePath);
+      fs.rmdirSync(filePath);
+      console.log(`Deleted directory: ${filePath}`);
+      return
+    }
+    
+    fs.unlinkSync(filePath);
+    console.log(`Deleted file: ${filePath}`);
   });
 }

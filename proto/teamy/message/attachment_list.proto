@@ -1,0 +1,16 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
+import "google/protobuf/timestamp.proto";
+
+enum AttachmentListOwnerType {
+   TASK = 0;
+}
+
+message AttachmentList {
+    uint64 ownerId = 1;
+    string listLabel = 2;
+    uint64 listId = 3;
+    AttachmentListOwnerType ownerType = 4;
+    google.protobuf.Timestamp createdAt = 5;
+    optional google.protobuf.Timestamp updatedAt = 6;
+}

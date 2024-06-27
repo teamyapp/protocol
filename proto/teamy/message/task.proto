@@ -1,0 +1,42 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "teamy/message/priority.proto";
+
+enum TaskStatus {
+    TODO = 0;
+    IN_PROGRESS = 1;
+    PAUSED = 2;
+    AWAITING = 3;
+    BLOCKED = 4;
+    DELIVERED = 5;
+}
+
+enum TaskAction {
+    START = 0;
+    DELETE = 1;
+    ASSIGN_OWNER = 2;
+    REPORT_BLOCKED = 3;
+    MARK_COMPLETE = 4;
+}
+
+message Task {
+    uint64 id = 1;
+    string goal = 2;
+    optional string context = 3;
+    uint64 owningTeamId = 4;
+    uint64 creatorUserId = 5;
+    optional uint64 ownerUserId = 6;
+    TaskStatus status = 7;
+    bool isScheduled = 8;
+    bool isPlanned = 9;
+    google.protobuf.Timestamp createdAt = 10;
+    optional google.protobuf.Timestamp updatedAt = 11;
+    optional google.protobuf.Timestamp deliveredAt = 12;
+    optional google.protobuf.Timestamp dueAt = 13;
+    optional google.protobuf.Duration effort = 14;
+    optional Priority priority = 15;
+    repeated TaskAction availableActions = 16;
+    uint64 commentsThreadId = 17;
+}

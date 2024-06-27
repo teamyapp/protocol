@@ -12,6 +12,43 @@ import { UnknownFieldHandler } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
+import { TaskLink } from "./message/task_link";
+/**
+ * @generated from protobuf message GetTaskLinkRequest
+ */
+export interface GetTaskLinkRequest {
+    /**
+     * @generated from protobuf field: uint64 linkId = 1;
+     */
+    linkId: number;
+}
+/**
+ * @generated from protobuf message GetTaskLinkResponse
+ */
+export interface GetTaskLinkResponse {
+    /**
+     * @generated from protobuf field: TaskLink taskLink = 1;
+     */
+    taskLink?: TaskLink;
+}
+/**
+ * @generated from protobuf message ListTaskLinksRequest
+ */
+export interface ListTaskLinksRequest {
+    /**
+     * @generated from protobuf field: uint64 taskId = 1;
+     */
+    taskId: number;
+}
+/**
+ * @generated from protobuf message ListTaskLinksResponse
+ */
+export interface ListTaskLinksResponse {
+    /**
+     * @generated from protobuf field: repeated TaskLink taskLinks = 1;
+     */
+    taskLinks: TaskLink[];
+}
 /**
  * @generated from protobuf message CreateTaskLinkRequest
  */
@@ -59,6 +96,193 @@ export interface DeleteTaskLinkRequest {
      */
     linkId: number;
 }
+// @generated message type with reflection information, may provide speed optimized methods
+class GetTaskLinkRequest$Type extends MessageType<GetTaskLinkRequest> {
+    constructor() {
+        super("GetTaskLinkRequest", [
+            { no: 1, name: "linkId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+        ]);
+    }
+    create(value?: PartialMessage<GetTaskLinkRequest>): GetTaskLinkRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.linkId = 0;
+        if (value !== undefined)
+            reflectionMergePartial<GetTaskLinkRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetTaskLinkRequest): GetTaskLinkRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint64 linkId */ 1:
+                    message.linkId = reader.uint64().toNumber();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetTaskLinkRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint64 linkId = 1; */
+        if (message.linkId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.linkId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message GetTaskLinkRequest
+ */
+export const GetTaskLinkRequest = new GetTaskLinkRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class GetTaskLinkResponse$Type extends MessageType<GetTaskLinkResponse> {
+    constructor() {
+        super("GetTaskLinkResponse", [
+            { no: 1, name: "taskLink", kind: "message", T: () => TaskLink }
+        ]);
+    }
+    create(value?: PartialMessage<GetTaskLinkResponse>): GetTaskLinkResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<GetTaskLinkResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: GetTaskLinkResponse): GetTaskLinkResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* TaskLink taskLink */ 1:
+                    message.taskLink = TaskLink.internalBinaryRead(reader, reader.uint32(), options, message.taskLink);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: GetTaskLinkResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* TaskLink taskLink = 1; */
+        if (message.taskLink)
+            TaskLink.internalBinaryWrite(message.taskLink, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message GetTaskLinkResponse
+ */
+export const GetTaskLinkResponse = new GetTaskLinkResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListTaskLinksRequest$Type extends MessageType<ListTaskLinksRequest> {
+    constructor() {
+        super("ListTaskLinksRequest", [
+            { no: 1, name: "taskId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListTaskLinksRequest>): ListTaskLinksRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.taskId = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListTaskLinksRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListTaskLinksRequest): ListTaskLinksRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint64 taskId */ 1:
+                    message.taskId = reader.uint64().toNumber();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListTaskLinksRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint64 taskId = 1; */
+        if (message.taskId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.taskId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ListTaskLinksRequest
+ */
+export const ListTaskLinksRequest = new ListTaskLinksRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListTaskLinksResponse$Type extends MessageType<ListTaskLinksResponse> {
+    constructor() {
+        super("ListTaskLinksResponse", [
+            { no: 1, name: "taskLinks", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TaskLink }
+        ]);
+    }
+    create(value?: PartialMessage<ListTaskLinksResponse>): ListTaskLinksResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.taskLinks = [];
+        if (value !== undefined)
+            reflectionMergePartial<ListTaskLinksResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListTaskLinksResponse): ListTaskLinksResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated TaskLink taskLinks */ 1:
+                    message.taskLinks.push(TaskLink.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListTaskLinksResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated TaskLink taskLinks = 1; */
+        for (let i = 0; i < message.taskLinks.length; i++)
+            TaskLink.internalBinaryWrite(message.taskLinks[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ListTaskLinksResponse
+ */
+export const ListTaskLinksResponse = new ListTaskLinksResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class CreateTaskLinkRequest$Type extends MessageType<CreateTaskLinkRequest> {
     constructor() {
@@ -239,9 +463,11 @@ class DeleteTaskLinkRequest$Type extends MessageType<DeleteTaskLinkRequest> {
  */
 export const DeleteTaskLinkRequest = new DeleteTaskLinkRequest$Type();
 /**
- * @generated ServiceType for protobuf service TaskLink
+ * @generated ServiceType for protobuf service TaskLinkService
  */
-export const TaskLink = new ServiceType("TaskLink", [
+export const TaskLinkService = new ServiceType("TaskLinkService", [
+    { name: "GetTaskLink", options: {}, I: GetTaskLinkRequest, O: GetTaskLinkResponse },
+    { name: "ListTaskLinks", options: {}, I: ListTaskLinksRequest, O: ListTaskLinksResponse },
     { name: "CreateTaskLink", options: {}, I: CreateTaskLinkRequest, O: CreateTaskLinkResponse },
     { name: "DeleteTaskLink", options: {}, I: DeleteTaskLinkRequest, O: Empty }
 ]);
