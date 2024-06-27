@@ -101,6 +101,6 @@ function cleanupDir(dir) {
     
     fs.unlinkSync(filePath);
     console.log(`Deleted file: ${filePath}`);
-});
+  });
 }
 
