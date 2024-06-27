@@ -3,10 +3,10 @@
 // tslint:disable
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
+import { WireType } from "@protobuf-ts/runtime";
 import type { BinaryReadOptions } from "@protobuf-ts/runtime";
 import type { IBinaryReader } from "@protobuf-ts/runtime";
 import { UnknownFieldHandler } from "@protobuf-ts/runtime";
-import { WireType } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
@@ -43,10 +43,6 @@ export interface TeamMemberGroup {
      * @generated from protobuf field: uint64 authorizationUserGroupId = 7;
      */
     authorizationUserGroupId: number;
-    /**
-     * @generated from protobuf field: repeated uint64 memberUserIds = 8;
-     */
-    memberUserIds: number[];
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
@@ -58,8 +54,7 @@ class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
             { no: 4, name: "teamId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 5, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 6, name: "updatedAt", kind: "message", T: () => Timestamp },
-            { no: 7, name: "authorizationUserGroupId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 8, name: "memberUserIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 7, name: "authorizationUserGroupId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<TeamMemberGroup>): TeamMemberGroup {
@@ -69,7 +64,6 @@ class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
         message.orderIndex = 0;
         message.teamId = 0;
         message.authorizationUserGroupId = 0;
-        message.memberUserIds = [];
         if (value !== undefined)
             reflectionMergePartial<TeamMemberGroup>(this, message, value);
         return message;
@@ -99,13 +93,6 @@ class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
                     break;
                 case /* uint64 authorizationUserGroupId */ 7:
                     message.authorizationUserGroupId = reader.uint64().toNumber();
-                    break;
-                case /* repeated uint64 memberUserIds */ 8:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.memberUserIds.push(reader.uint64().toNumber());
-                    else
-                        message.memberUserIds.push(reader.uint64().toNumber());
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -140,13 +127,6 @@ class TeamMemberGroup$Type extends MessageType<TeamMemberGroup> {
         /* uint64 authorizationUserGroupId = 7; */
         if (message.authorizationUserGroupId !== 0)
             writer.tag(7, WireType.Varint).uint64(message.authorizationUserGroupId);
-        /* repeated uint64 memberUserIds = 8; */
-        if (message.memberUserIds.length) {
-            writer.tag(8, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.memberUserIds.length; i++)
-                writer.uint64(message.memberUserIds[i]);
-            writer.join();
-        }
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

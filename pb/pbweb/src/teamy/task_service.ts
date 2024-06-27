@@ -466,7 +466,7 @@ class ListTasksRequest$Type extends MessageType<ListTasksRequest> {
             { no: 1, name: "taskIds", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 3, name: "ownerId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 4, name: "goalContains", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-            { no: 5, name: "status", kind: "enum", opt: true, T: () => ["TaskStatus", TaskStatus, "TASK_STATUS_"] },
+            { no: 5, name: "status", kind: "enum", opt: true, T: () => ["TaskStatus", TaskStatus] },
             { no: 6, name: "isScheduled", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 7, name: "isPlanned", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);

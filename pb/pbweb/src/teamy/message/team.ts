@@ -47,10 +47,6 @@ export interface Team {
      * @generated from protobuf field: optional uint64 activeSprintId = 8;
      */
     activeSprintId?: number;
-    /**
-     * @generated from protobuf field: int32 maxGroupOrderIndex = 9;
-     */
-    maxGroupOrderIndex: number;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Team$Type extends MessageType<Team> {
@@ -63,8 +59,7 @@ class Team$Type extends MessageType<Team> {
             { no: 5, name: "updatedAt", kind: "message", T: () => Timestamp },
             { no: 6, name: "creatorUserId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 7, name: "ownerUserId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 8, name: "activeSprintId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 9, name: "maxGroupOrderIndex", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+            { no: 8, name: "activeSprintId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<Team>): Team {
@@ -73,7 +68,6 @@ class Team$Type extends MessageType<Team> {
         message.name = "";
         message.creatorUserId = 0;
         message.ownerUserId = 0;
-        message.maxGroupOrderIndex = 0;
         if (value !== undefined)
             reflectionMergePartial<Team>(this, message, value);
         return message;
@@ -106,9 +100,6 @@ class Team$Type extends MessageType<Team> {
                     break;
                 case /* optional uint64 activeSprintId */ 8:
                     message.activeSprintId = reader.uint64().toNumber();
-                    break;
-                case /* int32 maxGroupOrderIndex */ 9:
-                    message.maxGroupOrderIndex = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -146,9 +137,6 @@ class Team$Type extends MessageType<Team> {
         /* optional uint64 activeSprintId = 8; */
         if (message.activeSprintId !== undefined)
             writer.tag(8, WireType.Varint).uint64(message.activeSprintId);
-        /* int32 maxGroupOrderIndex = 9; */
-        if (message.maxGroupOrderIndex !== 0)
-            writer.tag(9, WireType.Varint).int32(message.maxGroupOrderIndex);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
