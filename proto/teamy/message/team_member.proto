@@ -10,13 +10,3 @@ message TeamMember {
     google.protobuf.Timestamp createdAt = 4;
     optional google.protobuf.Timestamp updatedAt = 5;
 }
-
-
-
-
-
-
-
-
-
-

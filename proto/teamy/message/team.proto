@@ -11,15 +11,4 @@ message Team {
     uint64 creatorUserId = 6;
     uint64 ownerUserId = 7;
     optional uint64 activeSprintId = 8;
-    int32 maxGroupOrderIndex = 9;
 }
-
-
-
-
-
-
-
-
-
-
