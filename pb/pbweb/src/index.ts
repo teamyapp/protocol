@@ -1,5 +1,7 @@
 export * from './teamy/attachment_service.client';
 export * from './teamy/attachment_service';
+export * from './teamy/message_service.client';
+export * from './teamy/message_service';
 export * from './teamy/sprint_service.client';
 export * from './teamy/sprint_service';
 export * from './teamy/task_link.client';
@@ -14,6 +16,7 @@ export * from './teamy/user_service.client';
 export * from './teamy/user_service';
 export * from './teamy/message/attachment';
 export * from './teamy/message/attachment_list';
+export * from './teamy/message/message';
 export * from './teamy/message/priority';
 export * from './teamy/message/sprint';
 export * from './teamy/message/sprint_participant';
