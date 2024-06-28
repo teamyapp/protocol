@@ -83,13 +83,13 @@ function findFilesRec(dir, outputFile) {
 }
 
 function cleanupDir(dir) {
-  if (!fs.existsSync(directory)) {
-      console.log(`Directory does not exist: ${directory}`);
+  if (!fs.existsSync(dir)) {
+      console.log(`Directory does not exist: ${dir}`);
       return;
   }
   
-  fs.readdirSync(directory).forEach((file) => {
-    const filePath = path.join(directory, file);
+  fs.readdirSync(dir).forEach((file) => {
+    const filePath = path.join(dir, file);
     const stats = fs.lstatSync(filePath);
 
     if (stats.isDirectory()) {
