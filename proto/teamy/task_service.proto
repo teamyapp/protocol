@@ -61,7 +61,7 @@ message CreateTaskRequest {
 }
 
 message CreateTaskResponse {
-	uint64 taskId = 1;
+	Task task = 1;
 }
 
 message UpdateTaskRequest {

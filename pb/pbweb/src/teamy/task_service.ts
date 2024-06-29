@@ -121,9 +121,9 @@ export interface CreateTaskRequest {
  */
 export interface CreateTaskResponse {
     /**
-     * @generated from protobuf field: uint64 taskId = 1;
+     * @generated from protobuf field: Task task = 1;
      */
-    taskId: number;
+    task?: Task;
 }
 /**
  * @generated from protobuf message UpdateTaskRequest
@@ -676,12 +676,11 @@ export const CreateTaskRequest = new CreateTaskRequest$Type();
 class CreateTaskResponse$Type extends MessageType<CreateTaskResponse> {
     constructor() {
         super("CreateTaskResponse", [
-            { no: 1, name: "taskId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "task", kind: "message", T: () => Task }
         ]);
     }
     create(value?: PartialMessage<CreateTaskResponse>): CreateTaskResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.taskId = 0;
         if (value !== undefined)
             reflectionMergePartial<CreateTaskResponse>(this, message, value);
         return message;
@@ -691,8 +690,8 @@ class CreateTaskResponse$Type extends MessageType<CreateTaskResponse> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 taskId */ 1:
-                    message.taskId = reader.uint64().toNumber();
+                case /* Task task */ 1:
+                    message.task = Task.internalBinaryRead(reader, reader.uint32(), options, message.task);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -706,9 +705,9 @@ class CreateTaskResponse$Type extends MessageType<CreateTaskResponse> {
         return message;
     }
     internalBinaryWrite(message: CreateTaskResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 taskId = 1; */
-        if (message.taskId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.taskId);
+        /* Task task = 1; */
+        if (message.task)
+            Task.internalBinaryWrite(message.task, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
