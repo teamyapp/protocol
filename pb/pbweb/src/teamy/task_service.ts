@@ -115,6 +115,14 @@ export interface CreateTaskRequest {
      * @generated from protobuf field: optional google.protobuf.Timestamp dueAt = 5;
      */
     dueAt?: Timestamp;
+    /**
+     * @generated from protobuf field: bool isScheduled = 6;
+     */
+    isScheduled: boolean;
+    /**
+     * @generated from protobuf field: bool isPlanned = 7;
+     */
+    isPlanned: boolean;
 }
 /**
  * @generated from protobuf message CreateTaskResponse
@@ -604,13 +612,17 @@ class CreateTaskRequest$Type extends MessageType<CreateTaskRequest> {
             { no: 2, name: "goal", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "context", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "ownerUserId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 5, name: "dueAt", kind: "message", T: () => Timestamp }
+            { no: 5, name: "dueAt", kind: "message", T: () => Timestamp },
+            { no: 6, name: "isScheduled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 7, name: "isPlanned", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<CreateTaskRequest>): CreateTaskRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.teamId = 0;
         message.goal = "";
+        message.isScheduled = false;
+        message.isPlanned = false;
         if (value !== undefined)
             reflectionMergePartial<CreateTaskRequest>(this, message, value);
         return message;
@@ -634,6 +646,12 @@ class CreateTaskRequest$Type extends MessageType<CreateTaskRequest> {
                     break;
                 case /* optional google.protobuf.Timestamp dueAt */ 5:
                     message.dueAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.dueAt);
+                    break;
+                case /* bool isScheduled */ 6:
+                    message.isScheduled = reader.bool();
+                    break;
+                case /* bool isPlanned */ 7:
+                    message.isPlanned = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -662,6 +680,12 @@ class CreateTaskRequest$Type extends MessageType<CreateTaskRequest> {
         /* optional google.protobuf.Timestamp dueAt = 5; */
         if (message.dueAt)
             Timestamp.internalBinaryWrite(message.dueAt, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* bool isScheduled = 6; */
+        if (message.isScheduled !== false)
+            writer.tag(6, WireType.Varint).bool(message.isScheduled);
+        /* bool isPlanned = 7; */
+        if (message.isPlanned !== false)
+            writer.tag(7, WireType.Varint).bool(message.isPlanned);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
