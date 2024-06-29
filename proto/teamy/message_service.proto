@@ -12,7 +12,7 @@ service MessageService {
 }
 
 message GetMessageRequest {
-	uint64 messageId = 1;
+	uint64 id = 1;
 }
 
 message GetMessageResponse {
@@ -33,14 +33,14 @@ message CreateMessageRequest {
 }
 
 message CreateMessageResponse {
-	uint64 messageId = 1;
+	Message message = 1;
 }
 
 message UpdateMessageRequest {
-	uint64 messageId = 1;
+	uint64 id = 1;
 	optional string body = 2;
 }
 
 message DeleteMessageRequest {
-	uint64 messageId = 1;
+	uint64 id = 1;
 }

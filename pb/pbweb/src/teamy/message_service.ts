@@ -18,9 +18,9 @@ import { Message } from "./message/message";
  */
 export interface GetMessageRequest {
     /**
-     * @generated from protobuf field: uint64 messageId = 1;
+     * @generated from protobuf field: uint64 id = 1;
      */
-    messageId: number;
+    id: number;
 }
 /**
  * @generated from protobuf message GetMessageResponse
@@ -67,18 +67,18 @@ export interface CreateMessageRequest {
  */
 export interface CreateMessageResponse {
     /**
-     * @generated from protobuf field: uint64 messageId = 1;
+     * @generated from protobuf field: Message message = 1;
      */
-    messageId: number;
+    message?: Message;
 }
 /**
  * @generated from protobuf message UpdateMessageRequest
  */
 export interface UpdateMessageRequest {
     /**
-     * @generated from protobuf field: uint64 messageId = 1;
+     * @generated from protobuf field: uint64 id = 1;
      */
-    messageId: number;
+    id: number;
     /**
      * @generated from protobuf field: optional string body = 2;
      */
@@ -89,20 +89,20 @@ export interface UpdateMessageRequest {
  */
 export interface DeleteMessageRequest {
     /**
-     * @generated from protobuf field: uint64 messageId = 1;
+     * @generated from protobuf field: uint64 id = 1;
      */
-    messageId: number;
+    id: number;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class GetMessageRequest$Type extends MessageType<GetMessageRequest> {
     constructor() {
         super("GetMessageRequest", [
-            { no: 1, name: "messageId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<GetMessageRequest>): GetMessageRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.messageId = 0;
+        message.id = 0;
         if (value !== undefined)
             reflectionMergePartial<GetMessageRequest>(this, message, value);
         return message;
@@ -112,8 +112,8 @@ class GetMessageRequest$Type extends MessageType<GetMessageRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 messageId */ 1:
-                    message.messageId = reader.uint64().toNumber();
+                case /* uint64 id */ 1:
+                    message.id = reader.uint64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -127,9 +127,9 @@ class GetMessageRequest$Type extends MessageType<GetMessageRequest> {
         return message;
     }
     internalBinaryWrite(message: GetMessageRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 messageId = 1; */
-        if (message.messageId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.messageId);
+        /* uint64 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.id);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -338,12 +338,11 @@ export const CreateMessageRequest = new CreateMessageRequest$Type();
 class CreateMessageResponse$Type extends MessageType<CreateMessageResponse> {
     constructor() {
         super("CreateMessageResponse", [
-            { no: 1, name: "messageId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "message", kind: "message", T: () => Message }
         ]);
     }
     create(value?: PartialMessage<CreateMessageResponse>): CreateMessageResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.messageId = 0;
         if (value !== undefined)
             reflectionMergePartial<CreateMessageResponse>(this, message, value);
         return message;
@@ -353,8 +352,8 @@ class CreateMessageResponse$Type extends MessageType<CreateMessageResponse> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 messageId */ 1:
-                    message.messageId = reader.uint64().toNumber();
+                case /* Message message */ 1:
+                    message.message = Message.internalBinaryRead(reader, reader.uint32(), options, message.message);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -368,9 +367,9 @@ class CreateMessageResponse$Type extends MessageType<CreateMessageResponse> {
         return message;
     }
     internalBinaryWrite(message: CreateMessageResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 messageId = 1; */
-        if (message.messageId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.messageId);
+        /* Message message = 1; */
+        if (message.message)
+            Message.internalBinaryWrite(message.message, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -385,13 +384,13 @@ export const CreateMessageResponse = new CreateMessageResponse$Type();
 class UpdateMessageRequest$Type extends MessageType<UpdateMessageRequest> {
     constructor() {
         super("UpdateMessageRequest", [
-            { no: 1, name: "messageId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "body", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value?: PartialMessage<UpdateMessageRequest>): UpdateMessageRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.messageId = 0;
+        message.id = 0;
         if (value !== undefined)
             reflectionMergePartial<UpdateMessageRequest>(this, message, value);
         return message;
@@ -401,8 +400,8 @@ class UpdateMessageRequest$Type extends MessageType<UpdateMessageRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 messageId */ 1:
-                    message.messageId = reader.uint64().toNumber();
+                case /* uint64 id */ 1:
+                    message.id = reader.uint64().toNumber();
                     break;
                 case /* optional string body */ 2:
                     message.body = reader.string();
@@ -419,9 +418,9 @@ class UpdateMessageRequest$Type extends MessageType<UpdateMessageRequest> {
         return message;
     }
     internalBinaryWrite(message: UpdateMessageRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 messageId = 1; */
-        if (message.messageId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.messageId);
+        /* uint64 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.id);
         /* optional string body = 2; */
         if (message.body !== undefined)
             writer.tag(2, WireType.LengthDelimited).string(message.body);
@@ -439,12 +438,12 @@ export const UpdateMessageRequest = new UpdateMessageRequest$Type();
 class DeleteMessageRequest$Type extends MessageType<DeleteMessageRequest> {
     constructor() {
         super("DeleteMessageRequest", [
-            { no: 1, name: "messageId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<DeleteMessageRequest>): DeleteMessageRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.messageId = 0;
+        message.id = 0;
         if (value !== undefined)
             reflectionMergePartial<DeleteMessageRequest>(this, message, value);
         return message;
@@ -454,8 +453,8 @@ class DeleteMessageRequest$Type extends MessageType<DeleteMessageRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 messageId */ 1:
-                    message.messageId = reader.uint64().toNumber();
+                case /* uint64 id */ 1:
+                    message.id = reader.uint64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -469,9 +468,9 @@ class DeleteMessageRequest$Type extends MessageType<DeleteMessageRequest> {
         return message;
     }
     internalBinaryWrite(message: DeleteMessageRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 messageId = 1; */
-        if (message.messageId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.messageId);
+        /* uint64 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.id);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
