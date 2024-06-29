@@ -11,7 +11,7 @@ service TaskLinkService {
 }
 
 message GetTaskLinkRequest {
-	uint64 linkId = 1;
+	uint64 id = 1;
 }
 
 message GetTaskLinkResponse {
@@ -36,9 +36,9 @@ message CreateTaskLinkRequest {
 }
 
 message CreateTaskLinkResponse {
-	uint64 linkId = 1;
+	TaskLink taskLink = 1;
 }
 
 message DeleteTaskLinkRequest {
-	uint64 linkId = 1;
+	uint64 id = 1;
 }
