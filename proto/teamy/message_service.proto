@@ -7,7 +7,7 @@ service MessageService {
 	rpc GetMessage(GetMessageRequest) returns (GetMessageResponse);
 	rpc ListMessages(ListMessagesRequest) returns (ListMessagesResponse);
 	rpc CreateMessage(CreateMessageRequest) returns (CreateMessageResponse);
-	rpc UpdateMessage(UpdateMessageRequest) returns (google.protobuf.Empty);
+	rpc UpdateMessage(UpdateMessageRequest) returns (UpdateMessageResponse);
 	rpc DeleteMessage(DeleteMessageRequest) returns (google.protobuf.Empty);
 }
 
@@ -20,7 +20,7 @@ message GetMessageResponse {
 }
 
 message ListMessagesRequest {
-	optional uint64 threadId = 2;
+	uint64 threadId = 2;
 }
 
 message ListMessagesResponse {
@@ -39,6 +39,10 @@ message CreateMessageResponse {
 message UpdateMessageRequest {
 	uint64 id = 1;
 	optional string body = 2;
+}
+
+message UpdateMessageResponse {
+    Message message = 1;
 }
 
 message DeleteMessageRequest {

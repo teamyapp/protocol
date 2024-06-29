@@ -36,9 +36,9 @@ export interface GetMessageResponse {
  */
 export interface ListMessagesRequest {
     /**
-     * @generated from protobuf field: optional uint64 threadId = 2;
+     * @generated from protobuf field: uint64 threadId = 2;
      */
-    threadId?: number;
+    threadId: number;
 }
 /**
  * @generated from protobuf message ListMessagesResponse
@@ -83,6 +83,15 @@ export interface UpdateMessageRequest {
      * @generated from protobuf field: optional string body = 2;
      */
     body?: string;
+}
+/**
+ * @generated from protobuf message UpdateMessageResponse
+ */
+export interface UpdateMessageResponse {
+    /**
+     * @generated from protobuf field: Message message = 1;
+     */
+    message?: Message;
 }
 /**
  * @generated from protobuf message DeleteMessageRequest
@@ -190,11 +199,12 @@ export const GetMessageResponse = new GetMessageResponse$Type();
 class ListMessagesRequest$Type extends MessageType<ListMessagesRequest> {
     constructor() {
         super("ListMessagesRequest", [
-            { no: 2, name: "threadId", kind: "scalar", opt: true, T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 2, name: "threadId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<ListMessagesRequest>): ListMessagesRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.threadId = 0;
         if (value !== undefined)
             reflectionMergePartial<ListMessagesRequest>(this, message, value);
         return message;
@@ -204,7 +214,7 @@ class ListMessagesRequest$Type extends MessageType<ListMessagesRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* optional uint64 threadId */ 2:
+                case /* uint64 threadId */ 2:
                     message.threadId = reader.uint64().toNumber();
                     break;
                 default:
@@ -219,8 +229,8 @@ class ListMessagesRequest$Type extends MessageType<ListMessagesRequest> {
         return message;
     }
     internalBinaryWrite(message: ListMessagesRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* optional uint64 threadId = 2; */
-        if (message.threadId !== undefined)
+        /* uint64 threadId = 2; */
+        if (message.threadId !== 0)
             writer.tag(2, WireType.Varint).uint64(message.threadId);
         let u = options.writeUnknownFields;
         if (u !== false)
@@ -435,6 +445,52 @@ class UpdateMessageRequest$Type extends MessageType<UpdateMessageRequest> {
  */
 export const UpdateMessageRequest = new UpdateMessageRequest$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class UpdateMessageResponse$Type extends MessageType<UpdateMessageResponse> {
+    constructor() {
+        super("UpdateMessageResponse", [
+            { no: 1, name: "message", kind: "message", T: () => Message }
+        ]);
+    }
+    create(value?: PartialMessage<UpdateMessageResponse>): UpdateMessageResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<UpdateMessageResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateMessageResponse): UpdateMessageResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* Message message */ 1:
+                    message.message = Message.internalBinaryRead(reader, reader.uint32(), options, message.message);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: UpdateMessageResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* Message message = 1; */
+        if (message.message)
+            Message.internalBinaryWrite(message.message, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message UpdateMessageResponse
+ */
+export const UpdateMessageResponse = new UpdateMessageResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class DeleteMessageRequest$Type extends MessageType<DeleteMessageRequest> {
     constructor() {
         super("DeleteMessageRequest", [
@@ -488,6 +544,6 @@ export const MessageService = new ServiceType("MessageService", [
     { name: "GetMessage", options: {}, I: GetMessageRequest, O: GetMessageResponse },
     { name: "ListMessages", options: {}, I: ListMessagesRequest, O: ListMessagesResponse },
     { name: "CreateMessage", options: {}, I: CreateMessageRequest, O: CreateMessageResponse },
-    { name: "UpdateMessage", options: {}, I: UpdateMessageRequest, O: Empty },
+    { name: "UpdateMessage", options: {}, I: UpdateMessageRequest, O: UpdateMessageResponse },
     { name: "DeleteMessage", options: {}, I: DeleteMessageRequest, O: Empty }
 ]);

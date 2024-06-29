@@ -24,9 +24,9 @@ export interface Message {
      */
     body: string;
     /**
-     * @generated from protobuf field: uint64 authorId = 3;
+     * @generated from protobuf field: uint64 authorUserId = 3;
      */
-    authorId: number;
+    authorUserId: number;
     /**
      * @generated from protobuf field: uint64 threadId = 4;
      */
@@ -46,7 +46,7 @@ class Message$Type extends MessageType<Message> {
         super("Message", [
             { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 2, name: "body", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 3, name: "authorId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 3, name: "authorUserId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 4, name: "threadId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 5, name: "createdAt", kind: "message", T: () => Timestamp },
             { no: 6, name: "updatedAt", kind: "message", T: () => Timestamp }
@@ -56,7 +56,7 @@ class Message$Type extends MessageType<Message> {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.id = 0;
         message.body = "";
-        message.authorId = 0;
+        message.authorUserId = 0;
         message.threadId = 0;
         if (value !== undefined)
             reflectionMergePartial<Message>(this, message, value);
@@ -73,8 +73,8 @@ class Message$Type extends MessageType<Message> {
                 case /* string body */ 2:
                     message.body = reader.string();
                     break;
-                case /* uint64 authorId */ 3:
-                    message.authorId = reader.uint64().toNumber();
+                case /* uint64 authorUserId */ 3:
+                    message.authorUserId = reader.uint64().toNumber();
                     break;
                 case /* uint64 threadId */ 4:
                     message.threadId = reader.uint64().toNumber();
@@ -103,9 +103,9 @@ class Message$Type extends MessageType<Message> {
         /* string body = 2; */
         if (message.body !== "")
             writer.tag(2, WireType.LengthDelimited).string(message.body);
-        /* uint64 authorId = 3; */
-        if (message.authorId !== 0)
-            writer.tag(3, WireType.Varint).uint64(message.authorId);
+        /* uint64 authorUserId = 3; */
+        if (message.authorUserId !== 0)
+            writer.tag(3, WireType.Varint).uint64(message.authorUserId);
         /* uint64 threadId = 4; */
         if (message.threadId !== 0)
             writer.tag(4, WireType.Varint).uint64(message.threadId);

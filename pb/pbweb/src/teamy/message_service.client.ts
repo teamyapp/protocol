@@ -4,8 +4,9 @@
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { MessageService } from "./message_service";
-import type { DeleteMessageRequest } from "./message_service";
 import type { Empty } from "../google/protobuf/empty";
+import type { DeleteMessageRequest } from "./message_service";
+import type { UpdateMessageResponse } from "./message_service";
 import type { UpdateMessageRequest } from "./message_service";
 import type { CreateMessageResponse } from "./message_service";
 import type { CreateMessageRequest } from "./message_service";
@@ -33,9 +34,9 @@ export interface IMessageServiceClient {
      */
     createMessage(input: CreateMessageRequest, options?: RpcOptions): UnaryCall<CreateMessageRequest, CreateMessageResponse>;
     /**
-     * @generated from protobuf rpc: UpdateMessage(UpdateMessageRequest) returns (google.protobuf.Empty);
+     * @generated from protobuf rpc: UpdateMessage(UpdateMessageRequest) returns (UpdateMessageResponse);
      */
-    updateMessage(input: UpdateMessageRequest, options?: RpcOptions): UnaryCall<UpdateMessageRequest, Empty>;
+    updateMessage(input: UpdateMessageRequest, options?: RpcOptions): UnaryCall<UpdateMessageRequest, UpdateMessageResponse>;
     /**
      * @generated from protobuf rpc: DeleteMessage(DeleteMessageRequest) returns (google.protobuf.Empty);
      */
@@ -72,11 +73,11 @@ export class MessageServiceClient implements IMessageServiceClient, ServiceInfo 
         return stackIntercept<CreateMessageRequest, CreateMessageResponse>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: UpdateMessage(UpdateMessageRequest) returns (google.protobuf.Empty);
+     * @generated from protobuf rpc: UpdateMessage(UpdateMessageRequest) returns (UpdateMessageResponse);
      */
-    updateMessage(input: UpdateMessageRequest, options?: RpcOptions): UnaryCall<UpdateMessageRequest, Empty> {
+    updateMessage(input: UpdateMessageRequest, options?: RpcOptions): UnaryCall<UpdateMessageRequest, UpdateMessageResponse> {
         const method = this.methods[3], opt = this._transport.mergeOptions(options);
-        return stackIntercept<UpdateMessageRequest, Empty>("unary", this._transport, method, opt, input);
+        return stackIntercept<UpdateMessageRequest, UpdateMessageResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: DeleteMessage(DeleteMessageRequest) returns (google.protobuf.Empty);
