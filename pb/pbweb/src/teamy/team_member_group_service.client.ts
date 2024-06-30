@@ -15,8 +15,8 @@ import type { CreateTeamMemberGroupResponse } from "./team_member_group_service"
 import type { CreateTeamMemberGroupRequest } from "./team_member_group_service";
 import type { ListTeamMemberGroupsResponse } from "./team_member_group_service";
 import type { ListMemberGroupsRequest } from "./team_member_group_service";
-import type { ListGroupMembersResponse } from "./team_member_group_service";
-import type { ListGroupMembersRequest } from "./team_member_group_service";
+import type { ListGroupMemberUsersResponse } from "./team_member_group_service";
+import type { ListGroupMemberUsersRequest } from "./team_member_group_service";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { GetMemberGroupResponse } from "./team_member_group_service";
 import type { GetMemberGroupRequest } from "./team_member_group_service";
@@ -31,9 +31,9 @@ export interface ITeamMemberGroupServiceClient {
      */
     getMemberGroup(input: GetMemberGroupRequest, options?: RpcOptions): UnaryCall<GetMemberGroupRequest, GetMemberGroupResponse>;
     /**
-     * @generated from protobuf rpc: ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse);
+     * @generated from protobuf rpc: ListGroupMemberUsers(ListGroupMemberUsersRequest) returns (ListGroupMemberUsersResponse);
      */
-    listGroupMembers(input: ListGroupMembersRequest, options?: RpcOptions): UnaryCall<ListGroupMembersRequest, ListGroupMembersResponse>;
+    listGroupMemberUsers(input: ListGroupMemberUsersRequest, options?: RpcOptions): UnaryCall<ListGroupMemberUsersRequest, ListGroupMemberUsersResponse>;
     /**
      * @generated from protobuf rpc: ListMemberGroups(ListMemberGroupsRequest) returns (ListTeamMemberGroupsResponse);
      */
@@ -84,11 +84,11 @@ export class TeamMemberGroupServiceClient implements ITeamMemberGroupServiceClie
         return stackIntercept<GetMemberGroupRequest, GetMemberGroupResponse>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse);
+     * @generated from protobuf rpc: ListGroupMemberUsers(ListGroupMemberUsersRequest) returns (ListGroupMemberUsersResponse);
      */
-    listGroupMembers(input: ListGroupMembersRequest, options?: RpcOptions): UnaryCall<ListGroupMembersRequest, ListGroupMembersResponse> {
+    listGroupMemberUsers(input: ListGroupMemberUsersRequest, options?: RpcOptions): UnaryCall<ListGroupMemberUsersRequest, ListGroupMemberUsersResponse> {
         const method = this.methods[1], opt = this._transport.mergeOptions(options);
-        return stackIntercept<ListGroupMembersRequest, ListGroupMembersResponse>("unary", this._transport, method, opt, input);
+        return stackIntercept<ListGroupMemberUsersRequest, ListGroupMemberUsersResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: ListMemberGroups(ListMemberGroupsRequest) returns (ListTeamMemberGroupsResponse);

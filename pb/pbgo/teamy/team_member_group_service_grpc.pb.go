@@ -21,7 +21,7 @@ const _ = grpc.SupportPackageIsVersion8
 
 const (
 	TeamMemberGroupService_GetMemberGroup_FullMethodName          = "/TeamMemberGroupService/GetMemberGroup"
-	TeamMemberGroupService_ListGroupMembers_FullMethodName        = "/TeamMemberGroupService/ListGroupMembers"
+	TeamMemberGroupService_ListGroupMemberUsers_FullMethodName    = "/TeamMemberGroupService/ListGroupMemberUsers"
 	TeamMemberGroupService_ListMemberGroups_FullMethodName        = "/TeamMemberGroupService/ListMemberGroups"
 	TeamMemberGroupService_CreateMemberGroup_FullMethodName       = "/TeamMemberGroupService/CreateMemberGroup"
 	TeamMemberGroupService_UpdateMemberGroup_FullMethodName       = "/TeamMemberGroupService/UpdateMemberGroup"
@@ -37,7 +37,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TeamMemberGroupServiceClient interface {
 	GetMemberGroup(ctx context.Context, in *GetMemberGroupRequest, opts ...grpc.CallOption) (*GetMemberGroupResponse, error)
-	ListGroupMembers(ctx context.Context, in *ListGroupMembersRequest, opts ...grpc.CallOption) (*ListGroupMembersResponse, error)
+	ListGroupMemberUsers(ctx context.Context, in *ListGroupMemberUsersRequest, opts ...grpc.CallOption) (*ListGroupMemberUsersResponse, error)
 	ListMemberGroups(ctx context.Context, in *ListMemberGroupsRequest, opts ...grpc.CallOption) (*ListTeamMemberGroupsResponse, error)
 	CreateMemberGroup(ctx context.Context, in *CreateTeamMemberGroupRequest, opts ...grpc.CallOption) (*CreateTeamMemberGroupResponse, error)
 	UpdateMemberGroup(ctx context.Context, in *UpdateTeamMemberGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -66,10 +66,10 @@ func (c *teamMemberGroupServiceClient) GetMemberGroup(ctx context.Context, in *G
 	return out, nil
 }
 
-func (c *teamMemberGroupServiceClient) ListGroupMembers(ctx context.Context, in *ListGroupMembersRequest, opts ...grpc.CallOption) (*ListGroupMembersResponse, error) {
+func (c *teamMemberGroupServiceClient) ListGroupMemberUsers(ctx context.Context, in *ListGroupMemberUsersRequest, opts ...grpc.CallOption) (*ListGroupMemberUsersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListGroupMembersResponse)
-	err := c.cc.Invoke(ctx, TeamMemberGroupService_ListGroupMembers_FullMethodName, in, out, cOpts...)
+	out := new(ListGroupMemberUsersResponse)
+	err := c.cc.Invoke(ctx, TeamMemberGroupService_ListGroupMemberUsers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -161,7 +161,7 @@ func (c *teamMemberGroupServiceClient) MoveDownTeamMemberGroup(ctx context.Conte
 // for forward compatibility
 type TeamMemberGroupServiceServer interface {
 	GetMemberGroup(context.Context, *GetMemberGroupRequest) (*GetMemberGroupResponse, error)
-	ListGroupMembers(context.Context, *ListGroupMembersRequest) (*ListGroupMembersResponse, error)
+	ListGroupMemberUsers(context.Context, *ListGroupMemberUsersRequest) (*ListGroupMemberUsersResponse, error)
 	ListMemberGroups(context.Context, *ListMemberGroupsRequest) (*ListTeamMemberGroupsResponse, error)
 	CreateMemberGroup(context.Context, *CreateTeamMemberGroupRequest) (*CreateTeamMemberGroupResponse, error)
 	UpdateMemberGroup(context.Context, *UpdateTeamMemberGroupRequest) (*emptypb.Empty, error)
@@ -180,8 +180,8 @@ type UnimplementedTeamMemberGroupServiceServer struct {
 func (UnimplementedTeamMemberGroupServiceServer) GetMemberGroup(context.Context, *GetMemberGroupRequest) (*GetMemberGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMemberGroup not implemented")
 }
-func (UnimplementedTeamMemberGroupServiceServer) ListGroupMembers(context.Context, *ListGroupMembersRequest) (*ListGroupMembersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListGroupMembers not implemented")
+func (UnimplementedTeamMemberGroupServiceServer) ListGroupMemberUsers(context.Context, *ListGroupMemberUsersRequest) (*ListGroupMemberUsersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListGroupMemberUsers not implemented")
 }
 func (UnimplementedTeamMemberGroupServiceServer) ListMemberGroups(context.Context, *ListMemberGroupsRequest) (*ListTeamMemberGroupsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMemberGroups not implemented")
@@ -239,20 +239,20 @@ func _TeamMemberGroupService_GetMemberGroup_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TeamMemberGroupService_ListGroupMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListGroupMembersRequest)
+func _TeamMemberGroupService_ListGroupMemberUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListGroupMemberUsersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeamMemberGroupServiceServer).ListGroupMembers(ctx, in)
+		return srv.(TeamMemberGroupServiceServer).ListGroupMemberUsers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TeamMemberGroupService_ListGroupMembers_FullMethodName,
+		FullMethod: TeamMemberGroupService_ListGroupMemberUsers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeamMemberGroupServiceServer).ListGroupMembers(ctx, req.(*ListGroupMembersRequest))
+		return srv.(TeamMemberGroupServiceServer).ListGroupMemberUsers(ctx, req.(*ListGroupMemberUsersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -413,8 +413,8 @@ var TeamMemberGroupService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TeamMemberGroupService_GetMemberGroup_Handler,
 		},
 		{
-			MethodName: "ListGroupMembers",
-			Handler:    _TeamMemberGroupService_ListGroupMembers_Handler,
+			MethodName: "ListGroupMemberUsers",
+			Handler:    _TeamMemberGroupService_ListGroupMemberUsers_Handler,
 		},
 		{
 			MethodName: "ListMemberGroups",
