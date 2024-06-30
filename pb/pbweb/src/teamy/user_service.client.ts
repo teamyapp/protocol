@@ -9,6 +9,8 @@ import type { CreateUserProfileUploadSessionResponse } from "./user_service";
 import type { CreateUserProfileUploadSessionRequest } from "./user_service";
 import type { UpdateUserRequest } from "./user_service";
 import type { CreateUserRequest } from "./user_service";
+import type { ListUsersResponse } from "./user_service";
+import type { ListUsersRequest } from "./user_service";
 import type { GetUsersResponse } from "./user_service";
 import type { GetUsersRequest } from "./user_service";
 import type { GetUserRequest } from "./user_service";
@@ -33,6 +35,10 @@ export interface IUserServiceClient {
      * @generated from protobuf rpc: GetUsers(GetUsersRequest) returns (GetUsersResponse);
      */
     getUsers(input: GetUsersRequest, options?: RpcOptions): UnaryCall<GetUsersRequest, GetUsersResponse>;
+    /**
+     * @generated from protobuf rpc: ListUsers(ListUsersRequest) returns (ListUsersResponse);
+     */
+    listUsers(input: ListUsersRequest, options?: RpcOptions): UnaryCall<ListUsersRequest, ListUsersResponse>;
     /**
      * @generated from protobuf rpc: CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
      */
@@ -81,31 +87,38 @@ export class UserServiceClient implements IUserServiceClient, ServiceInfo {
         return stackIntercept<GetUsersRequest, GetUsersResponse>("unary", this._transport, method, opt, input);
     }
     /**
+     * @generated from protobuf rpc: ListUsers(ListUsersRequest) returns (ListUsersResponse);
+     */
+    listUsers(input: ListUsersRequest, options?: RpcOptions): UnaryCall<ListUsersRequest, ListUsersResponse> {
+        const method = this.methods[3], opt = this._transport.mergeOptions(options);
+        return stackIntercept<ListUsersRequest, ListUsersResponse>("unary", this._transport, method, opt, input);
+    }
+    /**
      * @generated from protobuf rpc: CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
      */
     createUser(input: CreateUserRequest, options?: RpcOptions): UnaryCall<CreateUserRequest, Empty> {
-        const method = this.methods[3], opt = this._transport.mergeOptions(options);
+        const method = this.methods[4], opt = this._transport.mergeOptions(options);
         return stackIntercept<CreateUserRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty);
      */
     updateUser(input: UpdateUserRequest, options?: RpcOptions): UnaryCall<UpdateUserRequest, Empty> {
-        const method = this.methods[4], opt = this._transport.mergeOptions(options);
+        const method = this.methods[5], opt = this._transport.mergeOptions(options);
         return stackIntercept<UpdateUserRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: CreateUserProfileUploadSession(CreateUserProfileUploadSessionRequest) returns (CreateUserProfileUploadSessionResponse);
      */
     createUserProfileUploadSession(input: CreateUserProfileUploadSessionRequest, options?: RpcOptions): UnaryCall<CreateUserProfileUploadSessionRequest, CreateUserProfileUploadSessionResponse> {
-        const method = this.methods[5], opt = this._transport.mergeOptions(options);
+        const method = this.methods[6], opt = this._transport.mergeOptions(options);
         return stackIntercept<CreateUserProfileUploadSessionRequest, CreateUserProfileUploadSessionResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: FinishUserProfileUploadSession(FinishUserProfileUploadSessionRequest) returns (google.protobuf.Empty);
      */
     finishUserProfileUploadSession(input: FinishUserProfileUploadSessionRequest, options?: RpcOptions): UnaryCall<FinishUserProfileUploadSessionRequest, Empty> {
-        const method = this.methods[6], opt = this._transport.mergeOptions(options);
+        const method = this.methods[7], opt = this._transport.mergeOptions(options);
         return stackIntercept<FinishUserProfileUploadSessionRequest, Empty>("unary", this._transport, method, opt, input);
     }
 }

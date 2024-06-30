@@ -7,6 +7,7 @@ service UserService {
 	rpc Me(google.protobuf.Empty) returns (GetUserResponse);
 	rpc GetUser(GetUserRequest) returns (GetUserResponse);
 	rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
+	rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
 	rpc CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
 	rpc UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty);
 	rpc CreateUserProfileUploadSession(CreateUserProfileUploadSessionRequest) returns (CreateUserProfileUploadSessionResponse);
@@ -19,6 +20,14 @@ message GetUserRequest {
 
 message GetUserResponse {
 	User User = 1;
+}
+
+message ListUsersRequest {
+	uint64 teamMemberGroupId = 1;
+}
+
+message ListUsersResponse {
+	repeated User users = 1;
 }
 
 message GetUsersRequest {
