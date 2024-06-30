@@ -30,7 +30,7 @@ message ListGroupMemberUsersRequest {
 }
 
 message ListGroupMemberUsersResponse {
-	repeated User user = 1;
+	repeated User users = 1;
 }
 
 message ListMemberGroupsRequest {

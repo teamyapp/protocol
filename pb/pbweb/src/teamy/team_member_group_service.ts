@@ -46,9 +46,9 @@ export interface ListGroupMemberUsersRequest {
  */
 export interface ListGroupMemberUsersResponse {
     /**
-     * @generated from protobuf field: repeated User user = 1;
+     * @generated from protobuf field: repeated User users = 1;
      */
-    user: User[];
+    users: User[];
 }
 /**
  * @generated from protobuf message ListMemberGroupsRequest
@@ -300,12 +300,12 @@ export const ListGroupMemberUsersRequest = new ListGroupMemberUsersRequest$Type(
 class ListGroupMemberUsersResponse$Type extends MessageType<ListGroupMemberUsersResponse> {
     constructor() {
         super("ListGroupMemberUsersResponse", [
-            { no: 1, name: "user", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => User }
+            { no: 1, name: "users", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => User }
         ]);
     }
     create(value?: PartialMessage<ListGroupMemberUsersResponse>): ListGroupMemberUsersResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.user = [];
+        message.users = [];
         if (value !== undefined)
             reflectionMergePartial<ListGroupMemberUsersResponse>(this, message, value);
         return message;
@@ -315,8 +315,8 @@ class ListGroupMemberUsersResponse$Type extends MessageType<ListGroupMemberUsers
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* repeated User user */ 1:
-                    message.user.push(User.internalBinaryRead(reader, reader.uint32(), options));
+                case /* repeated User users */ 1:
+                    message.users.push(User.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -330,9 +330,9 @@ class ListGroupMemberUsersResponse$Type extends MessageType<ListGroupMemberUsers
         return message;
     }
     internalBinaryWrite(message: ListGroupMemberUsersResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* repeated User user = 1; */
-        for (let i = 0; i < message.user.length; i++)
-            User.internalBinaryWrite(message.user[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated User users = 1; */
+        for (let i = 0; i < message.users.length; i++)
+            User.internalBinaryWrite(message.users[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
