@@ -6,7 +6,7 @@ import "teamy/message/user.proto";
 
 service TeamMemberGroupService {
 	rpc GetMemberGroup(GetMemberGroupRequest) returns (GetMemberGroupResponse);
-	rpc ListGroupMemberUsers(ListGroupMemberUsersRequest) returns (ListGroupMemberUsersResponse);
+	rpc ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse);
 	rpc ListMemberGroups(ListMemberGroupsRequest) returns (ListTeamMemberGroupsResponse);
 	rpc CreateMemberGroup(CreateTeamMemberGroupRequest) returns (CreateTeamMemberGroupResponse);
 	rpc UpdateMemberGroup(UpdateTeamMemberGroupRequest) returns (google.protobuf.Empty);
@@ -25,12 +25,12 @@ message GetMemberGroupResponse {
 	TeamMemberGroup group = 1;
 }
 
-message ListGroupMemberUsersRequest {
+message ListGroupMembersRequest {
 	uint64 groupId = 1;
 	uint64 teamId = 2;
 }
 
-message ListGroupMemberUsersResponse {
+message ListGroupMembersResponse {
 	repeated User users = 1;
 }
 
