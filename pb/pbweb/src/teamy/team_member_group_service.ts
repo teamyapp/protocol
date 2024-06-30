@@ -40,10 +40,6 @@ export interface ListGroupMembersRequest {
      * @generated from protobuf field: uint64 groupId = 1;
      */
     groupId: number;
-    /**
-     * @generated from protobuf field: uint64 teamId = 2;
-     */
-    teamId: number;
 }
 /**
  * @generated from protobuf message ListGroupMembersResponse
@@ -257,14 +253,12 @@ export const GetMemberGroupResponse = new GetMemberGroupResponse$Type();
 class ListGroupMembersRequest$Type extends MessageType<ListGroupMembersRequest> {
     constructor() {
         super("ListGroupMembersRequest", [
-            { no: 1, name: "groupId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "teamId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "groupId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<ListGroupMembersRequest>): ListGroupMembersRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.groupId = 0;
-        message.teamId = 0;
         if (value !== undefined)
             reflectionMergePartial<ListGroupMembersRequest>(this, message, value);
         return message;
@@ -276,9 +270,6 @@ class ListGroupMembersRequest$Type extends MessageType<ListGroupMembersRequest> 
             switch (fieldNo) {
                 case /* uint64 groupId */ 1:
                     message.groupId = reader.uint64().toNumber();
-                    break;
-                case /* uint64 teamId */ 2:
-                    message.teamId = reader.uint64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -295,9 +286,6 @@ class ListGroupMembersRequest$Type extends MessageType<ListGroupMembersRequest> 
         /* uint64 groupId = 1; */
         if (message.groupId !== 0)
             writer.tag(1, WireType.Varint).uint64(message.groupId);
-        /* uint64 teamId = 2; */
-        if (message.teamId !== 0)
-            writer.tag(2, WireType.Varint).uint64(message.teamId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

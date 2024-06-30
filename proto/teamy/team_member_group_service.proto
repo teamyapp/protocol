@@ -27,7 +27,6 @@ message GetMemberGroupResponse {
 
 message ListGroupMembersRequest {
 	uint64 groupId = 1;
-	uint64 teamId = 2;
 }
 
 message ListGroupMembersResponse {
