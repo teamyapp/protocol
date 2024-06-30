@@ -18,9 +18,9 @@ import { TaskLink } from "./message/task_link";
  */
 export interface GetTaskLinkRequest {
     /**
-     * @generated from protobuf field: uint64 linkId = 1;
+     * @generated from protobuf field: uint64 id = 1;
      */
-    linkId: number;
+    id: number;
 }
 /**
  * @generated from protobuf message GetTaskLinkResponse
@@ -83,29 +83,29 @@ export interface CreateTaskLinkRequest {
  */
 export interface CreateTaskLinkResponse {
     /**
-     * @generated from protobuf field: uint64 linkId = 1;
+     * @generated from protobuf field: TaskLink taskLink = 1;
      */
-    linkId: number;
+    taskLink?: TaskLink;
 }
 /**
  * @generated from protobuf message DeleteTaskLinkRequest
  */
 export interface DeleteTaskLinkRequest {
     /**
-     * @generated from protobuf field: uint64 linkId = 1;
+     * @generated from protobuf field: uint64 id = 1;
      */
-    linkId: number;
+    id: number;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class GetTaskLinkRequest$Type extends MessageType<GetTaskLinkRequest> {
     constructor() {
         super("GetTaskLinkRequest", [
-            { no: 1, name: "linkId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<GetTaskLinkRequest>): GetTaskLinkRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.linkId = 0;
+        message.id = 0;
         if (value !== undefined)
             reflectionMergePartial<GetTaskLinkRequest>(this, message, value);
         return message;
@@ -115,8 +115,8 @@ class GetTaskLinkRequest$Type extends MessageType<GetTaskLinkRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 linkId */ 1:
-                    message.linkId = reader.uint64().toNumber();
+                case /* uint64 id */ 1:
+                    message.id = reader.uint64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -130,9 +130,9 @@ class GetTaskLinkRequest$Type extends MessageType<GetTaskLinkRequest> {
         return message;
     }
     internalBinaryWrite(message: GetTaskLinkRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 linkId = 1; */
-        if (message.linkId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.linkId);
+        /* uint64 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.id);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -372,12 +372,11 @@ export const CreateTaskLinkRequest = new CreateTaskLinkRequest$Type();
 class CreateTaskLinkResponse$Type extends MessageType<CreateTaskLinkResponse> {
     constructor() {
         super("CreateTaskLinkResponse", [
-            { no: 1, name: "linkId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "taskLink", kind: "message", T: () => TaskLink }
         ]);
     }
     create(value?: PartialMessage<CreateTaskLinkResponse>): CreateTaskLinkResponse {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.linkId = 0;
         if (value !== undefined)
             reflectionMergePartial<CreateTaskLinkResponse>(this, message, value);
         return message;
@@ -387,8 +386,8 @@ class CreateTaskLinkResponse$Type extends MessageType<CreateTaskLinkResponse> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 linkId */ 1:
-                    message.linkId = reader.uint64().toNumber();
+                case /* TaskLink taskLink */ 1:
+                    message.taskLink = TaskLink.internalBinaryRead(reader, reader.uint32(), options, message.taskLink);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -402,9 +401,9 @@ class CreateTaskLinkResponse$Type extends MessageType<CreateTaskLinkResponse> {
         return message;
     }
     internalBinaryWrite(message: CreateTaskLinkResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 linkId = 1; */
-        if (message.linkId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.linkId);
+        /* TaskLink taskLink = 1; */
+        if (message.taskLink)
+            TaskLink.internalBinaryWrite(message.taskLink, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -419,12 +418,12 @@ export const CreateTaskLinkResponse = new CreateTaskLinkResponse$Type();
 class DeleteTaskLinkRequest$Type extends MessageType<DeleteTaskLinkRequest> {
     constructor() {
         super("DeleteTaskLinkRequest", [
-            { no: 1, name: "linkId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 1, name: "id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value?: PartialMessage<DeleteTaskLinkRequest>): DeleteTaskLinkRequest {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.linkId = 0;
+        message.id = 0;
         if (value !== undefined)
             reflectionMergePartial<DeleteTaskLinkRequest>(this, message, value);
         return message;
@@ -434,8 +433,8 @@ class DeleteTaskLinkRequest$Type extends MessageType<DeleteTaskLinkRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 linkId */ 1:
-                    message.linkId = reader.uint64().toNumber();
+                case /* uint64 id */ 1:
+                    message.id = reader.uint64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -449,9 +448,9 @@ class DeleteTaskLinkRequest$Type extends MessageType<DeleteTaskLinkRequest> {
         return message;
     }
     internalBinaryWrite(message: DeleteTaskLinkRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 linkId = 1; */
-        if (message.linkId !== 0)
-            writer.tag(1, WireType.Varint).uint64(message.linkId);
+        /* uint64 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.id);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
