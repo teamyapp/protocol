@@ -15,6 +15,8 @@ import type { CreateTeamMemberGroupResponse } from "./team_member_group_service"
 import type { CreateTeamMemberGroupRequest } from "./team_member_group_service";
 import type { ListTeamMemberGroupsResponse } from "./team_member_group_service";
 import type { ListMemberGroupsRequest } from "./team_member_group_service";
+import type { ListGroupMembersResponse } from "./team_member_group_service";
+import type { ListGroupMembersRequest } from "./team_member_group_service";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { GetMemberGroupResponse } from "./team_member_group_service";
 import type { GetMemberGroupRequest } from "./team_member_group_service";
@@ -28,6 +30,10 @@ export interface ITeamMemberGroupServiceClient {
      * @generated from protobuf rpc: GetMemberGroup(GetMemberGroupRequest) returns (GetMemberGroupResponse);
      */
     getMemberGroup(input: GetMemberGroupRequest, options?: RpcOptions): UnaryCall<GetMemberGroupRequest, GetMemberGroupResponse>;
+    /**
+     * @generated from protobuf rpc: ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse);
+     */
+    listGroupMembers(input: ListGroupMembersRequest, options?: RpcOptions): UnaryCall<ListGroupMembersRequest, ListGroupMembersResponse>;
     /**
      * @generated from protobuf rpc: ListMemberGroups(ListMemberGroupsRequest) returns (ListTeamMemberGroupsResponse);
      */
@@ -78,59 +84,66 @@ export class TeamMemberGroupServiceClient implements ITeamMemberGroupServiceClie
         return stackIntercept<GetMemberGroupRequest, GetMemberGroupResponse>("unary", this._transport, method, opt, input);
     }
     /**
+     * @generated from protobuf rpc: ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse);
+     */
+    listGroupMembers(input: ListGroupMembersRequest, options?: RpcOptions): UnaryCall<ListGroupMembersRequest, ListGroupMembersResponse> {
+        const method = this.methods[1], opt = this._transport.mergeOptions(options);
+        return stackIntercept<ListGroupMembersRequest, ListGroupMembersResponse>("unary", this._transport, method, opt, input);
+    }
+    /**
      * @generated from protobuf rpc: ListMemberGroups(ListMemberGroupsRequest) returns (ListTeamMemberGroupsResponse);
      */
     listMemberGroups(input: ListMemberGroupsRequest, options?: RpcOptions): UnaryCall<ListMemberGroupsRequest, ListTeamMemberGroupsResponse> {
-        const method = this.methods[1], opt = this._transport.mergeOptions(options);
+        const method = this.methods[2], opt = this._transport.mergeOptions(options);
         return stackIntercept<ListMemberGroupsRequest, ListTeamMemberGroupsResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: CreateMemberGroup(CreateTeamMemberGroupRequest) returns (CreateTeamMemberGroupResponse);
      */
     createMemberGroup(input: CreateTeamMemberGroupRequest, options?: RpcOptions): UnaryCall<CreateTeamMemberGroupRequest, CreateTeamMemberGroupResponse> {
-        const method = this.methods[2], opt = this._transport.mergeOptions(options);
+        const method = this.methods[3], opt = this._transport.mergeOptions(options);
         return stackIntercept<CreateTeamMemberGroupRequest, CreateTeamMemberGroupResponse>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: UpdateMemberGroup(UpdateTeamMemberGroupRequest) returns (google.protobuf.Empty);
      */
     updateMemberGroup(input: UpdateTeamMemberGroupRequest, options?: RpcOptions): UnaryCall<UpdateTeamMemberGroupRequest, Empty> {
-        const method = this.methods[3], opt = this._transport.mergeOptions(options);
+        const method = this.methods[4], opt = this._transport.mergeOptions(options);
         return stackIntercept<UpdateTeamMemberGroupRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: DeleteMemberGroup(DeleteTeamMemberGroupRequest) returns (google.protobuf.Empty);
      */
     deleteMemberGroup(input: DeleteTeamMemberGroupRequest, options?: RpcOptions): UnaryCall<DeleteTeamMemberGroupRequest, Empty> {
-        const method = this.methods[4], opt = this._transport.mergeOptions(options);
+        const method = this.methods[5], opt = this._transport.mergeOptions(options);
         return stackIntercept<DeleteTeamMemberGroupRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: AddMemberToGroup(AddTeamMemberToGroupRequest) returns (google.protobuf.Empty);
      */
     addMemberToGroup(input: AddTeamMemberToGroupRequest, options?: RpcOptions): UnaryCall<AddTeamMemberToGroupRequest, Empty> {
-        const method = this.methods[5], opt = this._transport.mergeOptions(options);
+        const method = this.methods[6], opt = this._transport.mergeOptions(options);
         return stackIntercept<AddTeamMemberToGroupRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: RemoveMemberFromGroup(RemoveTeamMemberFromGroupRequest) returns (google.protobuf.Empty);
      */
     removeMemberFromGroup(input: RemoveTeamMemberFromGroupRequest, options?: RpcOptions): UnaryCall<RemoveTeamMemberFromGroupRequest, Empty> {
-        const method = this.methods[6], opt = this._transport.mergeOptions(options);
+        const method = this.methods[7], opt = this._transport.mergeOptions(options);
         return stackIntercept<RemoveTeamMemberFromGroupRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: MoveUpTeamMemberGroup(MoveUpTeamMemberGroupRequest) returns (google.protobuf.Empty);
      */
     moveUpTeamMemberGroup(input: MoveUpTeamMemberGroupRequest, options?: RpcOptions): UnaryCall<MoveUpTeamMemberGroupRequest, Empty> {
-        const method = this.methods[7], opt = this._transport.mergeOptions(options);
+        const method = this.methods[8], opt = this._transport.mergeOptions(options);
         return stackIntercept<MoveUpTeamMemberGroupRequest, Empty>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: MoveDownTeamMemberGroup(MoveDownTeamMemberGroupRequest) returns (google.protobuf.Empty);
      */
     moveDownTeamMemberGroup(input: MoveDownTeamMemberGroupRequest, options?: RpcOptions): UnaryCall<MoveDownTeamMemberGroupRequest, Empty> {
-        const method = this.methods[8], opt = this._transport.mergeOptions(options);
+        const method = this.methods[9], opt = this._transport.mergeOptions(options);
         return stackIntercept<MoveDownTeamMemberGroupRequest, Empty>("unary", this._transport, method, opt, input);
     }
 }

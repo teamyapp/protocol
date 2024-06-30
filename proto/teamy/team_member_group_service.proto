@@ -2,9 +2,11 @@ syntax = "proto3";
 option go_package = "ggithub.com/teamyapp/protocol/pb/pbgo/teamy";
 import "google/protobuf/empty.proto";
 import "teamy/message/team_member_group.proto";
+import "teamy/message/user.proto";
 
 service TeamMemberGroupService {
 	rpc GetMemberGroup(GetMemberGroupRequest) returns (GetMemberGroupResponse);
+	rpc ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse);
 	rpc ListMemberGroups(ListMemberGroupsRequest) returns (ListTeamMemberGroupsResponse);
 	rpc CreateMemberGroup(CreateTeamMemberGroupRequest) returns (CreateTeamMemberGroupResponse);
 	rpc UpdateMemberGroup(UpdateTeamMemberGroupRequest) returns (google.protobuf.Empty);
@@ -21,6 +23,14 @@ message GetMemberGroupRequest {
 
 message GetMemberGroupResponse {
 	TeamMemberGroup group = 1;
+}
+
+message ListGroupMembersRequest {
+	uint64 groupId = 1;
+}
+
+message ListGroupMembersResponse {
+	repeated User users = 1;
 }
 
 message ListMemberGroupsRequest {

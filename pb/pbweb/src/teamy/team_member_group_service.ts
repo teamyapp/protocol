@@ -12,6 +12,7 @@ import { UnknownFieldHandler } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
+import { User } from "./message/user";
 import { TeamMemberGroup } from "./message/team_member_group";
 /**
  * @generated from protobuf message GetMemberGroupRequest
@@ -30,6 +31,24 @@ export interface GetMemberGroupResponse {
      * @generated from protobuf field: TeamMemberGroup group = 1;
      */
     group?: TeamMemberGroup;
+}
+/**
+ * @generated from protobuf message ListGroupMembersRequest
+ */
+export interface ListGroupMembersRequest {
+    /**
+     * @generated from protobuf field: uint64 groupId = 1;
+     */
+    groupId: number;
+}
+/**
+ * @generated from protobuf message ListGroupMembersResponse
+ */
+export interface ListGroupMembersResponse {
+    /**
+     * @generated from protobuf field: repeated User users = 1;
+     */
+    users: User[];
 }
 /**
  * @generated from protobuf message ListMemberGroupsRequest
@@ -230,6 +249,100 @@ class GetMemberGroupResponse$Type extends MessageType<GetMemberGroupResponse> {
  * @generated MessageType for protobuf message GetMemberGroupResponse
  */
 export const GetMemberGroupResponse = new GetMemberGroupResponse$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListGroupMembersRequest$Type extends MessageType<ListGroupMembersRequest> {
+    constructor() {
+        super("ListGroupMembersRequest", [
+            { no: 1, name: "groupId", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ListGroupMembersRequest>): ListGroupMembersRequest {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.groupId = 0;
+        if (value !== undefined)
+            reflectionMergePartial<ListGroupMembersRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListGroupMembersRequest): ListGroupMembersRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint64 groupId */ 1:
+                    message.groupId = reader.uint64().toNumber();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListGroupMembersRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint64 groupId = 1; */
+        if (message.groupId !== 0)
+            writer.tag(1, WireType.Varint).uint64(message.groupId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ListGroupMembersRequest
+ */
+export const ListGroupMembersRequest = new ListGroupMembersRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ListGroupMembersResponse$Type extends MessageType<ListGroupMembersResponse> {
+    constructor() {
+        super("ListGroupMembersResponse", [
+            { no: 1, name: "users", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => User }
+        ]);
+    }
+    create(value?: PartialMessage<ListGroupMembersResponse>): ListGroupMembersResponse {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.users = [];
+        if (value !== undefined)
+            reflectionMergePartial<ListGroupMembersResponse>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListGroupMembersResponse): ListGroupMembersResponse {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated User users */ 1:
+                    message.users.push(User.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ListGroupMembersResponse, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated User users = 1; */
+        for (let i = 0; i < message.users.length; i++)
+            User.internalBinaryWrite(message.users[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ListGroupMembersResponse
+ */
+export const ListGroupMembersResponse = new ListGroupMembersResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class ListMemberGroupsRequest$Type extends MessageType<ListMemberGroupsRequest> {
     constructor() {
@@ -737,6 +850,7 @@ export const MoveDownTeamMemberGroupRequest = new MoveDownTeamMemberGroupRequest
  */
 export const TeamMemberGroupService = new ServiceType("TeamMemberGroupService", [
     { name: "GetMemberGroup", options: {}, I: GetMemberGroupRequest, O: GetMemberGroupResponse },
+    { name: "ListGroupMembers", options: {}, I: ListGroupMembersRequest, O: ListGroupMembersResponse },
     { name: "ListMemberGroups", options: {}, I: ListMemberGroupsRequest, O: ListTeamMemberGroupsResponse },
     { name: "CreateMemberGroup", options: {}, I: CreateTeamMemberGroupRequest, O: CreateTeamMemberGroupResponse },
     { name: "UpdateMemberGroup", options: {}, I: UpdateTeamMemberGroupRequest, O: Empty },
