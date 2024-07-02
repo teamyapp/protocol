@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy/message";
+import "google/protobuf/timestamp.proto";
+
+enum PhaseStatus {
+    PHASE_TODO = 0;
+    PHASE_IN_PROGRESS = 1;
+    PHASE_PAUSED = 2;
+    PHASE_COMPLETED = 3;
+}
+
+message Phase {
+    uint64 id = 1;
+    string name = 2;
+    PhaseStatus status = 3;
+    google.protobuf.Timestamp expectedStartAt = 4;
+    optional google.protobuf.Timestamp actualStartAt = 5;
+    google.protobuf.Timestamp expectedEndAt = 6;
+    optional google.protobuf.Timestamp actualEndAt = 7;
+    uint64 creatorUserId = 8;
+    google.protobuf.Timestamp createdAt = 9;
+    optional google.protobuf.Timestamp updatedAt = 10;
+}

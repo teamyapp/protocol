@@ -1,0 +1,93 @@
+syntax = "proto3";
+option go_package = "github.com/teamyapp/protocol/pb/pbgo/teamy";
+import "google/protobuf/empty.proto";
+import "teamy/message/story.proto";
+import "teamy/message/priority.proto";
+import "teamy/message/task.proto";
+
+
+service StoryService {
+    rpc GetStory(GetStoryRequest) returns (GetStoryResponse);
+    rpc ListStories(ListStoriesRequest) returns (ListStoriesResponse);
+    rpc GetTasksByStory(GetTasksByStoryRequest) returns (GetTasksByStoryResponse);
+    rpc CreateStory(CreateStoryRequest) returns (CreateStoryResponse);
+    rpc UpdateStory(UpdateStoryRequest) returns (UpdateStoryResponse);
+    rpc DeleteStory(DeleteStoryRequest) returns (google.protobuf.Empty);
+    rpc AddTaskToStory(AddTaskToStoryRequest) returns (google.protobuf.Empty);
+    rpc RemoveTaskFromStory(RemoveTaskFromStoryRequest) returns (google.protobuf.Empty);
+    rpc AddTasksToStory(AddTasksToStoryRequest) returns (google.protobuf.Empty);
+    rpc RemoveTasksFromStory(RemoveTasksFromStoryRequest) returns (google.protobuf.Empty);
+}
+
+message GetStoryRequest {
+    uint64 id = 1;
+}
+
+message GetStoryResponse {
+    Story story = 1;
+}
+
+message GetTasksByStoryRequest {
+    uint64 storyId = 1;
+}
+
+message GetTasksByStoryResponse {
+    repeated Task tasks = 1;
+}
+
+message ListStoriesRequest {
+    optional uint64 projectId = 1;
+    optional uint64 phaseId = 2;
+}
+
+message ListStoriesResponse {
+    repeated Story stories = 1;
+}
+
+message CreateStoryRequest {
+    uint64 projectId = 1;
+    string name = 2;
+    optional uint64 ownerUserId = 3;
+    optional Priority priority = 4;
+    StoryStatus status = 5;
+}
+
+message CreateStoryResponse {
+    Story story = 1;
+}
+
+message UpdateStoryRequest {
+    uint64 id = 1;
+    optional string name = 2;
+    optional uint64 ownerUserId = 3;
+    optional Priority priority = 4;
+    optional StoryStatus status = 5;
+}
+
+message UpdateStoryResponse {
+    Story story = 1;
+}
+
+message DeleteStoryRequest {
+    uint64 id = 1;
+}
+
+message AddTaskToStoryRequest {
+    uint64 storyId = 1;
+    uint64 taskId = 2;
+}
+
+message RemoveTaskFromStoryRequest {
+    uint64 storyId = 1;
+    uint64 taskId = 2;
+}
+
+message AddTasksToStoryRequest {
+    uint64 storyId = 1;
+    repeated uint64 taskIds = 2;
+}
+
+message RemoveTasksFromStoryRequest {
+    uint64 storyId = 1;
+    repeated uint64 taskIds = 2;
+}
